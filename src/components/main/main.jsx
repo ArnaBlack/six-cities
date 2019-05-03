@@ -120,7 +120,11 @@ const Main = ({offers}) => <React.Fragment>
 </React.Fragment>;
 
 Main.propTypes = {
-  offers: PropTypes.array.isRequired,
+  offers: PropTypes.array,
+};
+
+Main.defaultProps = {
+  offers: [],
 };
 
 export default Main;
