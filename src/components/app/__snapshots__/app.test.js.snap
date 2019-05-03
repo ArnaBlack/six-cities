@@ -353,6 +353,7 @@ Array [
                 >
                   <a
                     href="#"
+                    onClick={[MockFunction]}
                   >
                     Beautiful luxurious apartment at great location
                   </a>
@@ -449,6 +450,7 @@ Array [
                 >
                   <a
                     href="#"
+                    onClick={[MockFunction]}
                   >
                     Wood and stone place
                   </a>
@@ -545,6 +547,7 @@ Array [
                 >
                   <a
                     href="#"
+                    onClick={[MockFunction]}
                   >
                     Canal View Prinsengracht
                   </a>
@@ -648,6 +651,7 @@ Array [
                 >
                   <a
                     href="#"
+                    onClick={[MockFunction]}
                   >
                     Nice, cozy, warm big bed apartment
                   </a>

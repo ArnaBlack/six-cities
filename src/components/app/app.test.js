@@ -4,9 +4,11 @@ import App from './app.jsx';
 import offersMock from '../../mocks/offers';
 
 it(`App correctly renders`, () => {
+  const clickHandler = jest.fn();
   const tree = renderer
     .create(<App
       offers={offersMock}
+      onOfferTitleClick={clickHandler}
     />)
     .toJSON();
 

@@ -5,6 +5,7 @@ import offersMock from '../../mocks/offers';
 
 it(`PlaceCard correctly renders`, () => {
   const [offer] = offersMock;
+  const clickHandler = jest.fn();
   const tree = renderer
     .create(<PlaceCard
       mark={offer.mark}
@@ -14,6 +15,7 @@ it(`PlaceCard correctly renders`, () => {
       rating={offer.rating}
       name={offer.name}
       type={offer.type}
+      onTitleClick={clickHandler}
     />)
     .toJSON();
 
