@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PlaceCard = ({mark, imageSrc, price, inBookmarks, rating, name, type}) => {
+const PlaceCard = ({mark, imageSrc, price, inBookmarks, rating, name, type, onTitleClick}) => {
   const bookMarkBtnClasses = [`place-card__bookmark-button`, `button`];
 
   if (inBookmarks) {
@@ -39,7 +39,7 @@ const PlaceCard = ({mark, imageSrc, price, inBookmarks, rating, name, type}) => 
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#">{name}</a>
+        <a href="#" onClick={onTitleClick}>{name}</a>
       </h2>
       <p className="place-card__type">{type}</p>
     </div>
@@ -54,6 +54,7 @@ PlaceCard.propTypes = {
   rating: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  onTitleClick: PropTypes.func.isRequired,
 };
 
 PlaceCard.defaultProps = {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 
-const Main = ({offers}) => <React.Fragment>
+const Main = ({offers, onOfferTitleClick}) => <React.Fragment>
   <div style={{display: `none`}}>
     <svg xmlns="http://www.w3.org/2000/svg">
       <symbol id="icon-arrow-select" viewBox="0 0 7 4">
@@ -108,6 +108,7 @@ const Main = ({offers}) => <React.Fragment>
               rating={offer.rating}
               name={offer.name}
               type={offer.type}
+              onTitleClick={onOfferTitleClick}
             />)}
           </div>
         </section>
@@ -121,6 +122,7 @@ const Main = ({offers}) => <React.Fragment>
 
 Main.propTypes = {
   offers: PropTypes.array,
+  onOfferTitleClick: PropTypes.func.isRequired,
 };
 
 Main.defaultProps = {
