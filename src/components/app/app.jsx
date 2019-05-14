@@ -1,20 +1,10 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Main from '../main/main.jsx';
 import PropTypes from 'prop-types';
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props);
-    this.onOfferTitleClick = this.onOfferTitleClick.bind(this);
-  }
-
-  onOfferTitleClick(evt) {
-    const {onOfferTitleClick} = this.props;
-
-    if (typeof onOfferTitleClick === `function`) {
-      evt.preventDefault();
-      onOfferTitleClick();
-    }
   }
 
   render() {
@@ -22,19 +12,26 @@ class App extends Component {
 
     return <Main
       offers={offers}
-      onOfferTitleClick={this.onOfferTitleClick}
+      onOfferTitleClick={this._handleOfferTitleClick}
+      onOfferImageClick={this._handleOfferImageClick}
     />;
+  }
+
+  _handleOfferTitleClick(evt) {
+    evt.preventDefault();
+  }
+
+  _handleOfferImageClick(evt) {
+    evt.preventDefault();
   }
 }
 
 App.propTypes = {
   offers: PropTypes.array,
-  onOfferTitleClick: PropTypes.func,
 };
 
 App.defaultProps = {
   offers: [],
-  onOfferTitleClick: () => {},
 };
 
 export default App;
