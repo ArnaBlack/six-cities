@@ -1,12 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PlaceCard = ({mark, imageSrc, price, inBookmarks, rating, name, type, onTitleClick}) => {
+const MAX_RATING = 5;
+
+const PlaceCard = ({offer, onTitleClick, onImageClick}) => {
+  const {
+    imageSrc,
+    mark,
+    price,
+    inBookmarks,
+    title,
+    type,
+    rating,
+  } = offer;
+
   const bookMarkBtnClasses = [`place-card__bookmark-button`, `button`];
 
   if (inBookmarks) {
     bookMarkBtnClasses.push(`place-card__bookmark-button--active`);
   }
+
+  const ratingWidth = Math.round(rating) * 100 / MAX_RATING;
 
   return <article className="cities__place-card place-card">
     {mark ? (
@@ -15,7 +29,7 @@ const PlaceCard = ({mark, imageSrc, price, inBookmarks, rating, name, type, onTi
       </div>
     ) : null}
     <div className="cities__image-wrapper place-card__image-wrapper">
-      <a href="#">
+      <a href="#" onClick={onImageClick}>
         <img className="place-card__image" src={imageSrc} width="260" height="200" alt="Place image" />
       </a>
     </div>
@@ -34,12 +48,12 @@ const PlaceCard = ({mark, imageSrc, price, inBookmarks, rating, name, type, onTi
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width: `${rating}%`}} />
+          <span style={{width: `${ratingWidth}%`}} />
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#" onClick={onTitleClick}>{name}</a>
+        <a href="#" onClick={onTitleClick}>{title}</a>
       </h2>
       <p className="place-card__type">{type}</p>
     </div>
@@ -47,18 +61,17 @@ const PlaceCard = ({mark, imageSrc, price, inBookmarks, rating, name, type, onTi
 };
 
 PlaceCard.propTypes = {
-  mark: PropTypes.string,
-  imageSrc: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  inBookmarks: PropTypes.bool.isRequired,
-  rating: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  offer: PropTypes.shape({
+    mark: PropTypes.string,
+    imageSrc: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    inBookmarks: PropTypes.bool.isRequired,
+    rating: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  }).isRequired,
   onTitleClick: PropTypes.func.isRequired,
-};
-
-PlaceCard.defaultProps = {
-  mark: ``,
+  onImageClick: PropTypes.func.isRequired,
 };
 
 export default PlaceCard;
