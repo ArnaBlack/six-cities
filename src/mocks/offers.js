@@ -1,5 +1,6 @@
 export default [
   {
+    id: 1,
     mark: `Premium`,
     imageSrc: `img/apartment-01.jpg`,
     price: 120,
@@ -9,6 +10,7 @@ export default [
     type: `Apartment`,
   },
   {
+    id: 2,
     imageSrc: `img/room.jpg`,
     price: 80,
     inBookmarks: false,
@@ -17,6 +19,7 @@ export default [
     type: `Private room`,
   },
   {
+    id: 3,
     imageSrc: `img/apartment-02.jpg`,
     price: 132,
     inBookmarks: true,
@@ -25,6 +28,7 @@ export default [
     type: `Apartment`,
   },
   {
+    id: 4,
     mark: `Premium`,
     imageSrc: `img/apartment-03.jpg`,
     price: 180,
