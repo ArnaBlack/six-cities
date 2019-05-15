@@ -5,6 +5,7 @@ const MAX_RATING = 5;
 
 const PlaceCard = ({offer, onTitleClick, onImageClick}) => {
   const {
+    id,
     imageSrc,
     mark,
     price,
@@ -13,14 +14,13 @@ const PlaceCard = ({offer, onTitleClick, onImageClick}) => {
     type,
     rating,
   } = offer;
-
+  const handleImageClick = (evt) => onImageClick(evt, id);
+  const ratingWidth = Math.round(rating) * 100 / MAX_RATING;
   const bookMarkBtnClasses = [`place-card__bookmark-button`, `button`];
 
   if (inBookmarks) {
     bookMarkBtnClasses.push(`place-card__bookmark-button--active`);
   }
-
-  const ratingWidth = Math.round(rating) * 100 / MAX_RATING;
 
   return <article className="cities__place-card place-card">
     {mark ? (
@@ -29,7 +29,7 @@ const PlaceCard = ({offer, onTitleClick, onImageClick}) => {
       </div>
     ) : null}
     <div className="cities__image-wrapper place-card__image-wrapper">
-      <a href="#" onClick={onImageClick}>
+      <a href="#" onClick={handleImageClick}>
         <img className="place-card__image" src={imageSrc} width="260" height="200" alt="Place image" />
       </a>
     </div>
@@ -62,6 +62,7 @@ const PlaceCard = ({offer, onTitleClick, onImageClick}) => {
 
 PlaceCard.propTypes = {
   offer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     mark: PropTypes.string,
     imageSrc: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
