@@ -10,24 +10,21 @@ class App extends PureComponent {
   render() {
     const {offers} = this.props;
 
-    return <Main
-      offers={offers}
-      onOfferTitleClick={this._handleOfferTitleClick}
-      onOfferImageClick={this._handleOfferImageClick}
-    />;
-  }
-
-  _handleOfferTitleClick(evt) {
-    evt.preventDefault();
-  }
-
-  _handleOfferImageClick(evt) {
-    evt.preventDefault();
+    return <Main offers={offers} />;
   }
 }
 
 App.propTypes = {
-  offers: PropTypes.array,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    mark: PropTypes.string,
+    imageSrc: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    inBookmarks: PropTypes.bool.isRequired,
+    rating: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  })),
 };
 
 App.defaultProps = {
