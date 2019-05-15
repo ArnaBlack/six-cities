@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PlaceCard from '../place-card/place-card.jsx';
+import PlaceList from '../place-list/place-list.jsx';
 
-const Main = ({offers, onOfferTitleClick, onOfferImageClick}) => <React.Fragment>
+const Main = ({offers}) => <React.Fragment>
   <div style={{display: `none`}}>
     <svg xmlns="http://www.w3.org/2000/svg">
       <symbol id="icon-arrow-select" viewBox="0 0 7 4">
@@ -98,14 +98,7 @@ const Main = ({offers, onOfferTitleClick, onOfferImageClick}) => <React.Fragment
               <li className="places__option" tabIndex="0">Top rated first</li>
             </ul>
           </form>
-          <div className="cities__places-list places__list tabs__content">
-            {offers.map((offer, index) => <PlaceCard
-              key={`${offer.name}-${index}`}
-              offer={offer}
-              onTitleClick={onOfferTitleClick}
-              onImageClick={onOfferImageClick}
-            />)}
-          </div>
+          <PlaceList offers={offers} />
         </section>
         <div className="cities__right-section">
           <section className="cities__map map" />
@@ -116,9 +109,16 @@ const Main = ({offers, onOfferTitleClick, onOfferImageClick}) => <React.Fragment
 </React.Fragment>;
 
 Main.propTypes = {
-  offers: PropTypes.array,
-  onOfferTitleClick: PropTypes.func.isRequired,
-  onOfferImageClick: PropTypes.func.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    mark: PropTypes.string,
+    imageSrc: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    inBookmarks: PropTypes.bool.isRequired,
+    rating: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  })),
 };
 
 Main.defaultProps = {
