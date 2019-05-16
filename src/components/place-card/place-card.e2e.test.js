@@ -49,6 +49,6 @@ describe(`Check click events`, () => {
     const clickEvent = new Event(`click`);
     placeCardImage.simulate(`click`, clickEvent);
     expect(imageClickHandler).toHaveBeenCalledTimes(1);
-    expect(imageClickHandler).toHaveBeenCalledWith(clickEvent, offer.id);
+    expect(imageClickHandler).toHaveBeenCalledWith(offer.id);
   });
 });

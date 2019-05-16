@@ -94,7 +94,7 @@ exports[`PlaceCard correctly renders 1`] = `
     >
       <a
         href="#"
-        onClick={[MockFunction]}
+        onClick={[Function]}
       >
         Beautiful luxurious apartment at great location
       </a>
