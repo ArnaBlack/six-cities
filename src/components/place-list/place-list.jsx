@@ -9,8 +9,7 @@ class PlaceList extends PureComponent {
       selected: null,
     };
 
-    this._handleOfferTitleClick = this._handleOfferTitleClick.bind(this);
-    this._handleOfferImageClick = this._handleOfferImageClick.bind(this);
+    this._onImageClick = this._onImageClick.bind(this);
   }
 
   render() {
@@ -20,19 +19,15 @@ class PlaceList extends PureComponent {
       {offers.map((offer) => <PlaceCard
         key={`offer-${offer.id}`}
         offer={offer}
-        onTitleClick={this._handleOfferTitleClick}
-        onImageClick={this._handleOfferImageClick}
+        onTitleClick={this._onTitleClick}
+        onImageClick={this._onImageClick}
       />)}
     </div>;
   }
 
-  _handleOfferTitleClick(evt) {
-    evt.preventDefault();
-  }
+  _onTitleClick() {}
 
-  _handleOfferImageClick(evt, id) {
-    evt.preventDefault();
-
+  _onImageClick(id) {
     this.setState({
       selected: id,
     });
