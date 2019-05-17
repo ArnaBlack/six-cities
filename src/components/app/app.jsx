@@ -1,40 +1,34 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Main from '../main/main.jsx';
 import PropTypes from 'prop-types';
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props);
-    this.onOfferTitleClick = this.onOfferTitleClick.bind(this);
-  }
-
-  onOfferTitleClick(evt) {
-    const {onOfferTitleClick} = this.props;
-
-    if (typeof onOfferTitleClick === `function`) {
-      evt.preventDefault();
-      onOfferTitleClick();
-    }
   }
 
   render() {
     const {offers} = this.props;
 
-    return <Main
-      offers={offers}
-      onOfferTitleClick={this.onOfferTitleClick}
-    />;
+    return <Main offers={offers} />;
   }
 }
 
 App.propTypes = {
-  offers: PropTypes.array,
-  onOfferTitleClick: PropTypes.func,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    mark: PropTypes.string,
+    imageSrc: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    inBookmarks: PropTypes.bool.isRequired,
+    rating: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  })),
 };
 
 App.defaultProps = {
   offers: [],
-  onOfferTitleClick: () => {},
 };
 
 export default App;

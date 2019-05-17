@@ -276,6 +276,7 @@ Array [
               >
                 <a
                   href="#"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Place image"
@@ -337,7 +338,7 @@ Array [
                     <span
                       style={
                         Object {
-                          "width": "93%",
+                          "width": "80%",
                         }
                       }
                     />
@@ -373,6 +374,7 @@ Array [
               >
                 <a
                   href="#"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Place image"
@@ -434,7 +436,7 @@ Array [
                     <span
                       style={
                         Object {
-                          "width": "80%",
+                          "width": "100%",
                         }
                       }
                     />
@@ -470,6 +472,7 @@ Array [
               >
                 <a
                   href="#"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Place image"
@@ -531,7 +534,7 @@ Array [
                     <span
                       style={
                         Object {
-                          "width": "80%",
+                          "width": "40%",
                         }
                       }
                     />
@@ -574,6 +577,7 @@ Array [
               >
                 <a
                   href="#"
+                  onClick={[Function]}
                 >
                   <img
                     alt="Place image"
@@ -635,7 +639,7 @@ Array [
                     <span
                       style={
                         Object {
-                          "width": "100%",
+                          "width": "60%",
                         }
                       }
                     />

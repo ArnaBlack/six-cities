@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import App from './app.jsx';
+import PlaceList from './place-list.jsx';
 
 const mock = {
   offers: [
@@ -45,10 +45,10 @@ const mock = {
   ],
 };
 
-it(`App correctly renders`, () => {
+it(`PlaceList correctly renders`, () => {
   const {offers} = mock;
   const tree = renderer
-    .create(<App offers={offers} />)
+    .create(<PlaceList offers={offers} />)
     .toJSON();
 
   expect(tree).toMatchSnapshot();
