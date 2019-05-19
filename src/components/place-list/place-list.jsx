@@ -1,38 +1,21 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import PlaceCard from '../place-card/place-card.jsx';
 
-class PlaceList extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selected: null,
-    };
+const PlaceList = (props) => {
+  const {
+    offers,
+    onSelectOffer,
+  } = props;
 
-    this._onImageClick = this._onImageClick.bind(this);
-  }
-
-  render() {
-    const {offers} = this.props;
-
-    return <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer) => <PlaceCard
-        key={`offer-${offer.id}`}
-        offer={offer}
-        onTitleClick={this._onTitleClick}
-        onImageClick={this._onImageClick}
-      />)}
-    </div>;
-  }
-
-  _onTitleClick() {}
-
-  _onImageClick(id) {
-    this.setState({
-      selected: id,
-    });
-  }
-}
+  return <div className="cities__places-list places__list tabs__content">
+    {offers.map((offer) => <PlaceCard
+      key={`offer-${offer.id}`}
+      offer={offer}
+      onImageClick={onSelectOffer}
+    />)}
+  </div>;
+};
 
 PlaceList.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({
@@ -44,7 +27,9 @@ PlaceList.propTypes = {
     rating: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
+    coordinates: PropTypes.arrayOf(PropTypes.number),
   })),
+  onSelectOffer: PropTypes.func.isRequired,
 };
 
 PlaceList.defaultProps = {
