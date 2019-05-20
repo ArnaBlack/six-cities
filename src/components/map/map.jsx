@@ -38,6 +38,7 @@ class Map extends PureComponent {
     this._map = null;
     this._markersGroup = null;
     this._markers = {};
+    this._mapInvalidateTimer = null;
   }
 
   render() {
@@ -55,7 +56,7 @@ class Map extends PureComponent {
       .tileLayer(URL_TEMPLATE, TILE_OPTIONS)
       .addTo(this._map);
     this._renderMarkers();
-    setTimeout(() => this._map.invalidateSize(), INVALIDATE_DELAY);
+    this._mapInvalidateTimer = setTimeout(() => this._map.invalidateSize(), INVALIDATE_DELAY);
   }
 
   componentDidUpdate(prevProps) {
@@ -79,6 +80,7 @@ class Map extends PureComponent {
   componentWillUnmount() {
     this._map.remove();
     this._map = null;
+    clearTimeout(this._mapInvalidateTimer);
   }
 
   _renderMarkers() {
