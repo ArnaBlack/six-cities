@@ -24,13 +24,6 @@ const options = {
   marker: true
 };
 
-const INVALIDATE_DELAY = 250;
-
-const mapStyles = {
-  width: `100%`,
-  height: `100%`,
-};
-
 class Map extends PureComponent {
   constructor(props) {
     super(props);
@@ -38,11 +31,13 @@ class Map extends PureComponent {
     this._map = null;
     this._markersGroup = null;
     this._markers = {};
-    this._mapInvalidateTimer = null;
+    this._requestId = null;
+
+    this._updateSize = this._updateSize.bind(this);
   }
 
   render() {
-    return <div id="map" style={mapStyles} />;
+    return <section className="cities__map map" id="map" />;
   }
 
   componentDidMount() {
@@ -56,7 +51,7 @@ class Map extends PureComponent {
       .tileLayer(URL_TEMPLATE, TILE_OPTIONS)
       .addTo(this._map);
     this._renderMarkers();
-    this._mapInvalidateTimer = setTimeout(() => this._map.invalidateSize(), INVALIDATE_DELAY);
+    this._updateSize();
   }
 
   componentDidUpdate(prevProps) {
@@ -80,7 +75,7 @@ class Map extends PureComponent {
   componentWillUnmount() {
     this._map.remove();
     this._map = null;
-    clearTimeout(this._mapInvalidateTimer);
+    cancelAnimationFrame(this._requestId);
   }
 
   _renderMarkers() {
@@ -111,6 +106,11 @@ class Map extends PureComponent {
     const activeOffer = offers.find((it) => it.id === activeOfferId);
     this._markers[activeOfferId].setIcon(ACTIVE_ICON);
     this._map.panTo(activeOffer.coordinates);
+  }
+
+  _updateSize() {
+    this._requestId = requestAnimationFrame(this._updateSize);
+    this._map.invalidateSize();
   }
 }
 
