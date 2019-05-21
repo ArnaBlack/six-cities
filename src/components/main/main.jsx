@@ -123,13 +123,11 @@ class Main extends PureComponent {
               />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map">
-                <Map
-                  cityCoordinates={cityCoordinates}
-                  offers={offers}
-                  activeOfferId={selectedOffer}
-                />
-              </section>
+              <Map
+                cityCoordinates={cityCoordinates}
+                offers={offers}
+                activeOfferId={selectedOffer}
+              />
             </div>
           </div>
         </div>
