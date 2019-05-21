@@ -8,13 +8,20 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
+    const {
+      cityCoordinates,
+      offers,
+    } = this.props;
 
-    return <Main offers={offers} />;
+    return <Main
+      cityCoordinates={cityCoordinates}
+      offers={offers}
+    />;
   }
 }
 
 App.propTypes = {
+  cityCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     mark: PropTypes.string,
@@ -24,6 +31,7 @@ App.propTypes = {
     rating: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
+    coordinates: PropTypes.arrayOf(PropTypes.number),
   })),
 };
 

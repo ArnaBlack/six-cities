@@ -89,9 +89,14 @@ PlaceCard.propTypes = {
     rating: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
+    coordinates: PropTypes.arrayOf(PropTypes.number),
   }).isRequired,
-  onTitleClick: PropTypes.func.isRequired,
+  onTitleClick: PropTypes.func,
   onImageClick: PropTypes.func.isRequired,
+};
+
+PlaceCard.defaultProps = {
+  onTitleClick: () => {},
 };
 
 export default PlaceCard;

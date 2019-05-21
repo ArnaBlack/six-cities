@@ -15,6 +15,7 @@ const mock = {
     rating: 4,
     title: `Beautiful luxurious apartment at great location`,
     type: `Apartment`,
+    coordinates: [52.3909553943508, 4.85309666406198],
   },
 };
 
