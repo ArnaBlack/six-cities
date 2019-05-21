@@ -26,5 +26,6 @@ leaflet.setView = () => {};
 leaflet.marker = () => marker;
 leaflet.layerGroup = () => layerGroup;
 leaflet.removeLayer = () => leaflet;
+leaflet.invalidateSize = () => {};
 
 export default leaflet;
