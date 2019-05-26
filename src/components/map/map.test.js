@@ -1,8 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Map from './map.jsx';
+import {Map} from './map.jsx';
 
 const mock = {
+  center: [52.38333, 4.9],
   cityCoordinates: [52.38333, 4.9],
   offers: [
     {
@@ -21,16 +22,19 @@ const mock = {
 
 it(`Map correctly renders`, () => {
   const {
+    center,
     cityCoordinates,
     offers,
     activeOfferId,
   } = mock;
   const tree = renderer
     .create(<Map
+      center={center}
       cityCoordinates={cityCoordinates}
       offers={offers}
       activeOfferId={activeOfferId}
-    />);
+    />)
+    .toJSON();
 
   expect(tree).toMatchSnapshot();
 });
