@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cities renders correctly 1`] = `
+<section
+  className="locations container"
+>
+  <ul
+    className="locations__list tabs__list"
+  >
+    <li
+      className="locations__item"
+      key="city-0"
+    >
+      <ConnectFunction
+        city="Paris"
+        isActive={false}
+      />
+    </li>
+    <li
+      className="locations__item"
+      key="city-1"
+    >
+      <ConnectFunction
+        city="Cologne"
+        isActive={false}
+      />
+    </li>
+    <li
+      className="locations__item"
+      key="city-2"
+    >
+      <ConnectFunction
+        city="Brussels"
+        isActive={false}
+      />
+    </li>
+    <li
+      className="locations__item"
+      key="city-3"
+    >
+      <ConnectFunction
+        city="Amsterdam"
+        isActive={true}
+      />
+    </li>
+    <li
+      className="locations__item"
+      key="city-4"
+    >
+      <ConnectFunction
+        city="Hamburg"
+        isActive={false}
+      />
+    </li>
+    <li
+      className="locations__item"
+      key="city-5"
+    >
+      <ConnectFunction
+        city="Dusseldorf"
+        isActive={false}
+      />
+    </li>
+  </ul>
+</section>
+`;
