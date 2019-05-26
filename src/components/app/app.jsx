@@ -1,27 +1,30 @@
 import React, {PureComponent} from 'react';
 import Main from '../main/main.jsx';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import ActionCreators from '../../store/actions/action-creators';
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {
-      cityCoordinates,
+      currentCity,
       offers,
     } = this.props;
 
     return <Main
-      cityCoordinates={cityCoordinates}
+      currentCity={currentCity}
       offers={offers}
     />;
+  }
+
+  componentDidMount() {
+    const {getOffers} = this.props;
+    getOffers();
   }
 }
 
 App.propTypes = {
-  cityCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+  currentCity: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     mark: PropTypes.string,
@@ -33,10 +36,22 @@ App.propTypes = {
     type: PropTypes.string.isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number),
   })),
+  getOffers: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {
   offers: [],
 };
 
-export default App;
+const mapStateToProps = (state, props) => ({
+  ...props,
+  currentCity: state.city,
+  offers: state.offers.filter((it) => it.city === state.city),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getOffers: () => dispatch(ActionCreators.getOffers())
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
