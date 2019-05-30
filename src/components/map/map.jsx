@@ -2,7 +2,6 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import {connect} from 'react-redux';
-import citiesMock from '../../mocks/cities';
 
 const URL_TEMPLATE = `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`;
 const TILE_OPTIONS = {
@@ -140,7 +139,7 @@ Map.defaultProps = {
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  center: citiesMock.find((it) => it.name === state.city).coordinates,
+  center: state.cities.find((it) => it.name === state.city).coordinates,
 });
 
 export {Map};
