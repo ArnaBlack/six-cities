@@ -5,18 +5,20 @@
   "description": "Личный проект «Шесть городов» от HTML Academy",
   "scripts": {
     "start": "webpack-dev-server",
-    "eslint": "eslint src/**/*.js src/**/*.jsx",
+    "eslint": "eslint src/**/*.js src/**/*.jsx src/**/*.test.js",
     "test": "npm run eslint && jest",
     "build": "webpack --mode development"
   },
   "devDependencies": {
     "@babel/core": "7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "7.4.4",
     "@babel/preset-env": "7.4.4",
     "@babel/preset-react": "7.0.0",
     "babel-jest": "24.7.1",
     "babel-loader": "8.0.5",
     "enzyme": "3.9.0",
     "enzyme-adapter-react-16": "1.12.1",
+    "enzyme-to-json": "3.3.5",
     "eslint": "5.13.0",
     "eslint-config-htmlacademy": "0.5.2",
     "eslint-plugin-react": "7.12.4",
@@ -33,6 +35,11 @@
     "leaflet": "1.5.1",
     "prop-types": "15.7.2",
     "react": "16.8.6",
-    "react-dom": "16.8.6"
+    "react-dom": "16.8.6",
+    "react-redux": "7.0.3",
+    "redux": "4.0.1"
+  },
+  "jest": {
+    "snapshotSerializers": ["enzyme-to-json/serializer"]
   }
 }

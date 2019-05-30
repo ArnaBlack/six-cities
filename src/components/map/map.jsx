@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
+import {connect} from 'react-redux';
 
 const URL_TEMPLATE = `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`;
 const TILE_OPTIONS = {
@@ -41,12 +42,9 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
-    const {cityCoordinates} = this.props;
-
-    this._map = leaflet.map(`map`, Object.assign({}, options, {
-      center: cityCoordinates,
-    }));
-    this._map.setView(cityCoordinates, ZOOM);
+    const {center} = this.props;
+    this._map = leaflet.map(`map`, Object.assign({}, options, {center}));
+    this._map.setView(center, ZOOM);
     leaflet
       .tileLayer(URL_TEMPLATE, TILE_OPTIONS)
       .addTo(this._map);
@@ -56,7 +54,10 @@ class Map extends PureComponent {
 
   componentDidUpdate(prevProps) {
     const prevActiveOfferId = prevProps.activeOfferId;
-    const {activeOfferId} = this.props;
+    const {
+      center,
+      activeOfferId,
+    } = this.props;
 
     if (activeOfferId && prevActiveOfferId !== activeOfferId) {
       const prevMarker = this._markers[prevActiveOfferId];
@@ -69,6 +70,7 @@ class Map extends PureComponent {
     } else {
       this._removeMarkers();
       this._renderMarkers();
+      this._map.setView(center, ZOOM);
     }
   }
 
@@ -115,7 +117,7 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  cityCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+  center: PropTypes.arrayOf(PropTypes.number).isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     mark: PropTypes.string,
@@ -135,4 +137,10 @@ Map.defaultProps = {
   activeOfferId: null,
 };
 
-export default Map;
+const mapStateToProps = (state, props) => ({
+  ...props,
+  center: state.cities.find((it) => it.name === state.city).coordinates,
+});
+
+export {Map};
+export default connect(mapStateToProps)(Map);
