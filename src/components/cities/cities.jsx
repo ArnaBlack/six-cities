@@ -5,8 +5,8 @@ import CityLink from '../city-link/city-link.jsx';
 
 const Cities = ({currentCity, cities}) => <section className="locations container">
   <ul className="locations__list tabs__list">
-    {cities.map((it, i) => <li
-      key={`city-${i}`}
+    {cities.map((it) => <li
+      key={`city-${it}`}
       className="locations__item"
     >
       <CityLink
