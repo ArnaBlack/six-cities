@@ -1,7 +1,6 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {shallowToJson} from 'enzyme-to-json';
 import {Cities} from './cities.jsx';
 
 Enzyme.configure({adapter: new Adapter()});
@@ -21,6 +20,6 @@ it(`Cities renders correctly`, () => {
     cities={cities}
   />);
 
-  expect(shallowToJson(tree)).toMatchSnapshot();
+  expect(tree).toMatchSnapshot();
 });
 

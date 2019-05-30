@@ -1,8 +1,7 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {shallowToJson} from 'enzyme-to-json';
-import Main from './main.jsx';
+import {Main} from './main.jsx';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -34,5 +33,5 @@ it(`Main correctly renders`, () => {
     offers={offers}
   />);
 
-  expect(shallowToJson(tree)).toMatchSnapshot();
+  expect(tree).toMatchSnapshot();
 });

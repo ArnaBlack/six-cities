@@ -1,7 +1,6 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {shallowToJson} from 'enzyme-to-json';
 import {CityLink} from './city-link.jsx';
 
 Enzyme.configure({adapter: new Adapter()});
@@ -23,5 +22,5 @@ it(`CityLink renders correctly`, () => {
     onClick={clickHandler}
   />);
 
-  expect(shallowToJson(tree)).toMatchSnapshot();
+  expect(tree).toMatchSnapshot();
 });

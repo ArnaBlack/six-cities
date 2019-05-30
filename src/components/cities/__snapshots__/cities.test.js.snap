@@ -9,7 +9,7 @@ exports[`Cities renders correctly 1`] = `
   >
     <li
       className="locations__item"
-      key="city-0"
+      key="city-Paris"
     >
       <ConnectFunction
         city="Paris"
@@ -18,7 +18,7 @@ exports[`Cities renders correctly 1`] = `
     </li>
     <li
       className="locations__item"
-      key="city-1"
+      key="city-Cologne"
     >
       <ConnectFunction
         city="Cologne"
@@ -27,7 +27,7 @@ exports[`Cities renders correctly 1`] = `
     </li>
     <li
       className="locations__item"
-      key="city-2"
+      key="city-Brussels"
     >
       <ConnectFunction
         city="Brussels"
@@ -36,7 +36,7 @@ exports[`Cities renders correctly 1`] = `
     </li>
     <li
       className="locations__item"
-      key="city-3"
+      key="city-Amsterdam"
     >
       <ConnectFunction
         city="Amsterdam"
@@ -45,7 +45,7 @@ exports[`Cities renders correctly 1`] = `
     </li>
     <li
       className="locations__item"
-      key="city-4"
+      key="city-Hamburg"
     >
       <ConnectFunction
         city="Hamburg"
@@ -54,7 +54,7 @@ exports[`Cities renders correctly 1`] = `
     </li>
     <li
       className="locations__item"
-      key="city-5"
+      key="city-Dusseldorf"
     >
       <ConnectFunction
         city="Dusseldorf"
