@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Cities from '../cities/cities.jsx';
 import PlaceList from '../place-list/place-list.jsx';
 import Map from '../map/map.jsx';
-import ActionCreators from '../../store/actions/action-creators';
 import {connect} from 'react-redux';
 
 class Main extends PureComponent {
@@ -136,9 +135,5 @@ const mapStateToProps = (state, props) => ({
   offers: state.offers.filter((it) => it.city === state.city),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  getOffers: () => dispatch(ActionCreators.getOffers())
-});
-
 export {Main};
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps)(Main);
