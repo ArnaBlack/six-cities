@@ -2,10 +2,13 @@ import {
   CHANGE_CITY,
   GET_OFFERS,
 } from '../actions/action-types';
+import offersMock from '../../mocks/offers';
+import citiesMock from '../../mocks/cities';
 
 const initialState = {
   city: `Amsterdam`,
-  offers: [],
+  offers: offersMock,
+  cities: citiesMock,
 };
 
 export default (state = initialState, action) => {
