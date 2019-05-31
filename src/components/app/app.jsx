@@ -3,12 +3,12 @@ import Main from '../main/main.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-actvie-item.jsx';
 import withTransformProps from '../../hocs/with-transform-props/with-transform-props.jsx';
 
-const transformSelectedToActive = (props) => ({
+const transformActiveToSelected = (props) => ({
   selectedOffer: props.activeItem,
   onSelectOffer: props.onSelectItem,
 });
 
-const MainWrapped = withActiveItem(withTransformProps(transformSelectedToActive)(Main));
+const MainWrapped = withActiveItem(withTransformProps(transformActiveToSelected)(Main));
 
 class App extends PureComponent {
   render() {
