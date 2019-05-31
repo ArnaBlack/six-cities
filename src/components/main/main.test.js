@@ -28,9 +28,11 @@ it(`Main correctly renders`, () => {
     currentCity,
     offers,
   } = mock;
+  const onSelectOffer = jest.fn();
   const tree = shallow(<Main
     currentCity={currentCity}
     offers={offers}
+    onSelectOffer={onSelectOffer}
   />);
 
   expect(tree).toMatchSnapshot();

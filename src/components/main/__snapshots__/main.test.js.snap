@@ -202,7 +202,7 @@ exports[`Main correctly renders 1`] = `
                 },
               ]
             }
-            onSelectOffer={[Function]}
+            onSelectOffer={[MockFunction]}
           />
         </section>
         <div
