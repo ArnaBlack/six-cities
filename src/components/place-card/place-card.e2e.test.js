@@ -7,15 +7,38 @@ Enzyme.configure({adapter: new Adapter()});
 
 const mock = {
   offer: {
+    bedrooms: 1,
+    city: {
+      name: `Brussels`,
+      location: {
+        latitude: 50.846557,
+        longitude: 4.351697,
+        zoom: 13,
+      },
+    },
+    description: `Description`,
+    goods: [`Washer`, `Towels`],
+    host: {
+      avatarUrl: `img/avatar-angelina.jpg`,
+      id: 25,
+      isPro: true,
+      name: `Name`,
+    },
     id: 1,
-    mark: `Premium`,
-    imageSrc: `img/apartment-01.jpg`,
-    price: 120,
-    inBookmarks: true,
-    rating: 4,
-    title: `Beautiful luxurious apartment at great location`,
-    type: `Apartment`,
-    coordinates: [52.3909553943508, 4.85309666406198],
+    images: [`https://es31-server.appspot.com/six-cities/static/hotel/19.jpg`],
+    isFavorite: true,
+    isPremium: false,
+    location: {
+      latitude: 50.846557,
+      longitude: 4.351697,
+      zoom: 13,
+    },
+    maxAdults: 3,
+    previewImage: `https://es31-server.appspot.com/six-cities/static/hotel/4.jpg`,
+    price: 117,
+    rating: 3.4,
+    title: `The house among olive`,
+    type: `room`,
   },
 };
 
@@ -36,7 +59,7 @@ describe(`Check click events`, () => {
     expect(titleClickHandler).toHaveBeenCalledTimes(1);
   });
 
-  it(`Active card's id correctly passes to callback on image click`, () => {
+  it(`Active offer correctly passes to callback on image click`, () => {
     const {offer} = mock;
     const titleClickHandler = jest.fn();
     const imageClickHandler = jest.fn();
@@ -50,6 +73,6 @@ describe(`Check click events`, () => {
     const clickEvent = new Event(`click`);
     placeCardImage.simulate(`click`, clickEvent);
     expect(imageClickHandler).toHaveBeenCalledTimes(1);
-    expect(imageClickHandler).toHaveBeenCalledWith(offer.id);
+    expect(imageClickHandler).toHaveBeenCalledWith(offer);
   });
 });

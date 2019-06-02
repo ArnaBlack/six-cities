@@ -5,13 +5,6 @@ exports[`PlaceCard correctly renders 1`] = `
   className="cities__place-card place-card"
 >
   <div
-    className="place-card__mark"
-  >
-    <span>
-      Premium
-    </span>
-  </div>
-  <div
     className="cities__image-wrapper place-card__image-wrapper"
   >
     <a
@@ -22,7 +15,7 @@ exports[`PlaceCard correctly renders 1`] = `
         alt="Place image"
         className="place-card__image"
         height="200"
-        src="img/apartment-01.jpg"
+        src="https://es31-server.appspot.com/six-cities/static/hotel/4.jpg"
         width="260"
       />
     </a>
@@ -40,7 +33,7 @@ exports[`PlaceCard correctly renders 1`] = `
           className="place-card__price-value"
         >
           €
-          120
+          117
         </b>
         <span
           className="place-card__price-text"
@@ -49,7 +42,7 @@ exports[`PlaceCard correctly renders 1`] = `
         </span>
       </div>
       <button
-        className="place-card__bookmark-button button place-card__bookmark-button--active"
+        className="place-card__bookmark-button button place-card__bookisPremium-button--active"
         type="button"
       >
         <svg
@@ -78,7 +71,7 @@ exports[`PlaceCard correctly renders 1`] = `
         <span
           style={
             Object {
-              "width": "80%",
+              "width": "60%",
             }
           }
         />
@@ -96,13 +89,13 @@ exports[`PlaceCard correctly renders 1`] = `
         href="#"
         onClick={[Function]}
       >
-        Beautiful luxurious apartment at great location
+        The house among olive
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      Apartment
+      room
     </p>
   </div>
 </article>
