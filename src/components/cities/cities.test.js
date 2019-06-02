@@ -6,8 +6,32 @@ import {Cities} from './cities.jsx';
 Enzyme.configure({adapter: new Adapter()});
 
 const mock = {
-  currentCity: `Amsterdam`,
-  cities: [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`],
+  currentCity: {
+    name: `Amsterdam`,
+    location: {
+      latitude: 52.37454,
+      longitude: 4.897976,
+      zoom: 13,
+    },
+  },
+  cities: [
+    {
+      name: `Amsterdam`,
+      location: {
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 13,
+      },
+    },
+    {
+      name: `Paris`,
+      location: {
+        latitude: 51.37454,
+        longitude: 3.897976,
+        zoom: 10,
+      },
+    }
+  ],
 };
 
 it(`Cities renders correctly`, () => {
@@ -15,9 +39,11 @@ it(`Cities renders correctly`, () => {
     currentCity,
     cities,
   } = mock;
+  const onCityClick = jest.fn();
   const tree = shallow(<Cities
     currentCity={currentCity}
     cities={cities}
+    onCityClick={onCityClick}
   />);
 
   expect(tree).toMatchSnapshot();
