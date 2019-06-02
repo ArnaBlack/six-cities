@@ -105,7 +105,9 @@ exports[`Main correctly renders 1`] = `
     <div
       className="cities tabs"
     >
-      <ConnectFunction />
+      <ConnectFunction
+        onCityClick={[Function]}
+      />
     </div>
     <div
       className="cities__places-wrapper"
@@ -126,7 +128,7 @@ exports[`Main correctly renders 1`] = `
           >
             1
              places to stay in 
-            Amsterdam
+            Brussels
           </b>
           <form
             action="#"
@@ -186,19 +188,43 @@ exports[`Main correctly renders 1`] = `
             offers={
               Array [
                 Object {
-                  "city": "Amsterdam",
-                  "coordinates": Array [
-                    52.3909553943508,
-                    4.85309666406198,
+                  "bedrooms": 1,
+                  "city": Object {
+                    "location": Object {
+                      "latitude": 50.846557,
+                      "longitude": 4.351697,
+                      "zoom": 13,
+                    },
+                    "name": "Brussels",
+                  },
+                  "description": "Description",
+                  "goods": Array [
+                    "Washer",
+                    "Towels",
                   ],
+                  "host": Object {
+                    "avatarUrl": "img/avatar-angelina.jpg",
+                    "id": 25,
+                    "isPro": true,
+                    "name": "Name",
+                  },
                   "id": 1,
-                  "imageSrc": "img/apartment-01.jpg",
-                  "inBookmarks": true,
-                  "mark": "Premium",
-                  "price": 120,
-                  "rating": 4,
-                  "title": "Beautiful luxurious apartment at great location",
-                  "type": "Apartment",
+                  "images": Array [
+                    "https://es31-server.appspot.com/six-cities/static/hotel/19.jpg",
+                  ],
+                  "isFavorite": true,
+                  "isPremium": false,
+                  "location": Object {
+                    "latitude": 50.846557,
+                    "longitude": 4.351697,
+                    "zoom": 13,
+                  },
+                  "maxAdults": 3,
+                  "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
+                  "price": 117,
+                  "rating": 3.4,
+                  "title": "The house among olive",
+                  "type": "room",
                 },
               ]
             }
@@ -209,26 +235,50 @@ exports[`Main correctly renders 1`] = `
           className="cities__right-section"
         >
           <ConnectFunction
-            activeOfferId={-1}
             offers={
               Array [
                 Object {
-                  "city": "Amsterdam",
-                  "coordinates": Array [
-                    52.3909553943508,
-                    4.85309666406198,
+                  "bedrooms": 1,
+                  "city": Object {
+                    "location": Object {
+                      "latitude": 50.846557,
+                      "longitude": 4.351697,
+                      "zoom": 13,
+                    },
+                    "name": "Brussels",
+                  },
+                  "description": "Description",
+                  "goods": Array [
+                    "Washer",
+                    "Towels",
                   ],
+                  "host": Object {
+                    "avatarUrl": "img/avatar-angelina.jpg",
+                    "id": 25,
+                    "isPro": true,
+                    "name": "Name",
+                  },
                   "id": 1,
-                  "imageSrc": "img/apartment-01.jpg",
-                  "inBookmarks": true,
-                  "mark": "Premium",
-                  "price": 120,
-                  "rating": 4,
-                  "title": "Beautiful luxurious apartment at great location",
-                  "type": "Apartment",
+                  "images": Array [
+                    "https://es31-server.appspot.com/six-cities/static/hotel/19.jpg",
+                  ],
+                  "isFavorite": true,
+                  "isPremium": false,
+                  "location": Object {
+                    "latitude": 50.846557,
+                    "longitude": 4.351697,
+                    "zoom": 13,
+                  },
+                  "maxAdults": 3,
+                  "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
+                  "price": 117,
+                  "rating": 3.4,
+                  "title": "The house among olive",
+                  "type": "room",
                 },
               ]
             }
+            selectedOffer={null}
           />
         </div>
       </div>
