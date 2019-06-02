@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 import {connect} from 'react-redux';
+import {getCurrentCity} from '../../store/app/selectors';
 
 const URL_TEMPLATE = `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`;
 const TILE_OPTIONS = {
@@ -208,7 +209,7 @@ Map.defaultProps = {
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  currentCity: state.city,
+  currentCity: getCurrentCity(state),
 });
 
 export {Map};

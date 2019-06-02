@@ -1,10 +1,9 @@
 import MockAdapter from 'axios-mock-adapter';
-import {createAPI} from '../../api';
+import {createAPI} from '../../../api';
 import Operation from './operation';
 import {
-  CHANGE_CITY,
   LOAD_OFFERS,
-} from '../actions/action-types';
+} from '../action-types';
 
 const mock = {
   rawOffer: {
@@ -85,9 +84,10 @@ it(`Should make a correct API call to /hotels`, () => {
 
   const dispatch = jest.fn();
   const _getState = jest.fn();
+  const onSuccess = jest.fn();
   const api = createAPI(dispatch);
   const apiMock = new MockAdapter(api);
-  const offersLoader = Operation.loadOffers();
+  const offersLoader = Operation.loadOffers(onSuccess);
   const SUCCESS_STATUS = 200;
   const OFFERS_URL = `/hotels`;
   const data = [rawOffer];
@@ -99,11 +99,6 @@ it(`Should make a correct API call to /hotels`, () => {
   return offersLoader(dispatch, _getState, api)
     .then(() => {
       expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: CHANGE_CITY,
-        payload: [adaptedOffer][0].city,
-      });
-
-      expect(dispatch).toHaveBeenNthCalledWith(2, {
         type: LOAD_OFFERS,
         payload: [adaptedOffer],
         isLoading: false,

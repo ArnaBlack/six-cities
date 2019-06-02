@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import CityLink from '../city-link/city-link.jsx';
+import {getCurrentCity} from '../../store/app/selectors';
+import {getCities} from '../../store/data/selectors';
 
 const Cities = (props) => {
   const {
@@ -48,14 +50,8 @@ Cities.propTypes = {
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  currentCity: state.city,
-  cities: Object.values(state.offers.reduce((accum, {city}) => {
-    if (!accum[city.name]) {
-      accum[city.name] = city;
-    }
-
-    return accum;
-  }, {})),
+  currentCity: getCurrentCity(state),
+  cities: getCities(state),
 });
 
 export {Cities};

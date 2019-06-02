@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import ActionCreators from '../../store/actions/action-creators';
+import AppActionCreator from '../../store/app/action-creator/action-creator';
 
 class CityLink extends PureComponent {
   constructor(props) {
@@ -54,7 +54,7 @@ CityLink.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onClick: (city) => dispatch(ActionCreators.changeCity(city)),
+  onClick: (city) => dispatch(AppActionCreator.changeCity(city)),
 });
 
 export {CityLink};

@@ -22,7 +22,7 @@ class PlaceCard extends PureComponent {
       rating,
     } = this.props.offer;
     const ratingWidth = Math.round(rating) * 100 / MAX_RATING;
-    const favoriteClass = isFavorite ? `place-card__bookisPremium-button--active` : ``;
+    const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
 
     const premiumMark = isPremium ? (
       <div className="place-card__mark">

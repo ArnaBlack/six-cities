@@ -4,6 +4,8 @@ import Cities from '../cities/cities.jsx';
 import PlaceList from '../place-list/place-list.jsx';
 import Map from '../map/map.jsx';
 import {connect} from 'react-redux';
+import {getOffersByCity} from '../../store/data/selectors';
+import {getCurrentCity} from '../../store/app/selectors';
 
 class Main extends PureComponent {
   constructor(props) {
@@ -193,8 +195,8 @@ Main.defaultProps = {
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  currentCity: state.city,
-  offers: state.offers.filter((it) => it.city.name === state.city.name),
+  currentCity: getCurrentCity(state),
+  offers: getOffersByCity(state, getCurrentCity(state)),
 });
 
 export {Main};
