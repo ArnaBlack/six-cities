@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import {compose} from 'recompose';
 
 import reducer from './store/reducers/reducer';
+import Operation from './store/operations/operation';
 import {createAPI} from './api';
 import App from './components/app/app.jsx';
 
@@ -18,6 +19,8 @@ const store = createStore(
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     ),
 );
+
+store.dispatch(Operation.loadOffers());
 
 ReactDOM.render(
     <Provider store={store}>
