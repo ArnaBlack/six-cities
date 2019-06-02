@@ -1,12 +1,12 @@
 import {
   CHANGE_CITY,
-  GET_OFFERS,
+  LOAD_OFFERS,
 } from '../actions/action-types';
 
 const initialState = {
-  city: `Amsterdam`,
+  city: null,
   offers: [],
-  cities: [],
+  isLoading: true,
 };
 
 export default (state = initialState, action) => {
@@ -14,12 +14,13 @@ export default (state = initialState, action) => {
     case CHANGE_CITY:
       return {
         ...state,
-        city: action.city,
+        city: action.payload,
       };
-    case GET_OFFERS:
+    case LOAD_OFFERS:
       return {
         ...state,
-        offers: action.offers,
+        offers: action.payload,
+        isLoading: false,
       };
     default:
       return state;

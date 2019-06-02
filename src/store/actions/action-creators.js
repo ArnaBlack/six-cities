@@ -1,20 +1,20 @@
 import {
   CHANGE_CITY,
-  GET_OFFERS,
+  LOAD_OFFERS,
 } from './action-types';
-import offersMock from '../../mocks/offers';
 
 export default {
   changeCity(city) {
     return {
       type: CHANGE_CITY,
-      city,
+      payload: city,
     };
   },
-  getOffers() {
+  loadOffers(offers) {
     return {
-      type: GET_OFFERS,
-      offers: offersMock,
+      type: LOAD_OFFERS,
+      payload: offers,
+      isLoading: false,
     };
   },
 };
