@@ -6,7 +6,14 @@ import {CityLink} from './city-link.jsx';
 Enzyme.configure({adapter: new Adapter()});
 
 const mock = {
-  city: `Amsterdam`,
+  city: {
+    name: `Brussels`,
+    location: {
+      latitude: 50.846557,
+      longitude: 4.351697,
+      zoom: 13,
+    },
+  },
   isActive: true,
 };
 
@@ -15,11 +22,13 @@ it(`CityLink renders correctly`, () => {
     city,
     isActive
   } = mock;
-  const clickHandler = jest.fn();
+  const onClick = jest.fn();
+  const onCityClick = jest.fn();
   const tree = shallow(<CityLink
     city={city}
     isActive={isActive}
-    onClick={clickHandler}
+    onClick={onClick}
+    onCityClick={onCityClick}
   />);
 
   expect(tree).toMatchSnapshot();

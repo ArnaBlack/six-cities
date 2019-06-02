@@ -23,7 +23,7 @@ class CityLink extends PureComponent {
       href="#"
       onClick={this._handleClick}
     >
-      <span>{city}</span>
+      <span>{city.name}</span>
     </a>;
   }
 
@@ -31,15 +31,25 @@ class CityLink extends PureComponent {
     evt.preventDefault();
     const {
       city,
+      onCityClick,
       onClick,
     } = this.props;
+    onCityClick();
     onClick(city);
   }
 }
 
 CityLink.propTypes = {
-  city: PropTypes.string.isRequired,
+  city: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    }).isRequired,
+  }).isRequired,
   isActive: PropTypes.bool.isRequired,
+  onCityClick: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
