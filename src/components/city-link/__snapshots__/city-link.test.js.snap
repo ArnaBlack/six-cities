@@ -7,7 +7,7 @@ exports[`CityLink renders correctly 1`] = `
   onClick={[Function]}
 >
   <span>
-    Amsterdam
+    Brussels
   </span>
 </a>
 `;

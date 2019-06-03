@@ -4,23 +4,22 @@ import Cities from '../cities/cities.jsx';
 import PlaceList from '../place-list/place-list.jsx';
 import Map from '../map/map.jsx';
 import {connect} from 'react-redux';
+import {getOffersByCity} from '../../store/data/selectors';
+import {getCurrentCity} from '../../store/app/selectors';
 
 class Main extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      selectedOffer: -1,
-    };
-
-    this._onSelectOffer = this._onSelectOffer.bind(this);
+    this._onCityClick = this._onCityClick.bind(this);
   }
 
   render() {
-    const {selectedOffer} = this.state;
     const {
       currentCity,
+      selectedOffer,
       offers,
+      onSelectOffer,
     } = this.props;
 
     return <React.Fragment>
@@ -64,17 +63,17 @@ class Main extends PureComponent {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="cities tabs">
-          <Cities />
+          <Cities onCityClick={this._onCityClick} />
         </div>
         <div className="cities__places-wrapper">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in {currentCity}</b>
+              <b className="places__found">{offers.length} places to stay in {currentCity.name}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by&nbsp;</span>
                 <span className="places__sorting-type" tabIndex="0">
-                  Popular
+                Popular
                   <svg className="places__sorting-arrow" width="7" height="4">
                     <use xlinkHref="#icon-arrow-select" />
                   </svg>
@@ -88,13 +87,13 @@ class Main extends PureComponent {
               </form>
               <PlaceList
                 offers={offers}
-                onSelectOffer={this._onSelectOffer}
+                onSelectOffer={onSelectOffer}
               />
             </section>
             <div className="cities__right-section">
               <Map
                 offers={offers}
-                activeOfferId={selectedOffer}
+                selectedOffer={selectedOffer}
               />
             </div>
           </div>
@@ -103,36 +102,101 @@ class Main extends PureComponent {
     </React.Fragment>;
   }
 
-  _onSelectOffer(id) {
-    this.setState({
-      selectedOffer: id,
-    });
+  _onCityClick() {
+    const {onSelectOffer} = this.props;
+    onSelectOffer(null);
   }
 }
 
 Main.propTypes = {
-  currentCity: PropTypes.string.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.shape({
+  selectedOffer: PropTypes.shape({
+    bedrooms: PropTypes.number.isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired,
+      }).isRequired,
+    }).isRequired,
+    description: PropTypes.string.isRequired,
+    goods: PropTypes.arrayOf(PropTypes.string).isRequired,
+    host: PropTypes.shape({
+      avatarUrl: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      isPro: PropTypes.bool.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
     id: PropTypes.number.isRequired,
-    mark: PropTypes.string,
-    imageSrc: PropTypes.string.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string).isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    }).isRequired,
+    maxAdults: PropTypes.number.isRequired,
+    previewImage: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    inBookmarks: PropTypes.bool.isRequired,
     rating: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    coordinates: PropTypes.arrayOf(PropTypes.number),
+  }),
+  currentCity: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    }).isRequired,
+  }).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    bedrooms: PropTypes.number.isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired,
+      }).isRequired,
+    }).isRequired,
+    description: PropTypes.string.isRequired,
+    goods: PropTypes.arrayOf(PropTypes.string).isRequired,
+    host: PropTypes.shape({
+      avatarUrl: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      isPro: PropTypes.bool.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+    id: PropTypes.number.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string).isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    }).isRequired,
+    maxAdults: PropTypes.number.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
   })),
+  onSelectOffer: PropTypes.func.isRequired,
 };
 
 Main.defaultProps = {
+  selectedOffer: null,
   offers: [],
 };
 
 const mapStateToProps = (state, props) => ({
   ...props,
-  currentCity: state.city,
-  offers: state.offers.filter((it) => it.city === state.city),
+  currentCity: getCurrentCity(state),
+  offers: getOffersByCity(state, getCurrentCity(state)),
 });
 
 export {Main};

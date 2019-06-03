@@ -3,36 +3,97 @@ import renderer from 'react-test-renderer';
 import {Map} from './map.jsx';
 
 const mock = {
-  center: [52.38333, 4.9],
-  cityCoordinates: [52.38333, 4.9],
+  currentCity: {
+    name: `Brussels`,
+    location: {
+      latitude: 50.846557,
+      longitude: 4.351697,
+      zoom: 13,
+    }
+  },
   offers: [
     {
-      id: 2,
-      imageSrc: `img/room.jpg`,
-      price: 80,
-      inBookmarks: false,
-      rating: 4.5,
-      title: `Wood and stone place`,
-      type: `Private room`,
-      coordinates: [52.369553943508, 4.85309666406198],
+      bedrooms: 1,
+      city: {
+        name: `Brussels`,
+        location: {
+          latitude: 50.846557,
+          longitude: 4.351697,
+          zoom: 13,
+        },
+      },
+      description: `Description`,
+      goods: [`Washer`, `Towels`],
+      host: {
+        avatarUrl: `img/avatar-angelina.jpg`,
+        id: 25,
+        isPro: true,
+        name: `Name`,
+      },
+      id: 1,
+      images: [`https://es31-server.appspot.com/six-cities/static/hotel/19.jpg`],
+      isFavorite: true,
+      isPremium: false,
+      location: {
+        latitude: 50.846557,
+        longitude: 4.351697,
+        zoom: 13,
+      },
+      maxAdults: 3,
+      previewImage: `https://es31-server.appspot.com/six-cities/static/hotel/4.jpg`,
+      price: 117,
+      rating: 3.4,
+      title: `The house among olive`,
+      type: `room`,
     },
   ],
-  activeOfferId: 2,
+  selectedOffer: {
+    bedrooms: 1,
+    city: {
+      name: `Brussels`,
+      location: {
+        latitude: 50.846557,
+        longitude: 4.351697,
+        zoom: 13,
+      }
+    },
+    description: `Description`,
+    goods: [`Washer`, `Towels`],
+    host: {
+      avatarUrl: `img/avatar-angelina.jpg`,
+      id: 25,
+      isPro: true,
+      name: `Name`,
+    },
+    id: 1,
+    images: [`https://es31-server.appspot.com/six-cities/static/hotel/19.jpg`],
+    isFavorite: true,
+    isPremium: false,
+    location: {
+      latitude: 50.846557,
+      longitude: 4.351697,
+      zoom: 13,
+    },
+    maxAdults: 3,
+    previewImage: `https://es31-server.appspot.com/six-cities/static/hotel/4.jpg`,
+    price: 117,
+    rating: 3.4,
+    title: `The house among olive`,
+    type: `room`,
+  },
 };
 
 it(`Map correctly renders`, () => {
   const {
-    center,
-    cityCoordinates,
+    currentCity,
     offers,
-    activeOfferId,
+    selectedOffer,
   } = mock;
   const tree = renderer
     .create(<Map
-      center={center}
-      cityCoordinates={cityCoordinates}
+      currentCity={currentCity}
       offers={offers}
-      activeOfferId={activeOfferId}
+      selectedOffer={selectedOffer}
     />)
     .toJSON();
 
