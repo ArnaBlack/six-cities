@@ -13,26 +13,28 @@ class PlaceCard extends PureComponent {
 
   render() {
     const {
-      imageSrc,
-      mark,
+      previewImage,
+      isPremium,
       price,
-      inBookmarks,
+      isFavorite,
       title,
       type,
       rating,
     } = this.props.offer;
     const ratingWidth = Math.round(rating) * 100 / MAX_RATING;
-    const bookmarkActiveClass = inBookmarks ? `place-card__bookmark-button--active` : ``;
+    const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
+
+    const premiumMark = isPremium ? (
+      <div className="place-card__mark">
+        <span>Premium</span>
+      </div>
+    ) : null;
 
     return <article className="cities__place-card place-card">
-      {mark ? (
-        <div className="place-card__mark">
-          <span>{mark}</span>
-        </div>
-      ) : null}
+      {premiumMark}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#" onClick={this._handleImageClick}>
-          <img className="place-card__image" src={imageSrc} width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
         </a>
       </div>
       <div className="place-card__info">
@@ -42,13 +44,13 @@ class PlaceCard extends PureComponent {
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
-            className={`place-card__bookmark-button button ${bookmarkActiveClass}`}
+            className={`place-card__bookmark-button button ${favoriteClass}`}
             type="button"
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"/>
             </svg>
-            <span className="visually-hidden">{inBookmarks ? `In` : `To`} bookmarks</span>
+            <span className="visually-hidden">{isFavorite ? `In` : `To`} bookmarks</span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -74,21 +76,44 @@ class PlaceCard extends PureComponent {
   _handleImageClick(evt) {
     evt.preventDefault();
     const {offer, onImageClick} = this.props;
-    onImageClick(offer.id);
+    onImageClick(offer);
   }
 }
 
 PlaceCard.propTypes = {
   offer: PropTypes.shape({
+    bedrooms: PropTypes.number.isRequired,
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired,
+        zoom: PropTypes.number.isRequired,
+      }).isRequired,
+    }).isRequired,
+    description: PropTypes.string.isRequired,
+    goods: PropTypes.arrayOf(PropTypes.string).isRequired,
+    host: PropTypes.shape({
+      avatarUrl: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      isPro: PropTypes.bool.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
     id: PropTypes.number.isRequired,
-    mark: PropTypes.string,
-    imageSrc: PropTypes.string.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string).isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    }).isRequired,
+    maxAdults: PropTypes.number.isRequired,
+    previewImage: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    inBookmarks: PropTypes.bool.isRequired,
     rating: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    coordinates: PropTypes.arrayOf(PropTypes.number),
   }).isRequired,
   onTitleClick: PropTypes.func,
   onImageClick: PropTypes.func.isRequired,

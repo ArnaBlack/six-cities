@@ -1,9 +1,8 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import PlaceList from './place-list.jsx';
+import {LOAD_OFFERS} from '../action-types';
+import reducer from './reducer';
 
-const mock = {
-  offers: [
+it(`Should get offers`, () => {
+  const offers = [
     {
       bedrooms: 1,
       city: {
@@ -12,7 +11,7 @@ const mock = {
           latitude: 50.846557,
           longitude: 4.351697,
           zoom: 13,
-        },
+        }
       },
       description: `Description`,
       goods: [`Washer`, `Towels`],
@@ -38,18 +37,24 @@ const mock = {
       title: `The house among olive`,
       type: `room`,
     },
-  ],
-};
+  ];
 
-it(`PlaceList correctly renders`, () => {
-  const {offers} = mock;
-  const clickHandler = jest.fn();
-  const tree = renderer
-    .create(<PlaceList
-      offers={offers}
-      onSelectOffer={clickHandler}
-    />)
-    .toJSON();
+  const state = {
+    city: `Amsterdam`,
+    offers: [],
+    isLoading: true,
+  };
 
-  expect(tree).toMatchSnapshot();
+  const action = {
+    type: LOAD_OFFERS,
+    payload: offers,
+  };
+
+  const expected = {
+    city: `Amsterdam`,
+    offers,
+    isLoading: false,
+  };
+
+  expect(reducer(state, action)).toEqual(expected);
 });
