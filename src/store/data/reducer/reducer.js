@@ -1,7 +1,11 @@
-import {LOAD_OFFERS} from '../action-types';
+import {
+  LOAD_OFFERS,
+  CHANGE_CITY,
+} from '../action-types';
 
 const initialState = {
   offers: [],
+  city: null,
   isLoading: true,
 };
 
@@ -12,6 +16,11 @@ export default (state = initialState, action) => {
         ...state,
         offers: action.payload,
         isLoading: false,
+      };
+    case CHANGE_CITY:
+      return {
+        ...state,
+        city: action.payload,
       };
     default:
       return state;

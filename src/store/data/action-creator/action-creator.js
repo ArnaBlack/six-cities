@@ -1,11 +1,16 @@
-import {LOAD_OFFERS} from '../action-types';
+import {
+  LOAD_OFFERS,
+  CHANGE_CITY,
+} from '../action-types';
 
 export default {
-  loadOffers(offers) {
-    return {
-      type: LOAD_OFFERS,
-      payload: offers,
-      isLoading: false,
-    };
-  },
+  loadOffers: (offers) => ({
+    type: LOAD_OFFERS,
+    payload: offers,
+    isLoading: false,
+  }),
+  changeCity: (city) => ({
+    type: CHANGE_CITY,
+    payload: city,
+  }),
 };

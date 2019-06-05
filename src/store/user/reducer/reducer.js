@@ -1,9 +1,11 @@
 import {
   REQUIRED_AUTHORIZATION,
+  GET_USER,
 } from '../action-types';
 
 const initialState = {
-  isAuthorizationRequired: false,
+  isAuthorizationRequired: true,
+  user: null,
 };
 
 export default (state = initialState, action) => {
@@ -12,6 +14,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAuthorizationRequired: action.payload,
+      };
+    }
+    case GET_USER: {
+      return {
+        ...state,
+        user: action.payload,
       };
     }
     default:
