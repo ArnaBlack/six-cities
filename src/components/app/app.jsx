@@ -2,9 +2,14 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Main from '../main/main.jsx';
 import {connect} from 'react-redux';
+import {
+  Switch,
+  Route,
+} from 'react-router-dom';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import withTransformProps from '../../hocs/with-transform-props/with-transform-props.jsx';
 import Loader from '../loader/loader.jsx';
+import SignIn from '../sign-in/sign-in.jsx';
 import {getLoadingState} from '../../store/data/selectors';
 import DataOperation from '../../store/data/operation/operation';
 
@@ -21,7 +26,12 @@ class App extends PureComponent {
       isLoading,
     } = this.props;
 
-    return isLoading ? <Loader /> : <MainWrapped />;
+    const content = <Switch>
+      <Route path="/" exact component={MainWrapped} />
+      <Route path="/login" component={SignIn} />
+    </Switch>;
+
+    return isLoading ? <Loader /> : content;
   }
 
   componentDidMount() {
@@ -32,7 +42,19 @@ class App extends PureComponent {
 
 App.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  currentCity: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    location: PropTypes.shape({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired,
+    }).isRequired,
+  }),
   loadOffers: PropTypes.func.isRequired,
+};
+
+App.defaultProps = {
+  currentCity: null,
 };
 
 const mapStateToProps = (state, props) => ({
