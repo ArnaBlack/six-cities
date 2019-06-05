@@ -11,8 +11,10 @@ const mock = {
 
 it(`App correctly renders`, () => {
   const {isLoading} = mock;
+  const loadOffers = jest.fn();
   const tree = shallow(<App
     isLoading={isLoading}
+    loadOffers={loadOffers}
   />);
 
   expect(tree).toMatchSnapshot();

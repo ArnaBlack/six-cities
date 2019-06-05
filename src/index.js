@@ -5,10 +5,8 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import reducer from './store/rootReducer';
-import DataOperation from './store/data/operation/operation';
 import {createAPI} from './api';
 import App from './components/app/app.jsx';
-import AppActionCreator from './store/app/action-creator/action-creator';
 
 const api = createAPI((...args) => store.dispatch(...args));
 
@@ -18,9 +16,6 @@ const store = createStore(
         applyMiddleware(thunk.withExtraArgument(api)),
     ),
 );
-
-const onSuccessLoadOffers = (city) => store.dispatch(AppActionCreator.changeCity(city));
-store.dispatch(DataOperation.loadOffers(onSuccessLoadOffers));
 
 ReactDOM.render(
     <Provider store={store}>

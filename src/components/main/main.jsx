@@ -4,8 +4,13 @@ import Cities from '../cities/cities.jsx';
 import PlaceList from '../place-list/place-list.jsx';
 import Map from '../map/map.jsx';
 import {connect} from 'react-redux';
-import {getOffersByCity} from '../../store/data/selectors';
-import {getCurrentCity} from '../../store/app/selectors';
+import {
+  getOffersByCity,
+  getCurrentCity,
+} from '../../store/data/selectors';
+import {getUser} from '../../store/user/selectors';
+
+const BASE_URL = `https://es31-server.appspot.com/six-cities`;
 
 class Main extends PureComponent {
   constructor(props) {
@@ -19,6 +24,7 @@ class Main extends PureComponent {
       currentCity,
       selectedOffer,
       offers,
+      user,
       onSelectOffer,
     } = this.props;
 
@@ -49,9 +55,12 @@ class Main extends PureComponent {
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
                   <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    {user ? <div
+                      className="header__avatar-wrapper user__avatar-wrapper"
+                      style={{backgroundImage: `url("${BASE_URL}${user.avatarUrl}")`}}
+                    >
+                    </div> : null}
+                    <span className="header__user-name user__name">{user ? user.email : `Sign In`}</span>
                   </a>
                 </li>
               </ul>
@@ -185,18 +194,27 @@ Main.propTypes = {
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   })),
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    email: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string.isRequired,
+    isPro: PropTypes.bool.isRequired,
+  }),
   onSelectOffer: PropTypes.func.isRequired,
 };
 
 Main.defaultProps = {
   selectedOffer: null,
   offers: [],
+  user: null,
 };
 
 const mapStateToProps = (state, props) => ({
   ...props,
   currentCity: getCurrentCity(state),
-  offers: getOffersByCity(state, getCurrentCity(state)),
+  offers: getOffersByCity(state),
+  user: getUser(state),
 });
 
 export {Main};
