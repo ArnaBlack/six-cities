@@ -1,25 +1,21 @@
 import {
-  CHANGE_CITY,
+  REQUIRED_AUTHORIZATION,
 } from '../action-types';
 import reducer from './reducer';
 
-it(`Should change city`, () => {
+it(`Should change authorization status`, () => {
   const state = {
-    city: `Amsterdam`,
-    offers: [],
+    isAuthorizationRequired: false,
   };
 
   const action = {
-    type: CHANGE_CITY,
-    payload: `Paris`,
+    type: REQUIRED_AUTHORIZATION,
+    payload: true,
   };
 
   const expected = {
-    city: `Paris`,
-    offers: [],
+    isAuthorizationRequired: true,
   };
 
   expect(reducer(state, action)).toEqual(expected);
 });
-
-

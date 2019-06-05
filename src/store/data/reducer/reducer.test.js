@@ -1,4 +1,7 @@
-import {LOAD_OFFERS} from '../action-types';
+import {
+  LOAD_OFFERS,
+  CHANGE_CITY,
+} from '../action-types';
 import reducer from './reducer';
 
 it(`Should get offers`, () => {
@@ -54,6 +57,25 @@ it(`Should get offers`, () => {
     city: `Amsterdam`,
     offers,
     isLoading: false,
+  };
+
+  expect(reducer(state, action)).toEqual(expected);
+});
+
+it(`Should change city`, () => {
+  const state = {
+    city: `Amsterdam`,
+    offers: [],
+  };
+
+  const action = {
+    type: CHANGE_CITY,
+    payload: `Paris`,
+  };
+
+  const expected = {
+    city: `Paris`,
+    offers: [],
   };
 
   expect(reducer(state, action)).toEqual(expected);

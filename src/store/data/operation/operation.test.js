@@ -3,6 +3,7 @@ import {createAPI} from '../../../api';
 import Operation from './operation';
 import {
   LOAD_OFFERS,
+  CHANGE_CITY,
 } from '../action-types';
 
 const mock = {
@@ -82,14 +83,14 @@ it(`Should make a correct API call to /hotels`, () => {
     adaptedOffer,
   } = mock;
 
+  const SUCCESS_STATUS = 200;
+  const OFFERS_URL = `/hotels`;
   const dispatch = jest.fn();
   const _getState = jest.fn();
   const onSuccess = jest.fn();
   const api = createAPI(dispatch);
   const apiMock = new MockAdapter(api);
   const offersLoader = Operation.loadOffers(onSuccess);
-  const SUCCESS_STATUS = 200;
-  const OFFERS_URL = `/hotels`;
   const data = [rawOffer];
 
   apiMock
@@ -98,7 +99,16 @@ it(`Should make a correct API call to /hotels`, () => {
 
   return offersLoader(dispatch, _getState, api)
     .then(() => {
+      const {city} = [adaptedOffer][0];
+
+      expect(dispatch).toHaveBeenCalledTimes(2);
+
       expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: CHANGE_CITY,
+        payload: city,
+      });
+
+      expect(dispatch).toHaveBeenNthCalledWith(2, {
         type: LOAD_OFFERS,
         payload: [adaptedOffer],
         isLoading: false,

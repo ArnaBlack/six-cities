@@ -1,27 +1,27 @@
 import {
-  LOAD_OFFERS,
-  CHANGE_CITY,
+  REQUIRED_AUTHORIZATION,
+  GET_USER,
 } from '../action-types';
 
 const initialState = {
-  offers: [],
-  city: null,
-  isLoading: true,
+  isAuthorizationRequired: true,
+  user: null,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_OFFERS:
+    case REQUIRED_AUTHORIZATION: {
       return {
         ...state,
-        offers: action.payload,
-        isLoading: false,
+        isAuthorizationRequired: action.payload,
       };
-    case CHANGE_CITY:
+    }
+    case GET_USER: {
       return {
         ...state,
-        city: action.payload,
+        user: action.payload,
       };
+    }
     default:
       return state;
   }

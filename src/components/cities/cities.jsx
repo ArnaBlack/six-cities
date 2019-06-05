@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import CityLink from '../city-link/city-link.jsx';
-import {getCurrentCity} from '../../store/app/selectors';
+import {getCurrentCity} from '../../store/data/selectors';
 import {getCities} from '../../store/data/selectors';
 
 const Cities = (props) => {
