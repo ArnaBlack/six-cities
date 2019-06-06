@@ -6,10 +6,8 @@ import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {BrowserRouter} from 'react-router-dom';
 import reducer from './store/rootReducer';
-import {createAPI} from './api';
+import api from './api';
 import App from './components/app/app.jsx';
-
-const api = createAPI((...args) => store.dispatch(...args));
 
 const store = createStore(
     reducer,
