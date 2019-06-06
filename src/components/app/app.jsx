@@ -11,6 +11,7 @@ import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import withTransformProps from '../../hocs/with-transform-props/with-transform-props.jsx';
 import Loader from '../loader/loader.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
+import Favorites from '../favorites/favorites.jsx';
 import {getLoadingState} from '../../store/data/selectors';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 import UserOperation from '../../store/user/operation/operation';
@@ -39,6 +40,7 @@ class App extends PureComponent {
 
         return <SignIn />;
       }}/>
+      <Route path="/favorites" component={Favorites} />
     </Switch>;
 
     return isLoading ? <Loader /> : content;
