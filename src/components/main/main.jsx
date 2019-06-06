@@ -4,6 +4,7 @@ import Cities from '../cities/cities.jsx';
 import PlaceList from '../place-list/place-list.jsx';
 import Map from '../map/map.jsx';
 import {connect} from 'react-redux';
+import {NavLink} from 'react-router-dom';
 import {
   getOffersByCity,
   getCurrentCity,
@@ -54,14 +55,14 @@ class Main extends PureComponent {
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
+                  <NavLink className="header__nav-link header__nav-link--profile" to={user ? `/favorites` : `/login`}>
                     {user ? <div
                       className="header__avatar-wrapper user__avatar-wrapper"
                       style={{backgroundImage: `url("${BASE_URL}${user.avatarUrl}")`}}
                     >
                     </div> : null}
                     <span className="header__user-name user__name">{user ? user.email : `Sign In`}</span>
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </nav>
