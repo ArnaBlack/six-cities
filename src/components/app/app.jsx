@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import withTransformProps from '../../hocs/with-transform-props/with-transform-props.jsx';
+import withPrivateRoute from '../../hocs/with-private-route/with-private-route.jsx';
 import Loader from '../loader/loader.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 import Favorites from '../favorites/favorites.jsx';
@@ -40,7 +41,10 @@ class App extends PureComponent {
 
         return <SignIn />;
       }}/>
-      <Route path="/favorites" component={Favorites} />
+      <Route path="/favorites" render={() => {
+        const FavoritesWrapped = withPrivateRoute(Favorites, isAuthorizationRequired);
+        return <FavoritesWrapped />;
+      }} />
     </Switch>;
 
     return isLoading ? <Loader /> : content;
