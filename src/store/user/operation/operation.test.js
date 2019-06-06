@@ -1,5 +1,5 @@
 import MockAdapter from 'axios-mock-adapter';
-import {createAPI} from '../../../api';
+import api from '../../../api';
 import {
   REQUIRED_AUTHORIZATION,
   GET_USER,
@@ -28,10 +28,8 @@ it(`Should make a correct GET request to /login`, () => {
   const LOGIN_URL = `/login`;
   const dispatch = jest.fn();
   const _getState = jest.fn();
-  const api = createAPI(dispatch);
   const apiMock = new MockAdapter(api);
   const checkingAuth = Operation.checkAuth();
-  const isAuthorizationRequired = true;
 
   apiMock
     .onGet(LOGIN_URL)
@@ -39,11 +37,18 @@ it(`Should make a correct GET request to /login`, () => {
 
   return checkingAuth(dispatch, _getState, api)
     .then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(1);
+      const adaptedUserData = adaptUserData(user);
+
+      expect(dispatch).toHaveBeenCalledTimes(2);
 
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: REQUIRED_AUTHORIZATION,
-        payload: isAuthorizationRequired,
+        payload: false,
+      });
+
+      expect(dispatch).toHaveBeenNthCalledWith(2, {
+        type: GET_USER,
+        payload: adaptedUserData,
       });
     });
 });
@@ -59,7 +64,6 @@ it(`Should make a correct POST request to /login`, () => {
   const LOGIN_URL = `/login`;
   const dispatch = jest.fn();
   const _getState = jest.fn();
-  const api = createAPI(dispatch);
   const apiMock = new MockAdapter(api);
   const login = Operation.login({email, password});
 
