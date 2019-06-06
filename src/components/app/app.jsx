@@ -5,12 +5,15 @@ import {connect} from 'react-redux';
 import {
   Switch,
   Route,
+  Redirect,
 } from 'react-router-dom';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import withTransformProps from '../../hocs/with-transform-props/with-transform-props.jsx';
 import Loader from '../loader/loader.jsx';
 import SignIn from '../sign-in/sign-in.jsx';
 import {getLoadingState} from '../../store/data/selectors';
+import {getAuthorizationStatus} from '../../store/user/selectors';
+import UserOperation from '../../store/user/operation/operation';
 import DataOperation from '../../store/data/operation/operation';
 
 const transformActiveToSelected = (props) => ({
@@ -24,18 +27,30 @@ class App extends PureComponent {
   render() {
     const {
       isLoading,
+      isAuthorizationRequired,
     } = this.props;
 
     const content = <Switch>
-      <Route path="/" exact component={MainWrapped} />
-      <Route path="/login" component={SignIn} />
+      <Route path="/" exact component={MainWrapped}/>
+      <Route path="/login" render={() => {
+        if (!isAuthorizationRequired) {
+          return <Redirect to="/"/>;
+        }
+
+        return <SignIn />;
+      }}/>
     </Switch>;
 
     return isLoading ? <Loader /> : content;
   }
 
   componentDidMount() {
-    const {loadOffers} = this.props;
+    const {
+      checkAuth,
+      loadOffers,
+    } = this.props;
+
+    checkAuth();
     loadOffers();
   }
 }
@@ -50,6 +65,8 @@ App.propTypes = {
       zoom: PropTypes.number.isRequired,
     }).isRequired,
   }),
+  isAuthorizationRequired: PropTypes.bool.isRequired,
+  checkAuth: PropTypes.func.isRequired,
   loadOffers: PropTypes.func.isRequired,
 };
 
@@ -60,9 +77,11 @@ App.defaultProps = {
 const mapStateToProps = (state, props) => ({
   ...props,
   isLoading: getLoadingState(state),
+  isAuthorizationRequired: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  checkAuth: () => dispatch(UserOperation.checkAuth()),
   loadOffers: () => dispatch(DataOperation.loadOffers()),
 });
 
