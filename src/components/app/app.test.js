@@ -7,14 +7,21 @@ Enzyme.configure({adapter: new Adapter()});
 
 const mock = {
   isLoading: true,
+  isAuthorizationRequired: true,
 };
 
 it(`App correctly renders`, () => {
-  const {isLoading} = mock;
+  const {
+    isLoading,
+    isAuthorizationRequired,
+  } = mock;
   const loadOffers = jest.fn();
+  const checkAuth = jest.fn();
   const tree = shallow(<App
     isLoading={isLoading}
+    isAuthorizationRequired={isAuthorizationRequired}
     loadOffers={loadOffers}
+    checkAuth={checkAuth}
   />);
 
   expect(tree).toMatchSnapshot();
