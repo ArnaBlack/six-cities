@@ -1,13 +1,19 @@
 import ActionCreator from '../action-creator/action-creator';
 import {adaptUserData} from '../util';
 
-const STATUS_OK = 200;
 
 export default {
   checkAuth: () => (dispatch, _getState, api) => api.get(`/login`)
     .then((response) => {
-      dispatch(ActionCreator.requireAuthorization(response.status === STATUS_OK));
-    }),
+      if (!response) {
+        return;
+      }
+
+      const user = adaptUserData(response.data);
+      dispatch(ActionCreator.requireAuthorization(false));
+      dispatch(ActionCreator.getUser(user));
+    })
+    .catch(() => dispatch(ActionCreator.requireAuthorization(true))),
   login: ({email, password}) => (dispatch, _getState, api) => api.post(`/login`, {
     email,
     password,
