@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {getCurrentCity} from '../../store/data/selectors';
+import UserOperation from '../../store/user/operation/operation';
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -51,7 +52,6 @@ class SignIn extends PureComponent {
 }
 
 SignIn.propTypes = {
-  onLogin: PropTypes.func.isRequired,
   currentCity: PropTypes.shape({
     name: PropTypes.string.isRequired,
     location: PropTypes.shape({
@@ -60,6 +60,7 @@ SignIn.propTypes = {
       zoom: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
+  onLogin: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, props) => ({
@@ -67,5 +68,9 @@ const mapStateToProps = (state, props) => ({
   currentCity: getCurrentCity(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onLogin: (userData) => dispatch(UserOperation.login(userData)),
+});
+
 export {SignIn};
-export default connect(mapStateToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
