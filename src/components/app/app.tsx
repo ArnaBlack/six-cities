@@ -1,18 +1,18 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import Main from '../main/main.jsx';
+import Main from '../main/main';
 import {connect} from 'react-redux';
 import {
   Switch,
   Route,
   Redirect,
 } from 'react-router-dom';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
-import withTransformProps from '../../hocs/with-transform-props/with-transform-props.jsx';
-import withPrivateRoute from '../../hocs/with-private-route/with-private-route.jsx';
-import Loader from '../loader/loader.jsx';
-import SignIn from '../sign-in/sign-in.jsx';
-import Favorites from '../favorites/favorites.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import withTransformProps from '../../hocs/with-transform-props/with-transform-props';
+import withPrivateRoute from '../../hocs/with-private-route/with-private-route';
+import Loader from '../loader/loader';
+import SignIn from '../sign-in/sign-in';
+import Favorites from '../favorites/favorites';
 import {getLoadingState} from '../../store/data/selectors';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 import UserOperation from '../../store/user/operation/operation';

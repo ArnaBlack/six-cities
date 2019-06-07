@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import withTransformProps from './with-transform-props.jsx';
+import withTransformProps from './with-transform-props.tsx';
 
 Enzyme.configure({adapter: new Adapter()});
 

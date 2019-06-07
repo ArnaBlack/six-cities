@@ -1,8 +1,8 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import Cities from '../cities/cities.jsx';
-import PlaceList from '../place-list/place-list.jsx';
-import Map from '../map/map.jsx';
+import Cities from '../cities/cities';
+import PlaceList from '../place-list/place-list';
+import Map from '../map/map';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import {
