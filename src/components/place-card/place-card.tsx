@@ -1,9 +1,21 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import {
+  Offer,
+} from '../../types';
 
 const MAX_RATING = 5;
 
-class PlaceCard extends PureComponent {
+interface Props {
+  offer: Offer,
+  onTitleClick: () => void,
+  onImageClick: (offer: Offer) => void,
+}
+
+class PlaceCard extends React.PureComponent<Props, null> {
+  public static defaultProps = {
+    onTitleClick: () => {},
+  };
+
   constructor(props) {
     super(props);
 
@@ -79,48 +91,5 @@ class PlaceCard extends PureComponent {
     onImageClick(offer);
   }
 }
-
-PlaceCard.propTypes = {
-  offer: PropTypes.shape({
-    bedrooms: PropTypes.number.isRequired,
-    city: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      location: PropTypes.shape({
-        latitude: PropTypes.number.isRequired,
-        longitude: PropTypes.number.isRequired,
-        zoom: PropTypes.number.isRequired,
-      }).isRequired,
-    }).isRequired,
-    description: PropTypes.string.isRequired,
-    goods: PropTypes.arrayOf(PropTypes.string).isRequired,
-    host: PropTypes.shape({
-      avatarUrl: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
-      isPro: PropTypes.bool.isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired,
-    id: PropTypes.number.isRequired,
-    images: PropTypes.arrayOf(PropTypes.string).isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired,
-    }).isRequired,
-    maxAdults: PropTypes.number.isRequired,
-    previewImage: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-  }).isRequired,
-  onTitleClick: PropTypes.func,
-  onImageClick: PropTypes.func.isRequired,
-};
-
-PlaceCard.defaultProps = {
-  onTitleClick: () => {},
-};
 
 export default PlaceCard;

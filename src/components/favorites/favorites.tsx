@@ -1,10 +1,21 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import DataOperation from '../../store/data/operation/operation';
 import {getFavorites} from '../../store/data/selectors';
+import {
+  Offer,
+} from '../../types';
 
-class Favorites extends PureComponent {
+interface Props {
+  favorites: Offer[],
+  loadFavorites: () => void,
+}
+
+class Favorites extends React.PureComponent<Props, null> {
+  public static defaultProps = {
+    favorites: [],
+  };
+
   render() {
     const {} = this.props;
 
@@ -36,7 +47,7 @@ class Favorites extends PureComponent {
                       </div>
                       <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
                         <svg className="place-card__bookmark-icon" width="18" height="19">
-                          <use xlinkHref="#icon-bookmark"></use>
+                          <use xlinkHref="#icon-bookmark" />
                         </svg>
                         <span className="visually-hidden">In bookmarks</span>
                       </button>
@@ -68,7 +79,7 @@ class Favorites extends PureComponent {
                       </div>
                       <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
                         <svg className="place-card__bookmark-icon" width="18" height="19">
-                          <use xlinkHref="#icon-bookmark"></use>
+                          <use xlinkHref="#icon-bookmark" />
                         </svg>
                         <span className="visually-hidden">In bookmarks</span>
                       </button>
@@ -111,7 +122,7 @@ class Favorites extends PureComponent {
                       </div>
                       <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
                         <svg className="place-card__bookmark-icon" width="18" height="19">
-                          <use xlinkHref="#icon-bookmark"></use>
+                          <use xlinkHref="#icon-bookmark" />
                         </svg>
                         <span className="visually-hidden">In bookmarks</span>
                       </button>
@@ -141,48 +152,6 @@ class Favorites extends PureComponent {
     loadFavorites();
   }
 }
-
-Favorites.propTypes = {
-  favorites: PropTypes.arrayOf(PropTypes.shape({
-    bedrooms: PropTypes.number.isRequired,
-    city: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      location: PropTypes.shape({
-        latitude: PropTypes.number.isRequired,
-        longitude: PropTypes.number.isRequired,
-        zoom: PropTypes.number.isRequired,
-      }).isRequired,
-    }).isRequired,
-    description: PropTypes.string.isRequired,
-    goods: PropTypes.arrayOf(PropTypes.string).isRequired,
-    host: PropTypes.shape({
-      avatarUrl: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired,
-      isPro: PropTypes.bool.isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired,
-    id: PropTypes.number.isRequired,
-    images: PropTypes.arrayOf(PropTypes.string).isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired,
-    }).isRequired,
-    maxAdults: PropTypes.number.isRequired,
-    previewImage: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-  })),
-  loadFavorites: PropTypes.func.isRequired,
-};
-
-Favorites.defaultProps = {
-  favorites: [],
-};
 
 const mapStateToProps = (state, props) => ({
   ...props,

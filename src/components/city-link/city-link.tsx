@@ -1,9 +1,18 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import DataActionCreator from '../../store/data/action-creator/action-creator';
+import {
+  City,
+} from '../../types';
 
-class CityLink extends PureComponent {
+interface Props {
+  city: City,
+  isActive: boolean,
+  onCityClick: () => void,
+  onClick: (city: City) => void,
+}
+
+class CityLink extends React.Component<Props, null> {
   constructor(props) {
     super(props);
 
@@ -38,20 +47,6 @@ class CityLink extends PureComponent {
     onClick(city);
   }
 }
-
-CityLink.propTypes = {
-  city: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired,
-    }).isRequired,
-  }).isRequired,
-  isActive: PropTypes.bool.isRequired,
-  onCityClick: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired,
-};
 
 const mapDispatchToProps = (dispatch) => ({
   onClick: (city) => dispatch(DataActionCreator.changeCity(city)),

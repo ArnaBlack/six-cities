@@ -1,7 +1,20 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
+import {Subtract} from 'utility-types';
+import {Offer} from '../../types';
+
+interface State {
+  activeItem: Offer,
+}
+
+interface InjectedProps {
+  onSelectItem: (activeItem: Offer) => void
+}
 
 const withActiveItem = (Component) => {
-  class WithActiveItem extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectedProps>;
+
+  class WithActiveItem extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 

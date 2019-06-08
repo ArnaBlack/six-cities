@@ -1,5 +1,4 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import Main from '../main/main';
 import {connect} from 'react-redux';
 import {
@@ -17,6 +16,9 @@ import {getLoadingState} from '../../store/data/selectors';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 import UserOperation from '../../store/user/operation/operation';
 import DataOperation from '../../store/data/operation/operation';
+import {
+  City,
+} from '../../types';
 
 const transformActiveToSelected = (props) => ({
   selectedOffer: props.activeItem,
@@ -25,7 +27,15 @@ const transformActiveToSelected = (props) => ({
 
 const MainWrapped = withActiveItem(withTransformProps(transformActiveToSelected)(Main));
 
-class App extends PureComponent {
+interface Props {
+  isLoading: boolean,
+  currentCity: City,
+  isAuthorizationRequired: boolean,
+  checkAuth: () => void,  
+  loadOffers: () => void,
+}
+
+class App extends React.PureComponent<Props, null> {
   render() {
     const {
       isLoading,
@@ -60,25 +70,6 @@ class App extends PureComponent {
     loadOffers();
   }
 }
-
-App.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  currentCity: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired,
-    }).isRequired,
-  }),
-  isAuthorizationRequired: PropTypes.bool.isRequired,
-  checkAuth: PropTypes.func.isRequired,
-  loadOffers: PropTypes.func.isRequired,
-};
-
-App.defaultProps = {
-  currentCity: null,
-};
 
 const mapStateToProps = (state, props) => ({
   ...props,

@@ -1,10 +1,22 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import {getCurrentCity} from '../../store/data/selectors';
 import UserOperation from '../../store/user/operation/operation';
+import {
+  City,
+} from '../../types';
 
-class SignIn extends PureComponent {
+interface Props {
+  currentCity: City,
+  onLogin: (obj: userData) => void,
+}
+
+interface userData {
+  email: FormDataEntryValue,
+  password: FormDataEntryValue
+}
+
+class SignIn extends React.PureComponent<Props, null> {
   constructor(props) {
     super(props);
 
@@ -50,18 +62,6 @@ class SignIn extends PureComponent {
     onLogin({email, password});
   }
 }
-
-SignIn.propTypes = {
-  currentCity: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired,
-    }).isRequired,
-  }).isRequired,
-  onLogin: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state, props) => ({
   ...props,

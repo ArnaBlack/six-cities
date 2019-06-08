@@ -1,11 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import CityLink from '../city-link/city-link';
 import {getCurrentCity} from '../../store/data/selectors';
 import {getCities} from '../../store/data/selectors';
+import {
+  City,
+} from '../../types';
 
-const Cities = (props) => {
+interface Props {
+  currentCity: City,
+  cities: City[],
+  onCityClick: () => void,
+}
+
+const Cities = (props: Props) => {
   const {
     currentCity,
     cities,
@@ -26,26 +34,6 @@ const Cities = (props) => {
       </li>)}
     </ul>
   </section>;
-};
-
-Cities.propTypes = {
-  currentCity: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired,
-    }).isRequired,
-  }).isRequired,
-  cities: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    location: PropTypes.shape({
-      latitude: PropTypes.number.isRequired,
-      longitude: PropTypes.number.isRequired,
-      zoom: PropTypes.number.isRequired,
-    }).isRequired,
-  })).isRequired,
-  onCityClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, props) => ({
