@@ -31,7 +31,7 @@ interface Props {
   isLoading: boolean,
   currentCity: City,
   isAuthorizationRequired: boolean,
-  checkAuth: () => void,  
+  checkAuth: () => void,
   loadOffers: () => void,
 }
 
@@ -55,6 +55,7 @@ class App extends React.PureComponent<Props, null> {
         const FavoritesWrapped = withPrivateRoute(Favorites, isAuthorizationRequired);
         return <FavoritesWrapped />;
       }} />
+      <Redirect to="/" />
     </Switch>;
 
     return isLoading ? <Loader /> : content;
