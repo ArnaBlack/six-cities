@@ -1,6 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {Favorites} from './favorites.tsx';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import {Favorites} from './favorites';
 
 it(`Favorites renders correctly`, () => {
   const loadFavorites = jest.fn();

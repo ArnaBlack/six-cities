@@ -1,6 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import PlaceCard from './place-card.tsx';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import PlaceCard from './place-card';
 
 const mock = {
   offer: {

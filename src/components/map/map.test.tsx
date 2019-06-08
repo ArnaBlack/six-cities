@@ -1,6 +1,10 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {Map} from './map.tsx';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import {Map} from './map';
+
+const div = document.createElement(`div`);
+div.id = `map`;
+document.body.appendChild(div);
 
 const mock = {
   currentCity: {

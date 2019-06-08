@@ -1,6 +1,6 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import PlaceList from './place-list.tsx';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import PlaceList from './place-list';
 
 const mock = {
   offers: [

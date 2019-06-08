@@ -1,9 +1,12 @@
-import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import {SignIn} from './sign-in.tsx';
+import * as React from 'react';
+import {
+  configure,
+  shallow,
+} from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
+import {SignIn} from './sign-in';
 
-Enzyme.configure({adapter: new Adapter()});
+configure({adapter: new Adapter()});
 
 const mock = {
   currentCity: {
@@ -16,7 +19,7 @@ const mock = {
   },
 };
 
-it(`Email and password correctly pass to callback on form submit`, () => {
+it(`Should prevent default behaviour of form on submit`, () => {
   const {currentCity} = mock;
   const onLogin = jest.fn();
   const signIn = shallow(<SignIn

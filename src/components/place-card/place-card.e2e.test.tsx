@@ -1,9 +1,12 @@
-import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import PlaceCard from './place-card.tsx';
+import * as React from 'react';
+import {
+  configure,
+  shallow,
+} from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
+import PlaceCard from './place-card';
 
-Enzyme.configure({adapter: new Adapter()});
+configure({adapter: new Adapter()});
 
 const mock = {
   offer: {

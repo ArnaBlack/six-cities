@@ -1,9 +1,12 @@
-import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import {CityLink} from './city-link.tsx';
+import * as React from 'react';
+import {
+  shallow,
+  configure,
+} from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
+import {CityLink} from './city-link';
 
-Enzyme.configure({adapter: new Adapter()});
+configure({adapter: new Adapter()});
 
 const mock = {
   city: {
