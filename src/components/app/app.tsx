@@ -26,6 +26,7 @@ const transformActiveToSelected = (props) => ({
 });
 
 const MainWrapped = withActiveItem(withTransformProps(transformActiveToSelected)(Main));
+const FavoritesWrapped = withPrivateRoute(Favorites);
 
 interface Props {
   isLoading: boolean,
@@ -46,15 +47,12 @@ class App extends React.PureComponent<Props, null> {
       <Route path="/" exact component={MainWrapped}/>
       <Route path="/login" render={() => {
         if (!isAuthorizationRequired) {
-          return <Redirect to="/"/>;
+          return <Redirect to="/" />;
         }
 
         return <SignIn />;
       }}/>
-      <Route path="/favorites" render={() => {
-        const FavoritesWrapped = withPrivateRoute(Favorites, isAuthorizationRequired);
-        return <FavoritesWrapped />;
-      }} />
+      <Route path="/favorites" component={FavoritesWrapped} />
       <Redirect to="/" />
     </Switch>;
 
