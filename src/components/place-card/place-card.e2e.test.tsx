@@ -45,37 +45,17 @@ const mock = {
   },
 };
 
-describe(`Check click events`, () => {
-  it(`Click on place card title correctly works`, () => {
-    const {offer} = mock;
-    const titleClickHandler = jest.fn();
-    const imageClickHandler = jest.fn();
-    const app = shallow(<PlaceCard
-      offer={offer}
-      onTitleClick={titleClickHandler}
-      onImageClick={imageClickHandler}
-    />);
+it(`Active offer correctly passes to callback on image click`, () => {
+  const {offer} = mock;
+  const imageClickHandler = jest.fn();
+  const app = shallow(<PlaceCard
+    offer={offer}
+    onImageClick={imageClickHandler}
+  />);
 
-    const placeCardTitle = app.find(`.place-card__name a`);
-    const clickEvent = new Event(`click`);
-    placeCardTitle.simulate(`click`, clickEvent);
-    expect(titleClickHandler).toHaveBeenCalledTimes(1);
-  });
-
-  it(`Active offer correctly passes to callback on image click`, () => {
-    const {offer} = mock;
-    const titleClickHandler = jest.fn();
-    const imageClickHandler = jest.fn();
-    const app = shallow(<PlaceCard
-      offer={offer}
-      onTitleClick={titleClickHandler}
-      onImageClick={imageClickHandler}
-    />);
-
-    const placeCardImage = app.find(`.place-card__image-wrapper a`);
-    const clickEvent = new Event(`click`);
-    placeCardImage.simulate(`click`, clickEvent);
-    expect(imageClickHandler).toHaveBeenCalledTimes(1);
-    expect(imageClickHandler).toHaveBeenCalledWith(offer);
-  });
+  const placeCardImage = app.find(`.place-card__image-wrapper a`);
+  const clickEvent = new Event(`click`);
+  placeCardImage.simulate(`click`, clickEvent);
+  expect(imageClickHandler).toHaveBeenCalledTimes(1);
+  expect(imageClickHandler).toHaveBeenCalledWith(offer);
 });

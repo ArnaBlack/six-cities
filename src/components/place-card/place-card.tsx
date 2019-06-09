@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Link} from 'react-router-dom';
 import {
   Offer,
 } from '../../types';
@@ -7,24 +8,19 @@ const MAX_RATING = 5;
 
 interface Props {
   offer: Offer,
-  onTitleClick: () => void,
   onImageClick: (offer: Offer) => void,
 }
 
 class PlaceCard extends React.PureComponent<Props, null> {
-  public static defaultProps = {
-    onTitleClick: () => {},
-  };
-
   constructor(props) {
     super(props);
 
-    this._handleTitleClick = this._handleTitleClick.bind(this);
     this._handleImageClick = this._handleImageClick.bind(this);
   }
 
   render() {
     const {
+      id,
       previewImage,
       isPremium,
       price,
@@ -72,17 +68,11 @@ class PlaceCard extends React.PureComponent<Props, null> {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" onClick={this._handleTitleClick}>{title}</a>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
     </article>;
-  }
-
-  _handleTitleClick(evt) {
-    evt.preventDefault();
-    const {onTitleClick} = this.props;
-    onTitleClick();
   }
 
   _handleImageClick(evt) {

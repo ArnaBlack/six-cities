@@ -45,7 +45,6 @@ it(`PlaceCard correctly renders`, () => {
   const tree = renderer
     .create(<PlaceCard
       offer={offer}
-      onTitleClick={clickHandler}
       onImageClick={clickHandler}
     />)
     .toJSON();
