@@ -36,7 +36,6 @@ const SignInWrapped = withPageWrapper(SignIn, `page page--gray page--login`);
 const FavoritesWrapped = withPageWrapper(
   withPrivateRoute(Favorites), `page`
 );
-
 interface Props {
   isLoading: boolean,
   currentCity: City,
@@ -52,14 +51,12 @@ class App extends React.PureComponent<Props, null> {
       isAuthorizationRequired,
     } = this.props;
 
-    const page = <Switch>
+    return isLoading ? <Loader /> : <Switch>
       <Route path="/" exact component={MainWrapped}/>
       <Route path="/login" render={() => isAuthorizationRequired ? <SignInWrapped /> : <Redirect to="/" />}/>
       <Route path="/favorites" component={FavoritesWrapped} />
-      <Redirect to="/" />
+      <Redirect from="*" to="/" />
     </Switch>;
-
-    return isLoading ? <Loader /> : page;
   }
 
   componentDidMount() {
