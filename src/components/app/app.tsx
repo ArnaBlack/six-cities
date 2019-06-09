@@ -9,6 +9,7 @@ import {
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withTransformProps from '../../hocs/with-transform-props/with-transform-props';
 import withPrivateRoute from '../../hocs/with-private-route/with-private-route';
+import withPageWrapper from '../../hocs/with-page-wrapper/with-page-wrapper';
 import Loader from '../loader/loader';
 import SignIn from '../sign-in/sign-in';
 import Favorites from '../favorites/favorites';
@@ -25,8 +26,16 @@ const transformActiveToSelected = (props) => ({
   onSelectOffer: props.onSelectItem,
 });
 
-const MainWrapped = withActiveItem(withTransformProps(transformActiveToSelected)(Main));
-const FavoritesWrapped = withPrivateRoute(Favorites);
+const MainWrapped = withPageWrapper(
+  withActiveItem(
+    withTransformProps(
+      transformActiveToSelected)(Main)
+  ), `page page--gray page--main`
+);
+const SignInWrapped = withPageWrapper(SignIn, `page page--gray page--login`);
+const FavoritesWrapped = withPageWrapper(
+  withPrivateRoute(Favorites), `page`
+);
 
 interface Props {
   isLoading: boolean,
@@ -43,20 +52,14 @@ class App extends React.PureComponent<Props, null> {
       isAuthorizationRequired,
     } = this.props;
 
-    const content = <Switch>
+    const page = <Switch>
       <Route path="/" exact component={MainWrapped}/>
-      <Route path="/login" render={() => {
-        if (!isAuthorizationRequired) {
-          return <Redirect to="/" />;
-        }
-
-        return <SignIn />;
-      }}/>
+      <Route path="/login" render={() => isAuthorizationRequired ? <SignInWrapped /> : <Redirect to="/" />}/>
       <Route path="/favorites" component={FavoritesWrapped} />
       <Redirect to="/" />
     </Switch>;
 
-    return isLoading ? <Loader /> : content;
+    return isLoading ? <Loader /> : page;
   }
 
   componentDidMount() {
