@@ -31,12 +31,7 @@ class PlaceCard extends React.PureComponent<Props, null> {
     } = this.props.offer;
     const ratingWidth = Math.round(rating) * 100 / MAX_RATING;
     const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
-
-    const premiumMark = isPremium ? (
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
-    ) : null;
+    const premiumMark = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
 
     return <article className="cities__place-card place-card">
       {premiumMark}
@@ -58,7 +53,7 @@ class PlaceCard extends React.PureComponent<Props, null> {
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"/>
             </svg>
-            <span className="visually-hidden">{isFavorite ? `In` : `To`} bookmarks</span>
+            <span className="visually-hidden">To bookmarks</span>
           </button>
         </div>
         <div className="place-card__rating rating">

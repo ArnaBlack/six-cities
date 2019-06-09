@@ -1,6 +1,12 @@
 import * as React from 'react';
-import * as renderer from 'react-test-renderer';
+import {
+  configure,
+  shallow,
+} from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
 import PlaceCard from './place-card';
+
+configure({adapter: new Adapter()});
 
 const mock = {
   offer: {
@@ -42,12 +48,10 @@ const mock = {
 it(`PlaceCard correctly renders`, () => {
   const {offer} = mock;
   const clickHandler = jest.fn();
-  const tree = renderer
-    .create(<PlaceCard
-      offer={offer}
-      onImageClick={clickHandler}
-    />)
-    .toJSON();
+  const tree = shallow(<PlaceCard
+    offer={offer}
+    onImageClick={clickHandler}
+  />);
 
   expect(tree).toMatchSnapshot();
 });
