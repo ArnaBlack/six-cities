@@ -1,14 +1,18 @@
 import * as React from 'react';
-import * as renderer from 'react-test-renderer';
+import {
+  configure,
+  shallow,
+} from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
 import {Favorites} from './favorites';
+
+configure({adapter: new Adapter()});
 
 it(`Favorites renders correctly`, () => {
   const loadFavorites = jest.fn();
-  const tree = renderer
-    .create(<Favorites
-      loadFavorites={loadFavorites}
-    />)
-    .toJSON();
+  const tree = shallow(<Favorites
+    loadFavorites={loadFavorites}
+  />);
 
   expect(tree).toMatchSnapshot();
 });
