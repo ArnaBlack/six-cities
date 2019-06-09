@@ -4,11 +4,12 @@ import {
   shallow,
 } from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
-import PlaceCard from './place-card';
+import {PlacePage} from './place-page';
 
 configure({adapter: new Adapter()});
 
 const mock = {
+  isLoading: false,
   offer: {
     bedrooms: 1,
     city: {
@@ -45,17 +46,19 @@ const mock = {
   },
 };
 
-it(`Active offer correctly passes to callback on image click`, () => {
-  const {offer} = mock;
-  const imageClickHandler = jest.fn();
-  const app = shallow(<PlaceCard
+it(`PlacePage correctly renders`, () => {
+  const {
+    isLoading,
+    offer,
+  } = mock;
+  const checkAuth = jest.fn();
+  const loadOffers = jest.fn();
+  const tree = shallow(<PlacePage
+    isLoading={isLoading}
     offer={offer}
-    onImageClick={imageClickHandler}
+    checkAuth={checkAuth}
+    loadOffers={loadOffers}
   />);
 
-  const placeCardImage = app.find(`.place-card__image-wrapper a`);
-  const clickEvent = new Event(`click`);
-  placeCardImage.simulate(`click`, clickEvent);
-  expect(imageClickHandler).toHaveBeenCalledTimes(1);
-  expect(imageClickHandler).toHaveBeenCalledWith(offer);
+  expect(tree).toMatchSnapshot();
 });

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Link} from 'react-router-dom';
 import {
   Offer,
 } from '../../types';
@@ -7,24 +8,19 @@ const MAX_RATING = 5;
 
 interface Props {
   offer: Offer,
-  onTitleClick: () => void,
   onImageClick: (offer: Offer) => void,
 }
 
 class PlaceCard extends React.PureComponent<Props, null> {
-  public static defaultProps = {
-    onTitleClick: () => {},
-  };
-
   constructor(props) {
     super(props);
 
-    this._handleTitleClick = this._handleTitleClick.bind(this);
     this._handleImageClick = this._handleImageClick.bind(this);
   }
 
   render() {
     const {
+      id,
       previewImage,
       isPremium,
       price,
@@ -35,12 +31,7 @@ class PlaceCard extends React.PureComponent<Props, null> {
     } = this.props.offer;
     const ratingWidth = Math.round(rating) * 100 / MAX_RATING;
     const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
-
-    const premiumMark = isPremium ? (
-      <div className="place-card__mark">
-        <span>Premium</span>
-      </div>
-    ) : null;
+    const premiumMark = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
 
     return <article className="cities__place-card place-card">
       {premiumMark}
@@ -62,7 +53,7 @@ class PlaceCard extends React.PureComponent<Props, null> {
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"/>
             </svg>
-            <span className="visually-hidden">{isFavorite ? `In` : `To`} bookmarks</span>
+            <span className="visually-hidden">To bookmarks</span>
           </button>
         </div>
         <div className="place-card__rating rating">
@@ -72,17 +63,11 @@ class PlaceCard extends React.PureComponent<Props, null> {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" onClick={this._handleTitleClick}>{title}</a>
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
     </article>;
-  }
-
-  _handleTitleClick(evt) {
-    evt.preventDefault();
-    const {onTitleClick} = this.props;
-    onTitleClick();
   }
 
   _handleImageClick(evt) {

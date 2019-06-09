@@ -18,9 +18,9 @@ export const getCities = createSelector(
       return Object.values(uniqueCities);
     }
 );
-
 export const getOffersByCity = (state) => createSelector(
     getOffers,
     (offers) => offers.filter((it) => it.city.name === state[NameSpace.DATA].city.name)
 )(state);
 export const getFavorites = (state) => state[NameSpace.DATA].favorites;
+export const getOffer = (state, id) => state[NameSpace.DATA].offers.find((it) => it.id === +id);
