@@ -57,8 +57,7 @@ exports[`PlaceCard correctly renders 1`] = `
         <span
           className="visually-hidden"
         >
-          In
-           bookmarks
+          To bookmarks
         </span>
       </button>
     </div>
@@ -85,12 +84,11 @@ exports[`PlaceCard correctly renders 1`] = `
     <h2
       className="place-card__name"
     >
-      <a
-        href="#"
-        onClick={[Function]}
+      <Link
+        to="/offer/1"
       >
         The house among olive
-      </a>
+      </Link>
     </h2>
     <p
       className="place-card__type"
