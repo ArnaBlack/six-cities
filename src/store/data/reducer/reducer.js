@@ -2,11 +2,13 @@ import {
   LOAD_OFFERS,
   CHANGE_CITY,
   LOAD_FAVORITES,
+  LOAD_REVIEWS,
 } from '../action-types';
 
 const initialState = {
   offers: [],
   favorites: [],
+  reviews: [],
   city: null,
   isLoading: true,
 };
@@ -28,6 +30,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         favorites: action.payload,
+      };
+    }
+    case LOAD_REVIEWS: {
+      return {
+        ...state,
+        reviews: action.payload,
       };
     }
     default:

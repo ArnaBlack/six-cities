@@ -1,5 +1,8 @@
 import ActionCreator from '../action-creator/action-creator';
-import {adaptOfferData} from '../util';
+import {
+  adaptOfferData,
+  adaptReviewData,
+} from '../util';
 
 export default {
   loadOffers: () => (dispatch, _getState, api) => api.get(`/hotels`)
@@ -13,5 +16,10 @@ export default {
     .then((response) => {
       const data = response.data.map(adaptOfferData);
       dispatch(ActionCreator.loadFavorites(data));
-    })
+    }),
+  loadReviews: (id) => (dispatch, _getState, api) => api.get(`/comments/${id}`)
+    .then((response) => {
+      const data = response.data.map(adaptReviewData);
+      dispatch(ActionCreator.loadReviews(data));
+    }),
 };
