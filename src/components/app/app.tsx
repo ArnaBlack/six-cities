@@ -13,6 +13,7 @@ import withPageWrapper from '../../hocs/with-page-wrapper/with-page-wrapper';
 import Loader from '../loader/loader';
 import SignIn from '../sign-in/sign-in';
 import Favorites from '../favorites/favorites';
+import PlacePage from '../place-page/place-page';
 import {getLoadingState} from '../../store/data/selectors';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 import UserOperation from '../../store/user/operation/operation';
@@ -55,6 +56,7 @@ class App extends React.PureComponent<Props, null> {
       <Route path="/" exact component={MainWrapped}/>
       <Route path="/login" render={() => isAuthorizationRequired ? <SignInWrapped /> : <Redirect to="/" />}/>
       <Route path="/favorites" component={FavoritesWrapped} />
+      <Route path="/offer/:id" component={PlacePage} />
       <Redirect from="*" to="/" />
     </Switch>;
   }
