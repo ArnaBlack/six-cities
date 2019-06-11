@@ -21,3 +21,19 @@ export const adaptOfferData = (data) => {
 
   return offer;
 };
+
+export const adaptReviewData = (data) => {
+  const review = {
+    ...data,
+    user: {
+      ...data.user,
+      avatarUrl: data.user.avatar_url,
+      isPro: data.user.is_pro,
+    }
+  };
+
+  delete review.user.avatar_url;
+  delete review.user.is_pro;
+
+  return review;
+};

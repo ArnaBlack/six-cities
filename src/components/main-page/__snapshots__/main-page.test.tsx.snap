@@ -95,6 +95,8 @@ exports[`Main correctly renders 1`] = `
             </ul>
           </form>
           <PlaceList
+            cardClass="cities__place-card"
+            listClass="cities__places-list tabs__content"
             offers={
               Array [
                 Object {
@@ -145,6 +147,7 @@ exports[`Main correctly renders 1`] = `
           className="cities__right-section"
         >
           <ConnectFunction
+            mapClass="cities__map"
             offers={
               Array [
                 Object {

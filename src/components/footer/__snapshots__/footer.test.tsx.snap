@@ -4,17 +4,17 @@ exports[`Footer renders correctly 1`] = `
 <footer
   className="footer container"
 >
-  <a
+  <NavLink
     className="footer__logo-link"
-    href="main.html"
+    to="main.html"
   >
     <img
       alt="6 cities logo"
       className="footer__logo"
       height="33"
-      src="img/logo.svg"
+      src="/img/logo.svg"
       width="64"
     />
-  </a>
+  </NavLink>
 </footer>
 `;

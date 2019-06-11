@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+
 import {getAuthorizationStatus} from '../../store/user/selectors';
 
 interface Props {
@@ -13,9 +14,7 @@ const withPrivateRoute = (Component) => {
 
     return isAuthorizationRequired
       ? <Redirect to="/login" />
-      : <Component
-        {...props}
-      />;
+      : <Component {...props} />;
   };
 
   const mapStateToProps = (state, props) => ({

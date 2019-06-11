@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewList correctly renders 1`] = `
+<ul
+  className="reviews__list"
+>
+  <Review
+    comment=""
+    date=""
+    id={1}
+    key="review-1"
+    rating={4}
+    user={
+      Object {
+        "avatarUrl": "",
+        "id": 1,
+        "isPro": false,
+        "name": "",
+      }
+    }
+  />
+</ul>
+`;

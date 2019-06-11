@@ -1,7 +1,9 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
+
 import {getUser} from '../../store/user/selectors';
+
 import {User} from '../../types';
 
 const BASE_URL = `https://es31-server.appspot.com/six-cities`;

@@ -35,3 +35,11 @@ export interface Offer {
   title: string,
   type: string,
 }
+
+export interface Comment {
+  id: number,
+  user: User,
+  rating: number,
+  comment: string,
+  date: string,
+}

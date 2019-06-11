@@ -2,6 +2,7 @@ import {
   LOAD_OFFERS,
   CHANGE_CITY,
   LOAD_FAVORITES,
+  LOAD_REVIEWS,
 } from '../action-types';
 
 export default {
@@ -17,6 +18,11 @@ export default {
   loadFavorites: (favorites) => ({
     type: LOAD_FAVORITES,
     payload: favorites,
+    isLoading: true,
+  }),
+  loadReviews: (reviews) => ({
+    type: LOAD_REVIEWS,
+    payload: reviews,
     isLoading: true,
   }),
 };
