@@ -19,9 +19,7 @@ const mock = {
 
 it(`Header renders correctly`, () => {
   const {user} = mock;
-  const tree = shallow(<Header
-    user={user}
-  />);
+  const tree = shallow(<Header user={user} />);
 
   expect(tree).toMatchSnapshot();
 });

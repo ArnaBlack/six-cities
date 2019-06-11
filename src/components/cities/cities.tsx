@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+
 import CityLink from '../city-link/city-link';
+
 import {getCurrentCity} from '../../store/data/selectors';
 import {getCities} from '../../store/data/selectors';
-import {
-  City,
-} from '../../types';
+
+import {City} from '../../types';
 
 interface Props {
   currentCity: City,

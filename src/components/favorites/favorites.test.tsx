@@ -10,9 +10,7 @@ configure({adapter: new Adapter()});
 
 it(`Favorites renders correctly`, () => {
   const loadFavorites = jest.fn();
-  const tree = shallow(<Favorites
-    loadFavorites={loadFavorites}
-  />);
+  const tree = shallow(<Favorites loadFavorites={loadFavorites} />);
 
   expect(tree).toMatchSnapshot();
 });

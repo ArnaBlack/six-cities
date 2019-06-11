@@ -10,6 +10,7 @@ configure({adapter: new Adapter()});
 
 const mock = {
   isLoading: false,
+  isAuthorizationRequired: false,
   placeId: 1,
   reviews: [
     {
@@ -30,12 +31,14 @@ const mock = {
 it(`Reviews correctly renders`, () => {
   const {
     isLoading,
+    isAuthorizationRequired,
     placeId,
     reviews,
   } = mock;
   const loadReviews = jest.fn();
   const tree = shallow(<Reviews
     isLoading={isLoading}
+    isAuthorizationRequired={isAuthorizationRequired}
     placeId={placeId}
     reviews={reviews}
     loadReviews={loadReviews}

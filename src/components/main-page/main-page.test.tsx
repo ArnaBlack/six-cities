@@ -4,7 +4,7 @@ import {
   shallow,
 } from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
-import {Main} from './main';
+import {MainPage} from './main-page';
 
 configure({adapter: new Adapter()});
 
@@ -61,7 +61,7 @@ it(`Main correctly renders`, () => {
     offers,
   } = mock;
   const onSelectOffer = jest.fn();
-  const tree = shallow(<Main
+  const tree = shallow(<MainPage
     currentCity={currentCity}
     offers={offers}
     onSelectOffer={onSelectOffer}

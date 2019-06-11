@@ -55,6 +55,7 @@ it(`Active offer correctly passes to callback on image click`, () => {
 
   const placeCardImage = app.find(`.place-card__image-wrapper a`);
   const clickEvent = new Event(`click`);
+
   placeCardImage.simulate(`click`, clickEvent);
   expect(imageClickHandler).toHaveBeenCalledTimes(1);
   expect(imageClickHandler).toHaveBeenCalledWith(offer);

@@ -1,7 +1,9 @@
 import * as React from 'react';
 import * as leaflet from 'leaflet';
 import {connect} from 'react-redux';
+
 import {getCurrentCity} from '../../store/data/selectors';
+
 import {
   City,
   Offer,
@@ -13,12 +15,12 @@ const TILE_OPTIONS = {
 };
 
 const DEFAULT_ICON = leaflet.icon({
-  iconUrl: `img/pin.svg`,
+  iconUrl: `/img/pin.svg`,
   iconSize: [27, 39],
 });
 
 const ACTIVE_ICON = leaflet.icon({
-  iconUrl: `img/pin-active.svg`,
+  iconUrl: `/img/pin-active.svg`,
   iconSize: [27, 39],
 });
 
@@ -28,6 +30,7 @@ const options = {
 };
 
 interface Props {
+  mapClass?: string,
   currentCity: City,
   offers: Offer[],
   selectedOffer: Offer,
@@ -51,7 +54,9 @@ class Map extends React.PureComponent<Props, null> {
 
 
   render() {
-    return <section className="cities__map map" id="map" />;
+    const {mapClass} = this.props;
+
+    return <section className={`map ${mapClass}`} id="map" />;
   }
 
   componentDidMount() {
@@ -69,6 +74,7 @@ class Map extends React.PureComponent<Props, null> {
       .tileLayer(URL_TEMPLATE, TILE_OPTIONS)
       .addTo(this._map);
     this._renderMarkers();
+    this._setActiveMarker();
   }
 
   componentDidUpdate(prevProps) {
@@ -124,6 +130,11 @@ class Map extends React.PureComponent<Props, null> {
 
   _setActiveMarker() {
     const {selectedOffer} = this.props;
+
+    if (!selectedOffer) {
+      return;
+    }
+
     this._markers[selectedOffer.id].setIcon(ACTIVE_ICON);
     const coordinates = [selectedOffer.location.latitude, selectedOffer.location.longitude];
     this._map.panTo(coordinates);

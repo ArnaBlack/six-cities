@@ -1,14 +1,14 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
-import {
-  Offer,
-} from '../../types';
+
+import {Offer} from '../../types';
 
 const MAX_RATING = 5;
 
 interface Props {
+  cardClass?: string,
   offer: Offer,
-  onImageClick: (offer: Offer) => void,
+  onImageClick?: (offer: Offer) => void,
 }
 
 class PlaceCard extends React.PureComponent<Props, null> {
@@ -20,6 +20,10 @@ class PlaceCard extends React.PureComponent<Props, null> {
 
   render() {
     const {
+      cardClass,
+      offer,
+    } = this.props;
+    const {
       id,
       previewImage,
       isPremium,
@@ -28,12 +32,12 @@ class PlaceCard extends React.PureComponent<Props, null> {
       title,
       type,
       rating,
-    } = this.props.offer;
+    } = offer;
     const ratingWidth = Math.round(rating) * 100 / MAX_RATING;
     const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
     const premiumMark = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
 
-    return <article className="cities__place-card place-card">
+    return <article className={`place-card ${cardClass}`}>
       {premiumMark}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#" onClick={this._handleImageClick}>
@@ -72,8 +76,13 @@ class PlaceCard extends React.PureComponent<Props, null> {
 
   _handleImageClick(evt) {
     evt.preventDefault();
-    const {offer, onImageClick} = this.props;
-    onImageClick(offer);
+
+    const {
+      offer,
+      onImageClick
+    } = this.props;
+
+    return typeof onImageClick === 'function' && onImageClick(offer);
   }
 }
 

@@ -1,6 +1,8 @@
 import {createSelector} from 'reselect';
 import NameSpace from '../name-space';
 
+const MAX_NEAREST_OFFERS = 3;
+
 export const getOffers = (state) => state[NameSpace.DATA].offers;
 export const getCurrentCity = (state) => state[NameSpace.DATA].city;
 export const getLoadingState = (state) => state[NameSpace.DATA].isLoading;
@@ -24,4 +26,7 @@ export const getOffersByCity = (state) => createSelector(
 )(state);
 export const getFavorites = (state) => state[NameSpace.DATA].favorites;
 export const getOffer = (state, id) => state[NameSpace.DATA].offers.find((it) => it.id === +id);
+export const getNearestOffers = (state, id) => state[NameSpace.DATA].offers
+  .filter((it) => it.id !== id && it.city.name === state[NameSpace.DATA].city.name)
+  .slice(0, MAX_NEAREST_OFFERS);
 export const getReviews = (state) => state[NameSpace.DATA].reviews;

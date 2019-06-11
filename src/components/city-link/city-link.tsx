@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+
 import DataActionCreator from '../../store/data/action-creator/action-creator';
-import {
-  City,
-} from '../../types';
+
+import {City} from '../../types';
 
 interface Props {
   city: City,
@@ -24,7 +24,6 @@ class CityLink extends React.Component<Props, null> {
       city,
       isActive,
     } = this.props;
-
     const activeClass = isActive ? `tabs__item--active` : ``;
 
     return <a
@@ -32,7 +31,9 @@ class CityLink extends React.Component<Props, null> {
       href="#"
       onClick={this._handleClick}
     >
-      <span>{city.name}</span>
+      <span>
+        {city.name}
+      </span>
     </a>;
   }
 
@@ -43,6 +44,7 @@ class CityLink extends React.Component<Props, null> {
       onCityClick,
       onClick,
     } = this.props;
+
     onCityClick();
     onClick(city);
   }

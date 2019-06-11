@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Subtract} from 'utility-types';
+
 import {Offer} from '../../types';
 
 interface State {

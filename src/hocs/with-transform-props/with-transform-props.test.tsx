@@ -16,10 +16,7 @@ const MockComponentWrapped = withTransformProps(transformFunc)(MockComponent);
 
 it(`Should transform props`, () => {
   const oldPropValue = `bar`;
-  const wrapper = shallow(<MockComponentWrapped
-    oldProp={oldPropValue}
-  />);
-
+  const wrapper = shallow(<MockComponentWrapped oldProp={oldPropValue} />);
   const expectedOldPropValue = undefined;
   const expectedNewPropValue = oldPropValue;
 

@@ -1,14 +1,17 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+
 import Sprite from '../sprite/sprite';
 import Header from '../header/header';
 import Cities from '../cities/cities';
 import PlaceList from '../place-list/place-list';
 import Map from '../map/map';
+
 import {
   getOffersByCity,
   getCurrentCity,
 } from '../../store/data/selectors';
+
 import {
   Offer,
   City,
@@ -21,7 +24,7 @@ interface Props {
   onSelectOffer: (offer: Offer | null) => void,
 }
 
-class Main extends React.PureComponent<Props, null> {
+class MainPage extends React.PureComponent<Props, null> {
   public static defaultProps = {
     selectedOffer: null,
     offers: [],
@@ -40,7 +43,6 @@ class Main extends React.PureComponent<Props, null> {
       offers,
       onSelectOffer,
     } = this.props;
-
     let mainClasses = `page__main page__main--index`;
 
     if (!offers.length) {
@@ -94,10 +96,13 @@ class Main extends React.PureComponent<Props, null> {
               <PlaceList
                 offers={offers}
                 onSelectOffer={onSelectOffer}
+                listClass="cities__places-list tabs__content"
+                cardClass="cities__place-card"
               />
             </section>
             <div className="cities__right-section">
               <Map
+                mapClass="cities__map"
                 offers={offers}
                 selectedOffer={selectedOffer}
               />
@@ -112,6 +117,11 @@ class Main extends React.PureComponent<Props, null> {
     document.title = `6 cities`;
   }
 
+  componentWillUnmount() {
+    const {onSelectOffer} = this.props;
+    onSelectOffer(null);
+  }
+
   _onCityClick() {
     const {onSelectOffer} = this.props;
     onSelectOffer(null);
@@ -124,5 +134,5 @@ const mapStateToProps = (state, props) => ({
   offers: getOffersByCity(state),
 });
 
-export {Main};
-export default connect(mapStateToProps)(Main);
+export {MainPage};
+export default connect(mapStateToProps)(MainPage);

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+
 import Sprite from '../sprite/sprite';
 import Header from '../header/header';
+
 import {getCurrentCity} from '../../store/data/selectors';
 import UserOperation from '../../store/user/operation/operation';
-import {
-  City,
-} from '../../types';
+
+import {City} from '../../types';
 
 interface Props {
   currentCity: City,

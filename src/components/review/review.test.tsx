@@ -21,7 +21,8 @@ const mock = {
 it(`Review correctly renders`, () => {
   const {review} = mock;
   const tree = renderer
-    .create(<Review {...review} />);
+    .create(<Review {...review} />)
+    .toJSON();
 
   expect(tree).toMatchSnapshot();
 });
