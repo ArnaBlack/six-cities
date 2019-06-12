@@ -4,7 +4,7 @@ import {
   shallow,
 } from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
-import {SignIn} from './sign-in';
+import {SignInPage} from './sign-in-page';
 
 configure({adapter: new Adapter()});
 
@@ -22,7 +22,7 @@ const mock = {
 it(`SignIn correctly renders`, () => {
   const {currentCity} = mock;
   const onLogin = jest.fn();
-  const tree = shallow(<SignIn
+  const tree = shallow(<SignInPage
     currentCity={currentCity}
     onLogin={onLogin}
   />);

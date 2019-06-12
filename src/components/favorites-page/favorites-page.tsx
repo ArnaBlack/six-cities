@@ -14,7 +14,7 @@ interface Props {
   loadFavorites: () => void,
 }
 
-class Favorites extends React.PureComponent<Props, null> {
+class FavoritesPage extends React.PureComponent<Props, null> {
   public static defaultProps = {
     favorites: [],
   };
@@ -171,5 +171,5 @@ const mapDispatchToProps = (dispatch) => ({
   loadFavorites: () => dispatch(DataOperation.loadFavorites()),
 });
 
-export {Favorites};
-export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
+export {FavoritesPage};
+export default connect(mapStateToProps, mapDispatchToProps)(FavoritesPage);

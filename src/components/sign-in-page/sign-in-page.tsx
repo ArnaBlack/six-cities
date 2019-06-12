@@ -19,7 +19,7 @@ interface userData {
   password: FormDataEntryValue
 }
 
-class SignIn extends React.PureComponent<Props, null> {
+class SignInPage extends React.PureComponent<Props, null> {
   constructor(props) {
     super(props);
 
@@ -83,5 +83,5 @@ const mapDispatchToProps = (dispatch) => ({
   onLogin: (userData) => dispatch(UserOperation.login(userData)),
 });
 
-export {SignIn};
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export {SignInPage};
+export default connect(mapStateToProps, mapDispatchToProps)(SignInPage);

@@ -13,8 +13,8 @@ import withPageWrapper from '../../hocs/with-page-wrapper/with-page-wrapper';
 
 import Loader from '../loader/loader';
 import MainPage from '../main-page/main-page';
-import SignIn from '../sign-in/sign-in';
-import Favorites from '../favorites/favorites';
+import SignInPage from '../sign-in-page/sign-in-page';
+import FavoritesPage from '../favorites-page/favorites-page';
 import PlacePage from '../place-page/place-page';
 
 import UserOperation from '../../store/user/operation/operation';
@@ -33,11 +33,11 @@ const MainPageWrapped = withPageWrapper(
   withActiveItem(
     withTransformProps(
       transformActiveToSelected)(MainPage)
-  ), `page page--gray page--MainPage`
+  ), `page page--gray page--main`
 );
-const SignInWrapped = withPageWrapper(SignIn, `page page--gray page--login`);
-const FavoritesWrapped = withPageWrapper(
-  withPrivateRoute(Favorites), `page`
+const SignInPageWrapped = withPageWrapper(SignInPage, `page page--gray page--login`);
+const FavoritesPageWrapped = withPageWrapper(
+  withPrivateRoute(FavoritesPage), `page`
 );
 
 interface Props {
@@ -56,9 +56,9 @@ class App extends React.PureComponent<Props, null> {
     } = this.props;
 
     return isLoading ? <Loader /> : <Switch>
-      <Route path="/" exact component={MainPageWrapped}/>
-      <Route path="/login" render={() => isAuthorizationRequired ? <SignInWrapped /> : <Redirect to="/" />}/>
-      <Route path="/favorites" component={FavoritesWrapped} />
+      <Route path="/" exact component={MainPageWrapped} />
+      <Route path="/login" render={() => isAuthorizationRequired ? <SignInPageWrapped /> : <Redirect to="/" />}/>
+      <Route path="/favorites" component={FavoritesPageWrapped} />
       <Route path="/offer/:id" component={PlacePage} />
       <Redirect from="*" to="/" />
     </Switch>;

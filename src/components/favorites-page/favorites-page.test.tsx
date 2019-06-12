@@ -4,13 +4,13 @@ import {
   shallow,
 } from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
-import {Favorites} from './favorites';
+import {FavoritesPage} from './favorites-page';
 
 configure({adapter: new Adapter()});
 
 it(`Favorites renders correctly`, () => {
   const loadFavorites = jest.fn();
-  const tree = shallow(<Favorites loadFavorites={loadFavorites} />);
+  const tree = shallow(<FavoritesPage loadFavorites={loadFavorites} />);
 
   expect(tree).toMatchSnapshot();
 });
