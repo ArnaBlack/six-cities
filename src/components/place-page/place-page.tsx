@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Loader from '../loader/loader';
 import Sprite from '../sprite/sprite';
 import Header from '../header/header';
+import Rating from '../rating/rating';
 import Reviews from '../reviews/reviews';
 import Map from '../map/map';
 import PlaceList from '../place-list/place-list';
@@ -19,7 +20,6 @@ import {
 import {Offer} from '../../types';
 
 const MAX_IMAGES = 6;
-const MAX_RATING = 5;
 const PlaceTypes = {
   apartment: `Apartment`,
   room: `Private Room`,
@@ -66,7 +66,6 @@ class PlacePage extends React.PureComponent<Props, null> {
     </div>);
     const isFavoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
     const premiumMark = isPremium ? <div className="property__mark"><span>Premium</span></div> : null;
-    const ratingWidth = Math.round(rating) * 100 / MAX_RATING;
     const insideList = goods.map((it, i) => <li
       key={`good-${id}-${i}`}
       className="property__inside-item"
@@ -100,13 +99,13 @@ class PlacePage extends React.PureComponent<Props, null> {
                   <span className="visually-hidden">To bookmarks</span>
                 </button>
               </div>
-              <div className="property__rating rating">
-                <div className="property__stars rating__stars">
-                  <span style={{width: `${ratingWidth}%`}} />
-                  <span className="visually-hidden">Rating</span>
-                </div>
-                <span className="property__rating-value rating__value">{Math.round(rating)}</span>
-              </div>
+              <Rating
+                ratingClass="property__rating"
+                starsClass="property__stars"
+                valueClass="property__rating-value"
+                hasValue={true}
+                rating={rating}
+              />
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
                   {PlaceTypes[type] || `Entire place`}
@@ -132,7 +131,13 @@ class PlacePage extends React.PureComponent<Props, null> {
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
                   <div className={`property__avatar-wrapper user__avatar-wrapper ${isHostProClass}`}>
-                    <img className="property__avatar user__avatar" src={`/${host.avatarUrl}`} width="74" height="74" alt="Host avatar" />
+                    <img
+                      className="property__avatar user__avatar"
+                      src={`/${host.avatarUrl}`}
+                      width="74"
+                      height="74"
+                      alt="Host avatar"
+                    />
                   </div>
                   <span className="property__user-name">
                     {host.name}

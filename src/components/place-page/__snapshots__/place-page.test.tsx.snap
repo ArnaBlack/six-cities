@@ -62,31 +62,13 @@ exports[`PlacePage correctly renders 1`] = `
               </span>
             </button>
           </div>
-          <div
-            className="property__rating rating"
-          >
-            <div
-              className="property__stars rating__stars"
-            >
-              <span
-                style={
-                  Object {
-                    "width": "60%",
-                  }
-                }
-              />
-              <span
-                className="visually-hidden"
-              >
-                Rating
-              </span>
-            </div>
-            <span
-              className="property__rating-value rating__value"
-            >
-              3
-            </span>
-          </div>
+          <Rating
+            hasValue={true}
+            rating={3.4}
+            ratingClass="property__rating"
+            starsClass="property__stars"
+            valueClass="property__rating-value"
+          />
           <ul
             className="property__features"
           >
