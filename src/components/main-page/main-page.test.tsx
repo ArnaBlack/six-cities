@@ -9,14 +9,6 @@ import {MainPage} from './main-page';
 configure({adapter: new Adapter()});
 
 const mock = {
-  currentCity: {
-    name: `Brussels`,
-    location: {
-      latitude: 50.846557,
-      longitude: 4.351697,
-      zoom: 13,
-    },
-  },
   offers: [
     {
       bedrooms: 1,
@@ -56,13 +48,9 @@ const mock = {
 };
 
 it(`Main correctly renders`, () => {
-  const {
-    currentCity,
-    offers,
-  } = mock;
+  const {offers} = mock;
   const onSelectOffer = jest.fn();
   const tree = shallow(<MainPage
-    currentCity={currentCity}
     offers={offers}
     onSelectOffer={onSelectOffer}
   />);
