@@ -1,10 +1,12 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 
+import withSortedItems from '../../hocs/with-sorted-items/with-sorted-items';
+
 import Sprite from '../sprite/sprite';
 import Header from '../header/header';
 import Cities from '../cities/cities';
-import PlaceList from '../place-list/place-list';
+import Places from '../places/places';
 import Map from '../map/map';
 
 import {
@@ -16,6 +18,8 @@ import {
   Offer,
   City,
 } from '../../types';
+
+const PlacesWrapped = withSortedItems(Places);
 
 interface Props {
   selectedOffer: Offer,
@@ -55,7 +59,7 @@ class MainPage extends React.PureComponent<Props, null> {
           <div className="cities__status-wrapper tabs__content">
             <b className="cities__status">No places to stay available</b>
             <p className="cities__status-description">
-              We could not find any property availbale at the moment in&nbsp;
+              We could not find any property available at the moment in&nbsp;
               {currentCity.name}
             </p>
           </div>
@@ -65,7 +69,7 @@ class MainPage extends React.PureComponent<Props, null> {
       </div>
     </div>;
 
-    return <React.Fragment>
+    return <div className="page page--gray page--main">
       <Header />
       <Sprite />
       <main className={mainClasses}>
@@ -75,31 +79,7 @@ class MainPage extends React.PureComponent<Props, null> {
         </div>
         <div className="cities__places-wrapper">
           {!offers.length ? noPlaces : <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in {currentCity.name}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by&nbsp;</span>
-                <span className="places__sorting-type" tabIndex={0}>
-                Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select" />
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom">
-                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
-                </ul>
-              </form>
-              <PlaceList
-                offers={offers}
-                onSelectOffer={onSelectOffer}
-                listClass="cities__places-list tabs__content"
-                cardClass="cities__place-card"
-              />
-            </section>
+            <PlacesWrapped onSelectOffer={onSelectOffer} />
             <div className="cities__right-section">
               <Map
                 mapClass="cities__map"
@@ -110,7 +90,7 @@ class MainPage extends React.PureComponent<Props, null> {
           </div>}
         </div>
       </main>
-    </React.Fragment>
+    </div>
   }
 
   componentDidMount() {

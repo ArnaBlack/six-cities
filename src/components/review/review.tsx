@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {format} from 'date-fns';
 
-import {Comment} from '../../types';
+import Rating from '../rating/rating';
 
-const MAX_RATING = 5;
+import {Comment} from '../../types';
 
 const Review = (props: Comment) => {
   const {
@@ -18,7 +18,6 @@ const Review = (props: Comment) => {
   } = user;
   const dateTime = format(date, `YYYY-MM-DD`);
   const formattedDate = format(date, `MMM YYYY`);
-  const ratingWidth = Math.round(rating) * 100 / MAX_RATING;
 
   return <li className="reviews__item">
     <div className="reviews__user user">
@@ -36,12 +35,12 @@ const Review = (props: Comment) => {
       </span>
     </div>
     <div className="reviews__info">
-      <div className="reviews__rating rating">
-        <div className="reviews__stars rating__stars">
-          <span style={{width: `${ratingWidth}%`}} />
-          <span className="visually-hidden">Rating</span>
-        </div>
-      </div>
+      <Rating
+        ratingClass="reviews__rating"
+        starsClass="reviews__stars"
+        hasValue={false}
+        rating={rating}
+      />
       <p className="reviews__text">
         {comment}
       </p>

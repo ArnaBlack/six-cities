@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 
-import {Offer} from '../../types';
+import Rating from '../rating/rating';
 
-const MAX_RATING = 5;
+import {Offer} from '../../types';
 
 interface Props {
   cardClass?: string,
@@ -33,7 +33,6 @@ class PlaceCard extends React.PureComponent<Props, null> {
       type,
       rating,
     } = offer;
-    const ratingWidth = Math.round(rating) * 100 / MAX_RATING;
     const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
     const premiumMark = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
 
@@ -41,13 +40,22 @@ class PlaceCard extends React.PureComponent<Props, null> {
       {premiumMark}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#" onClick={this._handleImageClick}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image"/>
+          <img
+            className="place-card__image"
+            src={previewImage}
+            width="260"
+            height="200"
+            alt="Place image"
+          />
         </a>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{price}</b>
+            <b className="place-card__price-value">
+              &euro;
+              {price}
+            </b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
@@ -60,16 +68,20 @@ class PlaceCard extends React.PureComponent<Props, null> {
             <span className="visually-hidden">To bookmarks</span>
           </button>
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: `${ratingWidth}%`}}/>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <Rating
+          ratingClass="place-card__rating"
+          starsClass="place-card__stars "
+          hasValue={false}
+          rating={rating}
+        />
         <h2 className="place-card__name">
-          <Link to={`/offer/${id}`}>{title}</Link>
+          <Link to={`/offer/${id}`}>
+            {title}
+          </Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">
+          {type}
+        </p>
       </div>
     </article>;
   }

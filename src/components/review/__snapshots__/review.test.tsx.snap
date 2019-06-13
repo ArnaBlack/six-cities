@@ -28,10 +28,10 @@ exports[`Review correctly renders 1`] = `
     className="reviews__info"
   >
     <div
-      className="reviews__rating rating"
+      className="rating reviews__rating"
     >
       <div
-        className="reviews__stars rating__stars"
+        className="rating__stars reviews__stars"
       >
         <span
           style={

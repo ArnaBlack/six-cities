@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Places correctly renders 1`] = `
+<section
+  className="cities__places places"
+>
+  <h2
+    className="visually-hidden"
+  >
+    Places
+  </h2>
+  <b
+    className="places__found"
+  >
+    0
+     places to stay in 
+    Brussels
+  </b>
+  <WithActiveItem
+    onChangeType={[MockFunction]}
+  />
+  <PlaceList
+    cardClass="cities__place-card"
+    listClass="cities__places-list tabs__content"
+    offers={Array []}
+    onSelectOffer={[MockFunction]}
+  />
+</section>
+`;

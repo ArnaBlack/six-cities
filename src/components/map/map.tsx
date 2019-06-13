@@ -8,20 +8,19 @@ import {
   City,
   Offer,
 } from '../../types';
-
-const URL_TEMPLATE = `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`;
-const TILE_OPTIONS = {
-  attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`,
-};
+import {
+  MapParams,
+  PinParams,
+} from '../../constants';
 
 const DEFAULT_ICON = leaflet.icon({
-  iconUrl: `/img/pin.svg`,
-  iconSize: [27, 39],
+  iconUrl: PinParams.URL,
+  iconSize: PinParams.SIZES,
 });
 
 const ACTIVE_ICON = leaflet.icon({
-  iconUrl: `/img/pin-active.svg`,
-  iconSize: [27, 39],
+  iconUrl: PinParams.ACTIVE_URL,
+  iconSize: PinParams.SIZES,
 });
 
 const options = {
@@ -71,7 +70,7 @@ class Map extends React.PureComponent<Props, null> {
     });
     this._setView(currentCity.location);
     leaflet
-      .tileLayer(URL_TEMPLATE, TILE_OPTIONS)
+      .tileLayer(MapParams.TEMPLATE_URL, MapParams.TILE_OPTIONS)
       .addTo(this._map);
     this._renderMarkers();
     this._setActiveMarker();

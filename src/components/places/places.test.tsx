@@ -4,11 +4,12 @@ import {
   shallow,
 } from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
-import {SignIn} from './sign-in';
+import {Places} from './places';
 
 configure({adapter: new Adapter()});
 
 const mock = {
+  offers: [],
   currentCity: {
     name: `Brussels`,
     location: {
@@ -19,12 +20,18 @@ const mock = {
   },
 };
 
-it(`SignIn correctly renders`, () => {
-  const {currentCity} = mock;
-  const onLogin = jest.fn();
-  const tree = shallow(<SignIn
+it(`Places correctly renders`, () => {
+  const {
+    offers,
+    currentCity,
+  } = mock;
+  const onSelectOffer = jest.fn();
+  const onSortingTypeChange = jest.fn();
+  const tree = shallow(<Places
+    offers={offers}
     currentCity={currentCity}
-    onLogin={onLogin}
+    onSelectOffer={onSelectOffer}
+    onSortingTypeChange={onSortingTypeChange}
   />);
 
   expect(tree).toMatchSnapshot();

@@ -19,7 +19,7 @@ interface userData {
   password: FormDataEntryValue
 }
 
-class SignIn extends React.PureComponent<Props, null> {
+class SignInPage extends React.PureComponent<Props, null> {
   constructor(props) {
     super(props);
 
@@ -29,7 +29,7 @@ class SignIn extends React.PureComponent<Props, null> {
   render() {
     const {currentCity} = this.props;
 
-    return <React.Fragment>
+    return <div className="page page--gray page--login">
       <Header />
       <Sprite />
       <main className="page__main page__main--login">
@@ -57,7 +57,7 @@ class SignIn extends React.PureComponent<Props, null> {
           </section>
         </div>
       </main>;
-    </React.Fragment>
+    </div>
   }
 
   componentDidMount() {
@@ -83,5 +83,5 @@ const mapDispatchToProps = (dispatch) => ({
   onLogin: (userData) => dispatch(UserOperation.login(userData)),
 });
 
-export {SignIn};
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export {SignInPage};
+export default connect(mapStateToProps, mapDispatchToProps)(SignInPage);
