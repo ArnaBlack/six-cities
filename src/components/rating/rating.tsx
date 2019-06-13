@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const MAX_RATING = 5;
+import {MAX_RATING} from '../../constants';
 
 interface Props {
   ratingClass?: string,
@@ -19,13 +19,16 @@ const Rating = (props: Props) => {
     rating,
   } = props;
   const ratingWidth = Math.round(rating) * 100 / MAX_RATING;
+  const ratingValue = hasValue
+    ? <span className={`rating__value ${valueClass}`}>{Math.round(rating)}</span>
+    : null;
 
   return <div className={`rating ${ratingClass}`}>
     <div className={`rating__stars ${starsClass}`}>
       <span style={{width: `${ratingWidth}%`}}/>
       <span className="visually-hidden">Rating</span>
     </div>
-    {hasValue ? <span className={`rating__value ${valueClass}`}>{Math.round(rating)}</span> : null}
+    {ratingValue}
   </div>;
 };
 

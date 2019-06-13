@@ -29,7 +29,7 @@ class SignInPage extends React.PureComponent<Props, null> {
   render() {
     const {currentCity} = this.props;
 
-    return <React.Fragment>
+    return <div className="page page--gray page--login">
       <Header />
       <Sprite />
       <main className="page__main page__main--login">
@@ -57,7 +57,7 @@ class SignInPage extends React.PureComponent<Props, null> {
           </section>
         </div>
       </main>;
-    </React.Fragment>
+    </div>
   }
 
   componentDidMount() {

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Main correctly renders 1`] = `
-<Fragment>
+<div
+  className="page page--gray page--main"
+>
   <ConnectFunction />
   <Sprite />
   <main
@@ -25,124 +27,9 @@ exports[`Main correctly renders 1`] = `
       <div
         className="cities__places-container container"
       >
-        <section
-          className="cities__places places"
-        >
-          <h2
-            className="visually-hidden"
-          >
-            Places
-          </h2>
-          <b
-            className="places__found"
-          >
-            1
-             places to stay in 
-            Brussels
-          </b>
-          <form
-            action="#"
-            className="places__sorting"
-            method="get"
-          >
-            <span
-              className="places__sorting-caption"
-            >
-              Sort by 
-            </span>
-            <span
-              className="places__sorting-type"
-              tabIndex={0}
-            >
-              Popular
-              <svg
-                className="places__sorting-arrow"
-                height="4"
-                width="7"
-              >
-                <use
-                  xlinkHref="#icon-arrow-select"
-                />
-              </svg>
-            </span>
-            <ul
-              className="places__options places__options--custom"
-            >
-              <li
-                className="places__option places__option--active"
-                tabIndex={0}
-              >
-                Popular
-              </li>
-              <li
-                className="places__option"
-                tabIndex={0}
-              >
-                Price: low to high
-              </li>
-              <li
-                className="places__option"
-                tabIndex={0}
-              >
-                Price: high to low
-              </li>
-              <li
-                className="places__option"
-                tabIndex={0}
-              >
-                Top rated first
-              </li>
-            </ul>
-          </form>
-          <PlaceList
-            cardClass="cities__place-card"
-            listClass="cities__places-list tabs__content"
-            offers={
-              Array [
-                Object {
-                  "bedrooms": 1,
-                  "city": Object {
-                    "location": Object {
-                      "latitude": 50.846557,
-                      "longitude": 4.351697,
-                      "zoom": 13,
-                    },
-                    "name": "Brussels",
-                  },
-                  "description": "Description",
-                  "goods": Array [
-                    "Washer",
-                    "Towels",
-                  ],
-                  "host": Object {
-                    "avatarUrl": "img/avatar-angelina.jpg",
-                    "id": 25,
-                    "isPro": true,
-                    "name": "Name",
-                  },
-                  "id": 1,
-                  "images": Array [
-                    "https://es31-server.appspot.com/six-cities/static/hotel/19.jpg",
-                  ],
-                  "isFavorite": true,
-                  "isPremium": false,
-                  "location": Object {
-                    "latitude": 50.846557,
-                    "longitude": 4.351697,
-                    "zoom": 13,
-                  },
-                  "maxAdults": 3,
-                  "previewImage": "https://es31-server.appspot.com/six-cities/static/hotel/4.jpg",
-                  "price": 117,
-                  "rating": 3.4,
-                  "title": "The house among olive",
-                  "type": "room",
-                },
-              ]
-            }
-            onSelectOffer={[MockFunction]}
-          />
-        </section>
+        <ConnectFunction
+          onSelectOffer={[MockFunction]}
+        />
         <div
           className="cities__right-section"
         >
@@ -197,5 +84,5 @@ exports[`Main correctly renders 1`] = `
       </div>
     </div>
   </main>
-</Fragment>
+</div>
 `;

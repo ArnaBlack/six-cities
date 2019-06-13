@@ -4,18 +4,18 @@ import {Subtract} from 'utility-types';
 import {Offer} from '../../types';
 
 interface State {
-  activeItem: Offer,
+  activeItem: Offer | string,
 }
 
 interface InjectedProps {
-  onSelectItem: (activeItem: Offer) => void
+  onSelectItem: (activeItem: Offer | string) => void
 }
 
 const withActiveItem = (Component) => {
   type P = React.ComponentProps<typeof Component>;
   type T = Subtract<P, InjectedProps>;
 
-  class WithActiveItem extends React.PureComponent<T, State> {
+  return class WithActiveItem extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -41,8 +41,6 @@ const withActiveItem = (Component) => {
       this.setState({activeItem});
     }
   }
-
-  return WithActiveItem;
 };
 
 export default withActiveItem;

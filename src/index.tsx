@@ -1,12 +1,18 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {createStore, applyMiddleware} from 'redux';
+import {
+  createStore,
+  applyMiddleware,
+} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import {BrowserRouter} from 'react-router-dom';
+import {Router} from 'react-router-dom';
+
 import reducer from './store/rootReducer';
 import api from './api';
+import history from './history';
+
 import App from './components/app/app';
 
 const store = createStore(
@@ -18,9 +24,9 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter>
+      <Router history={history}>
         <App />
-      </BrowserRouter>
+      </Router>
     </Provider>,
     document.querySelector(`#root`)
 );

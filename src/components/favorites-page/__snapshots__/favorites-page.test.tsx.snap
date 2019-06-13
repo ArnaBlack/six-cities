@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Favorites renders correctly 1`] = `
-<Fragment>
+<div
+  className="page"
+>
   <ConnectFunction />
   <Sprite />
   <main
@@ -145,5 +147,5 @@ exports[`Favorites renders correctly 1`] = `
   </main>
   ;
   <Footer />
-</Fragment>
+</div>
 `;

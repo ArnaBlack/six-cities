@@ -1,3 +1,5 @@
+import {SortingTypes} from '../../constants';
+
 export const adaptOfferData = (data) => {
   const offer = {
     ...data,
@@ -36,4 +38,18 @@ export const adaptReviewData = (data) => {
   delete review.user.is_pro;
 
   return review;
+};
+
+export const makeSortFunction = (type) => (a, b) => {
+  switch (type) {
+    case SortingTypes.LOW_TO_HIGH:
+      return a.price - b.price;
+    case SortingTypes.HIGH_TO_LOW:
+      return b.price - a.price;
+    case SortingTypes.TOP_RATED:
+      return b.rating - a.rating;
+    case SortingTypes.POPULAR:
+    default:
+      return true;
+  }
 };

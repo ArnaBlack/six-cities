@@ -23,7 +23,7 @@ class FavoritesPage extends React.PureComponent<Props, null> {
   render() {
     const {} = this.props;
 
-    return <React.Fragment>
+    return <div className="page">
       <Header />
       <Sprite />
       <main className="page__main page__main--favorites">
@@ -78,7 +78,7 @@ class FavoritesPage extends React.PureComponent<Props, null> {
         </div>
       </main>;
       <Footer />
-    </React.Fragment>
+    </div>
   }
 
   componentDidMount() {

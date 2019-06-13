@@ -18,14 +18,10 @@ import {
 } from '../../store/data/selectors';
 
 import {Offer} from '../../types';
-
-const MAX_IMAGES = 6;
-const PlaceTypes = {
-  apartment: `Apartment`,
-  room: `Private Room`,
-  house: `House`,
-  hotel: `Hotel`,
-};
+import {
+  MAX_GALLERY_IMAGES,
+  PlaceTypes,
+} from '../../constants';
 
 interface Props {
   isLoading: boolean,
@@ -58,7 +54,7 @@ class PlacePage extends React.PureComponent<Props, null> {
       type,
     } = offer;
 
-    const gallery = images.slice(0, MAX_IMAGES).map((it, i) => <div
+    const gallery = images.slice(0, MAX_GALLERY_IMAGES).map((it, i) => <div
       key={`image-${id}-${i}`}
       className="property__image-wrapper"
     >
