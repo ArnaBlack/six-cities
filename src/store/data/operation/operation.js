@@ -27,11 +27,11 @@ export default {
     .then((response) => {
       const data = adaptOfferData(response.data);
       dispatch(ActionCreator.updateOffer(data));
+      dispatch(ActionCreator.updateFavoriteOffers(data));
     })
     .catch((err) => {
       if (err && err.response.status === 403) {
         history.push(`/login`);
       }
-    })
-
+    }),
 };

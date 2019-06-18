@@ -55,3 +55,4 @@ export const makeSortFunction = (type) => (a, b) => {
 };
 
 export const updateOffer = (offers, offer) => offers.map((it) => it.id === offer.id ? offer : it);
+export const updateFavoriteOffers = (offers, offer) => offers.filter((it) => it.id !== offer.id);

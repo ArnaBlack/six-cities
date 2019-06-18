@@ -30,4 +30,15 @@ export const getCities = createSelector(
 );
 
 export const getReviews = (state) => state[NameSpace.DATA].reviews;
-export const getFavorites = (state) => state[NameSpace.DATA].favorites;
+export const getFavorites = (state) => state[NameSpace.DATA].favorites.reduce((obj, curr) => {
+  const {name} = curr.city;
+
+  if (!obj[name]) {
+    obj[name] = [];
+  }
+
+  return {
+    ...obj,
+    [name]: [...obj[name], curr],
+  };
+}, {});
