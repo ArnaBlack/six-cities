@@ -7,7 +7,7 @@ import Sprite from '../sprite/sprite';
 import Header from '../header/header';
 import Cities from '../cities/cities';
 import Places from '../places/places';
-import NoPlaces from '../no-places/no-places';
+import PlacesEmpty from '../places-empty/places-empty';
 import Map from '../map/map';
 
 import {getOffersByCity} from '../../store/data/selectors';
@@ -39,31 +39,28 @@ class MainPage extends React.PureComponent<Props, null> {
       offers,
       onSelectOffer,
     } = this.props;
-    let mainClasses = `page__main page__main--index`;
-
-    if (!offers.length) {
-      mainClasses = `page__main page__main--index page__main--index-empty`;
-    }
+    const hasOffers = offers && offers.length;
+    const emptyClass = !hasOffers ? `page__main--index-empty` : ``;
 
     return <div className="page page--gray page--main">
       <Header />
       <Sprite />
-      <main className={mainClasses}>
+      <main className={`page__main page__main--index ${emptyClass}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="cities tabs">
           <Cities onCityClick={this._onCityClick} />
         </div>
         <div className="cities__places-wrapper">
-          {!offers || !offers.length
-            ? <NoPlaces />
+          {!hasOffers
+            ? <PlacesEmpty />
             : <div className="cities__places-container container">
-              <PlacesWrapped onSelectOffer={onSelectOffer} />
-              <div className="cities__right-section">
-                <Map
-                  mapClass="cities__map"
-                  offers={offers}
-                  selectedOffer={selectedOffer}
-                />
+                <PlacesWrapped onSelectOffer={onSelectOffer} />
+                <div className="cities__right-section">
+                  <Map
+                    mapClass="cities__map"
+                    offers={offers}
+                    selectedOffer={selectedOffer}
+                  />
               </div>
             </div>}
         </div>
