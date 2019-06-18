@@ -4,13 +4,12 @@ import {connect} from 'react-redux';
 import Loader from '../loader/loader';
 import Sprite from '../sprite/sprite';
 import Header from '../header/header';
+import Bookmark from '../bookmark/bookmark';
 import Rating from '../rating/rating';
 import Reviews from '../reviews/reviews';
 import Map from '../map/map';
 import PlaceList from '../place-list/place-list';
 
-import UserOperation from '../../store/user/operation/operation';
-import DataOperation from '../../store/data/operation/operation';
 import {
   getLoadingState,
   getOffer,
@@ -27,8 +26,6 @@ interface Props {
   isLoading: boolean,
   offer: Offer,
   nearestOffers: Offer[],
-  checkAuth: () => void,
-  loadOffers: () => void,
 }
 
 class PlacePage extends React.PureComponent<Props, null> {
@@ -60,7 +57,6 @@ class PlacePage extends React.PureComponent<Props, null> {
     >
       <img className="property__image" src={it} alt={title} />
     </div>);
-    const isFavoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
     const premiumMark = isPremium ? <div className="property__mark"><span>Premium</span></div> : null;
     const insideList = goods.map((it, i) => <li
       key={`good-${id}-${i}`}
@@ -88,12 +84,13 @@ class PlacePage extends React.PureComponent<Props, null> {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className={`property__bookmark-button button ${isFavoriteClass}`} type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
-                    <use xlinkHref="#icon-bookmark" />
-                  </svg>
-                  <span className="visually-hidden">To bookmarks</span>
-                </button>
+                <Bookmark
+                  id={id}
+                  isFavorite={isFavorite}
+                  className="property"
+                  width={31}
+                  height={33}
+                />
               </div>
               <Rating
                 ratingClass="property__rating"
@@ -168,16 +165,6 @@ class PlacePage extends React.PureComponent<Props, null> {
       </main>
     </React.Fragment>
   }
-
-  componentDidMount() {
-    const {
-      checkAuth,
-      loadOffers,
-    } = this.props;
-
-    checkAuth();
-    loadOffers();
-  }
 }
 
 const mapStateToProps = (state, props) => ({
@@ -187,10 +174,5 @@ const mapStateToProps = (state, props) => ({
   nearestOffers: getNearestOffers(state, props.match.params.id),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  checkAuth: () => dispatch(UserOperation.checkAuth()),
-  loadOffers: () => dispatch(DataOperation.loadOffers()),
-});
-
-export {PlacePage}
-export default connect(mapStateToProps, mapDispatchToProps)(PlacePage);
+export {PlacePage};
+export default connect(mapStateToProps)(PlacePage);

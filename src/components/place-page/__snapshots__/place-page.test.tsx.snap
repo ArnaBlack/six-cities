@@ -42,25 +42,13 @@ exports[`PlacePage correctly renders 1`] = `
             >
               The house among olive
             </h1>
-            <button
-              className="property__bookmark-button button place-card__bookmark-button--active"
-              type="button"
-            >
-              <svg
-                className="property__bookmark-icon"
-                height="33"
-                width="31"
-              >
-                <use
-                  xlinkHref="#icon-bookmark"
-                />
-              </svg>
-              <span
-                className="visually-hidden"
-              >
-                To bookmarks
-              </span>
-            </button>
+            <ConnectFunction
+              className="property"
+              height={33}
+              id={1}
+              isFavorite={true}
+              width={31}
+            />
           </div>
           <Rating
             hasValue={true}
