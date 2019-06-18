@@ -4,7 +4,7 @@ import {
   shallow,
 } from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
-import {NoPlaces} from './no-places';
+import {PlacesEmpty} from './places-empty';
 
 configure({adapter: new Adapter()});
 
@@ -21,7 +21,7 @@ const mock = {
 
 it(`NoPlaces correctly renders`, () => {
   const {currentCity} = mock;
-  const tree = shallow(<NoPlaces currentCity={currentCity} />);
+  const tree = shallow(<PlacesEmpty currentCity={currentCity} />);
 
   expect(tree).toMatchSnapshot();
 });
