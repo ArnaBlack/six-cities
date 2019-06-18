@@ -1,9 +1,11 @@
 import {
   LOAD_OFFERS,
+  UPDATE_OFFER,
   CHANGE_CITY,
   LOAD_FAVORITES,
   LOAD_REVIEWS,
 } from '../action-types';
+import {updateOffer} from '../util';
 
 const initialState = {
   offers: [],
@@ -20,6 +22,11 @@ export default (state = initialState, action) => {
         ...state,
         offers: action.payload,
         isLoading: false,
+      };
+    case UPDATE_OFFER:
+      return {
+        ...state,
+        offers: updateOffer(state.offers, action.payload)
       };
     case CHANGE_CITY:
       return {

@@ -1,5 +1,6 @@
 import {
   LOAD_OFFERS,
+  UPDATE_OFFER,
   CHANGE_CITY,
   LOAD_FAVORITES,
   LOAD_REVIEWS,
@@ -10,6 +11,10 @@ export default {
     type: LOAD_OFFERS,
     payload: offers,
     isLoading: false,
+  }),
+  updateOffer: (offer) => ({
+    type: UPDATE_OFFER,
+    payload: offer,
   }),
   changeCity: (city) => ({
     type: CHANGE_CITY,

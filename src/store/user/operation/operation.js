@@ -13,9 +13,13 @@ export default {
       dispatch(ActionCreator.requireAuthorization(false));
       dispatch(ActionCreator.getUser(user));
     })
-    .catch(() => {
+    .catch((err) => {
+      if (err && err.response.status === 403) {
+        history.push(`/login`);
+        return;
+      }
+
       dispatch(ActionCreator.requireAuthorization(true));
-      history.push(`/login`);
     }),
   login: ({email, password}) => (dispatch, _getState, api) => api.post(`/login`, {
     email,
