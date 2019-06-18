@@ -5,7 +5,7 @@ exports[`PlaceCard correctly renders 1`] = `
   className="place-card undefined"
 >
   <div
-    className="cities__image-wrapper place-card__image-wrapper"
+    className="place-card__image-wrapper undefined"
   >
     <a
       href="#"
@@ -21,7 +21,7 @@ exports[`PlaceCard correctly renders 1`] = `
     </a>
   </div>
   <div
-    className="place-card__info"
+    className="place-card__info undefined"
   >
     <div
       className="place-card__price-wrapper"

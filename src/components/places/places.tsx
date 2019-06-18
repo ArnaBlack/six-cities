@@ -42,6 +42,7 @@ const Places = (props: Props) => {
       onSelectOffer={onSelectOffer}
       listClass="cities__places-list tabs__content"
       cardClass="cities__place-card"
+      imageWrapperClass="cities__image-wrapper"
     />
   </section>;
 };

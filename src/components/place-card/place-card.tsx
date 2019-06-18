@@ -8,6 +8,8 @@ import {Offer} from '../../types';
 
 interface Props {
   cardClass?: string,
+  imageWrapperClass?: string,
+  infoClass?: string,
   offer: Offer,
   onImageClick?: (offer: Offer) => void,
 }
@@ -22,6 +24,8 @@ class PlaceCard extends React.PureComponent<Props, null> {
   render() {
     const {
       cardClass,
+      imageWrapperClass,
+      infoClass,
       offer,
     } = this.props;
     const {
@@ -38,7 +42,7 @@ class PlaceCard extends React.PureComponent<Props, null> {
 
     return <article className={`place-card ${cardClass}`}>
       {premiumMark}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`place-card__image-wrapper ${imageWrapperClass}`}>
         <a href="#" onClick={this._handleImageClick}>
           <img
             className="place-card__image"
@@ -49,7 +53,7 @@ class PlaceCard extends React.PureComponent<Props, null> {
           />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`place-card__info ${infoClass}`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">

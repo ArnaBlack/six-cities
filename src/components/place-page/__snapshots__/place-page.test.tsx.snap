@@ -305,6 +305,7 @@ exports[`PlacePage correctly renders 1`] = `
         </h2>
         <PlaceList
           cardClass="near-places__card"
+          imageWrapperClass="near-places__image-wrapper"
           listClass="near-places__list"
           offers={
             Array [

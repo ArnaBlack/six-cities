@@ -159,6 +159,7 @@ class PlacePage extends React.PureComponent<Props, null> {
               offers={nearestOffers}
               listClass="near-places__list"
               cardClass="near-places__card"
+              imageWrapperClass="near-places__image-wrapper"
             />
           </section>
         </div>

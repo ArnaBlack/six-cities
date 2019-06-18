@@ -21,6 +21,7 @@ exports[`Places correctly renders 1`] = `
   />
   <PlaceList
     cardClass="cities__place-card"
+    imageWrapperClass="cities__image-wrapper"
     listClass="cities__places-list tabs__content"
     offers={Array []}
     onSelectOffer={[MockFunction]}
