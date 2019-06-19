@@ -3,7 +3,6 @@ import {
   adaptOfferData,
   adaptReviewData,
 } from '../util';
-import history from '../../../history';
 
 export default {
   loadOffers: () => (dispatch, _getState, api) => api.get(`/hotels`)
@@ -23,15 +22,26 @@ export default {
       const data = response.data.map(adaptReviewData);
       dispatch(ActionCreator.loadReviews(data));
     }),
+  sendReview: ({id, rating, comment}) => (dispatch, _getState, api) => api.post(`/comments/${id}`, {
+    rating,
+    comment,
+  })
+    .then((response) => {
+      if (!response) {
+        return;
+      }
+
+      const data = response.data.map(adaptReviewData);
+      dispatch(ActionCreator.loadReviews(data));
+    }),
   updateOffer: ({isFavorite, id}) => (dispatch, _getState, api) => api.post(`/favorite/${id}/${isFavorite}`)
     .then((response) => {
+      if (!response) {
+        return;
+      }
+
       const data = adaptOfferData(response.data);
       dispatch(ActionCreator.updateOffer(data));
       dispatch(ActionCreator.updateFavoriteOffers(data));
-    })
-    .catch((err) => {
-      if (err && err.response.status === 403) {
-        history.push(`/login`);
-      }
     }),
 };

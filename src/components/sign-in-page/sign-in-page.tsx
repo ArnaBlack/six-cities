@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+import {NavLink} from 'react-router-dom';
 
 import Sprite from '../sprite/sprite';
 import Header from '../header/header';
@@ -50,13 +51,16 @@ class SignInPage extends React.PureComponent<Props, null> {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <NavLink
+                className="locations__item-link"
+                to="/"
+              >
                 <span>{currentCity.name}</span>
-              </a>
+              </NavLink>
             </div>
           </section>
         </div>
-      </main>;
+      </main>
     </div>
   }
 

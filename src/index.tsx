@@ -10,10 +10,17 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {Router} from 'react-router-dom';
 
 import reducer from './store/rootReducer';
-import api from './api';
+import UserActionCreator from './store/user/action-creator/action-creator';
+import {createAPI} from './api';
 import history from './history';
 
 import App from './components/app/app';
+
+const api = createAPI(() => {
+  history.push(`/login`);
+  store.dispatch(UserActionCreator.requireAuthorization(true));
+  store.dispatch(UserActionCreator.getUser(null));
+});
 
 const store = createStore(
     reducer,

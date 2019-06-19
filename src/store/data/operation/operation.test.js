@@ -1,5 +1,5 @@
 import MockAdapter from 'axios-mock-adapter';
-import api from '../../../api';
+import {createAPI} from '../../../api';
 import Operation from './operation';
 import {
   LOAD_OFFERS,
@@ -88,6 +88,7 @@ it(`Should make a correct API call to /hotels`, () => {
   const dispatch = jest.fn();
   const _getState = jest.fn();
   const onSuccess = jest.fn();
+  const api = createAPI(() => jest.fn());
   const apiMock = new MockAdapter(api);
   const offersLoader = Operation.loadOffers(onSuccess);
   const data = [rawOffer];
