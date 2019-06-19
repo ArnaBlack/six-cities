@@ -1,6 +1,6 @@
-import history from '../../../history';
 import ActionCreator from '../action-creator/action-creator';
 import {adaptUserData} from '../util';
+import history from '../../../history';
 
 export default {
   checkAuth: () => (dispatch, _getState, api) => api.get(`/login`)
@@ -12,10 +12,6 @@ export default {
       const user = adaptUserData(response.data);
       dispatch(ActionCreator.requireAuthorization(false));
       dispatch(ActionCreator.getUser(user));
-    })
-    .catch(() => {
-      dispatch(ActionCreator.requireAuthorization(true));
-      history.push(`/login`);
     }),
   login: ({email, password}) => (dispatch, _getState, api) => api.post(`/login`, {
     email,
@@ -25,5 +21,6 @@ export default {
       const user = adaptUserData(response.data);
       dispatch(ActionCreator.getUser(user));
       dispatch(ActionCreator.requireAuthorization(false));
+      history.push(`/`);
     }),
 };

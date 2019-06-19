@@ -7,7 +7,7 @@ exports[`Main correctly renders 1`] = `
   <ConnectFunction />
   <Sprite />
   <main
-    className="page__main page__main--index"
+    className="page__main page__main--index "
   >
     <h1
       className="visually-hidden"

@@ -6,6 +6,7 @@ import {Offer} from '../../types';
 
 interface Props {
   cardClass?: string,
+  imageWrapperClass?: string,
   listClass?: string,
   offers: Offer[],
   onSelectOffer?: (offer: Offer) => void,
@@ -14,6 +15,7 @@ interface Props {
 const PlaceList = (props: Props) => {
   const {
     cardClass,
+    imageWrapperClass,
     listClass,
     offers,
     onSelectOffer,
@@ -23,6 +25,7 @@ const PlaceList = (props: Props) => {
     {offers.map((offer) => <PlaceCard
       key={offer.id}
       cardClass={cardClass}
+      imageWrapperClass={imageWrapperClass}
       offer={offer}
       onImageClick={onSelectOffer}
     />)}

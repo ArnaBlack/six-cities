@@ -8,7 +8,7 @@ interface Props {
   currentCity: City,
 }
 
-const NoPlaces = (props: Props) => {
+const PlacesEmpty = (props: Props) => {
   const {currentCity} = props;
 
   return <div className="cities__places-wrapper">
@@ -32,5 +32,5 @@ const mapStateToProps = (state, props) => ({
   currentCity: getCurrentCity(state),
 });
 
-export {NoPlaces};
-export default connect(mapStateToProps)(NoPlaces);
+export {PlacesEmpty};
+export default connect(mapStateToProps)(PlacesEmpty);

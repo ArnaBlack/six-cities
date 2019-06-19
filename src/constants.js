@@ -25,3 +25,7 @@ export const PinParams = {
   URL: `/img/pin.svg`,
   ACTIVE_URL: `/img/pin-active.svg`,
 };
+export const Review = {
+  MIN_LENGTH: 50,
+  MAX_LENGTH: 300,
+};

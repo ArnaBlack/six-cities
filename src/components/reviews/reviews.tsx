@@ -27,13 +27,16 @@ class Reviews extends React.PureComponent<Props, null> {
     const {
       isLoading,
       reviews,
+      placeId,
       isAuthorizationRequired,
     } = this.props;
 
     return isLoading ? null : <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
       <ReviewList />
-      {isAuthorizationRequired ? null : <ReviewForm />}
+      {isAuthorizationRequired ? null : <ReviewForm
+        id={placeId}
+      />}
     </section>;
   }
 

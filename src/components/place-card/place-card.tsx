@@ -1,12 +1,15 @@
 import * as React from 'react';
 import {Link} from 'react-router-dom';
 
+import Bookmark from '../bookmark/bookmark';
 import Rating from '../rating/rating';
 
 import {Offer} from '../../types';
 
 interface Props {
   cardClass?: string,
+  imageWrapperClass?: string,
+  infoClass?: string,
   offer: Offer,
   onImageClick?: (offer: Offer) => void,
 }
@@ -21,6 +24,8 @@ class PlaceCard extends React.PureComponent<Props, null> {
   render() {
     const {
       cardClass,
+      imageWrapperClass,
+      infoClass,
       offer,
     } = this.props;
     const {
@@ -33,12 +38,11 @@ class PlaceCard extends React.PureComponent<Props, null> {
       type,
       rating,
     } = offer;
-    const favoriteClass = isFavorite ? `place-card__bookmark-button--active` : ``;
     const premiumMark = isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null;
 
     return <article className={`place-card ${cardClass}`}>
       {premiumMark}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`place-card__image-wrapper ${imageWrapperClass}`}>
         <a href="#" onClick={this._handleImageClick}>
           <img
             className="place-card__image"
@@ -49,7 +53,7 @@ class PlaceCard extends React.PureComponent<Props, null> {
           />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`place-card__info ${infoClass}`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">
@@ -58,15 +62,13 @@ class PlaceCard extends React.PureComponent<Props, null> {
             </b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button
-            className={`place-card__bookmark-button button ${favoriteClass}`}
-            type="button"
-          >
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"/>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <Bookmark
+            id={id}
+            isFavorite={isFavorite}
+            className="place-card"
+            width={18}
+            height={19}
+          />
         </div>
         <Rating
           ratingClass="place-card__rating"

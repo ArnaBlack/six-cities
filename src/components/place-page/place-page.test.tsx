@@ -88,14 +88,10 @@ it(`PlacePage correctly renders`, () => {
     offer,
     offers,
   } = mock;
-  const checkAuth = jest.fn();
-  const loadOffers = jest.fn();
   const tree = shallow(<PlacePage
     isLoading={isLoading}
     offer={offer}
     nearestOffers={offers}
-    checkAuth={checkAuth}
-    loadOffers={loadOffers}
   />);
 
   expect(tree).toMatchSnapshot();

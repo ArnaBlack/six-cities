@@ -72,18 +72,17 @@ exports[`SignIn correctly renders 1`] = `
         <div
           className="locations__item"
         >
-          <a
+          <NavLink
             className="locations__item-link"
-            href="#"
+            to="/"
           >
             <span>
               Brussels
             </span>
-          </a>
+          </NavLink>
         </div>
       </section>
     </div>
   </main>
-  ;
 </div>
 `;
