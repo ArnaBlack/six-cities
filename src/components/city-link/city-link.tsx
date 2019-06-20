@@ -12,7 +12,7 @@ interface Props {
   onClick: (city: City) => void,
 }
 
-class CityLink extends React.Component<Props, null> {
+class CityLink extends React.PureComponent<Props, null> {
   constructor(props) {
     super(props);
 

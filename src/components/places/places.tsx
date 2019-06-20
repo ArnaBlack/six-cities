@@ -10,7 +10,7 @@ import PlaceList from '../place-list/place-list';
 import {getOffersByCity} from '../../store/offers/selectors';
 import {getCurrentCity} from '../../store/city/selectors';
 
-import {SortingTypes} from '../../constants';
+import {SortingType} from '../../constants';
 import {City, Offer} from "../../types";
 
 const PlaceSortingWrapped = withActiveItem(withToggleSorting(PlaceSorting));

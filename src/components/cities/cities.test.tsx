@@ -26,14 +26,6 @@ const mock = {
         zoom: 13,
       },
     },
-    {
-      name: `Paris`,
-      location: {
-        latitude: 51.37454,
-        longitude: 3.897976,
-        zoom: 10,
-      },
-    }
   ],
 };
 

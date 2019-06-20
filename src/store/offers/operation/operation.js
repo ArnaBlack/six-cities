@@ -6,7 +6,8 @@ export default {
   loadOffers: () => (dispatch, _getState, api) => api.get(`/hotels`)
     .then((response) => {
       const data = response.data.map(adaptOfferData);
-      const city = data[0].city;
+      const randomIndex = Math.floor(Math.random() * data.length);
+      const city = data[randomIndex].city;
       dispatch(CityActionCreator.changeCity(city));
       dispatch(ActionCreator.loadOffers(data));
     })

@@ -1,4 +1,4 @@
-import {SortingTypes} from '../../constants';
+import {SortingType} from '../../constants';
 
 export const adaptOfferData = (data) => ({
   bedrooms: data.bedrooms,
@@ -26,13 +26,13 @@ export const adaptOfferData = (data) => ({
 
 export const makeSortFunction = (type) => (a, b) => {
   switch (type) {
-    case SortingTypes.LOW_TO_HIGH:
+    case SortingType.LOW_TO_HIGH:
       return a.price - b.price;
-    case SortingTypes.HIGH_TO_LOW:
+    case SortingType.HIGH_TO_LOW:
       return b.price - a.price;
-    case SortingTypes.TOP_RATED:
+    case SortingType.TOP_RATED:
       return b.rating - a.rating;
-    case SortingTypes.POPULAR:
+    case SortingType.POPULAR:
     default:
       return true;
   }

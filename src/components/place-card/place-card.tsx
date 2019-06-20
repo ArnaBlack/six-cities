@@ -5,6 +5,7 @@ import Bookmark from '../bookmark/bookmark';
 import Rating from '../rating/rating';
 
 import {Offer} from '../../types';
+import {PlaceType} from '../../constants';
 
 interface Props {
   cardClass?: string,
@@ -82,7 +83,7 @@ class PlaceCard extends React.PureComponent<Props, null> {
           </Link>
         </h2>
         <p className="place-card__type">
-          {type}
+          {PlaceType[type.toUpperCase()]}
         </p>
       </div>
     </article>;
