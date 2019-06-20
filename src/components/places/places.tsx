@@ -7,10 +7,9 @@ import withToggleSorting from '../../hocs/with-toggle-sorting/with-toggle-sortin
 import PlaceSorting from '../place-sorting/place-sorting';
 import PlaceList from '../place-list/place-list';
 
-import {
-  getOffersByCity,
-  getCurrentCity,
-} from '../../store/data/selectors';
+import {getOffersByCity} from '../../store/offers/selectors';
+import {getCurrentCity} from '../../store/city/selectors';
+
 import {SortingTypes} from '../../constants';
 import {City, Offer} from "../../types";
 

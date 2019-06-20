@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 
 import CityLink from '../city-link/city-link';
 
-import {getCurrentCity} from '../../store/data/selectors';
-import {getCities} from '../../store/data/selectors';
+import {getCurrentCity} from '../../store/city/selectors';
+import {getCities} from '../../store/offers/selectors';
 
 import {City} from '../../types';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 
-import DataActionCreator from '../../store/data/action-creator/action-creator';
+import CityActionCreator from '../../store/city/action-creator/action-creator';
 
 import {City} from '../../types';
 
@@ -51,7 +51,7 @@ class CityLink extends React.Component<Props, null> {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  onClick: (city) => dispatch(DataActionCreator.changeCity(city)),
+  onClick: (city) => dispatch(CityActionCreator.changeCity(city)),
 });
 
 export {CityLink};

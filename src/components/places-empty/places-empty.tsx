@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 
-import {getCurrentCity} from '../../store/data/selectors';
+import {getCurrentCity} from '../../store/city/selectors';
 import {City} from '../../types';
 
 interface Props {

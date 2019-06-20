@@ -5,7 +5,7 @@ import {NavLink} from 'react-router-dom';
 import Sprite from '../sprite/sprite';
 import Header from '../header/header';
 
-import {getCurrentCity} from '../../store/data/selectors';
+import {getCurrentCity} from '../../store/city/selectors';
 import UserOperation from '../../store/user/operation/operation';
 
 import {City} from '../../types';

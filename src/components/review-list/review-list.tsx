@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 
 import Review from '../review/review';
 
-import {loadReviews} from '../../store/data/operation/operation';
-import {getReviews} from '../../store/data/selectors';
+import {loadReviews} from '../../store/reviews/operation/operation';
+import {getReviews} from '../../store/reviews/selectors';
 
 import {Comment} from '../../types';
 

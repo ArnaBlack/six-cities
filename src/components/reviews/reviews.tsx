@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 import ReviewList from '../review-list/review-list';
 import ReviewForm from '../review-form/review-form';
 
-import DataOperation from '../../store/data/operation/operation';
+import ReviewsOperation from '../../store/reviews/operation/operation';
 
 import {
   getLoadingState,
   getReviews,
-} from '../../store/data/selectors';
+} from '../../store/reviews/selectors';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 
 import {Comment} from '../../types';
@@ -34,9 +34,7 @@ class Reviews extends React.PureComponent<Props, null> {
     return isLoading ? null : <section className="property__reviews reviews">
       <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
       <ReviewList />
-      {isAuthorizationRequired ? null : <ReviewForm
-        id={placeId}
-      />}
+      {isAuthorizationRequired ? null : <ReviewForm id={placeId} />}
     </section>;
   }
 
@@ -58,7 +56,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadReviews: (id) => dispatch(DataOperation.loadReviews(id))
+  loadReviews: (id) => dispatch(ReviewsOperation.loadReviews(id))
 });
 
 export {Reviews};

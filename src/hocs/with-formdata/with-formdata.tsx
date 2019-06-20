@@ -60,13 +60,15 @@ const withFormData = (Component) => {
     }
 
     _onChange(evt) {
-      this.setState({
+      evt.persist();
+
+      this.setState((prevState) => ({
+        disabled: !evt.target.form.checkValidity(),
         formData: {
-          ...this.state.formData,
+          ...prevState.formData,
           [evt.target.name]: evt.target.value,
         },
-        disabled: !evt.target.form.checkValidity(),
-      });
+      }));
     }
   }
 

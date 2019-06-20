@@ -5,14 +5,11 @@ import history from '../../../history';
 export default {
   checkAuth: () => (dispatch, _getState, api) => api.get(`/login`)
     .then((response) => {
-      if (!response) {
-        return;
-      }
-
       const user = adaptUserData(response.data);
       dispatch(ActionCreator.requireAuthorization(false));
       dispatch(ActionCreator.getUser(user));
-    }),
+    })
+    .catch(() => {}),
   login: ({email, password}) => (dispatch, _getState, api) => api.post(`/login`, {
     email,
     password,
@@ -22,5 +19,6 @@ export default {
       dispatch(ActionCreator.getUser(user));
       dispatch(ActionCreator.requireAuthorization(false));
       history.push(`/`);
-    }),
+    })
+    .catch(() => {}),
 };
