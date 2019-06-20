@@ -67,7 +67,7 @@ exports[`PlaceCard correctly renders 1`] = `
     <p
       className="place-card__type"
     >
-      room
+      Private Room
     </p>
   </div>
 </article>

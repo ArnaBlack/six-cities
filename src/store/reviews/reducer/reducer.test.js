@@ -27,8 +27,6 @@ it(`Should get reviews`, () => {
   const action = {
     type: LOAD_REVIEWS,
     payload: reviews,
-    isSending: false,
-    sendingError: null,
   };
 
   const expected = {
@@ -48,8 +46,6 @@ it(`Should set sending state`, () => {
 
   const action = {
     type: SEND_REVIEW,
-    isSending: true,
-    sendingError: null,
   };
 
   const expected = {
@@ -67,8 +63,6 @@ it(`Should set success sending state`, () => {
 
   const action = {
     type: SEND_REVIEW_SUCCESS,
-    isSending: false,
-    sendingError: null,
   };
 
   const expected = {
@@ -87,7 +81,6 @@ it(`Should set error sending state`, () => {
   const action = {
     type: SEND_REVIEW_ERROR,
     payload: `error`,
-    isSending: false,
   };
 
   const expected = {

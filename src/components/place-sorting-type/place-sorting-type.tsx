@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {SortingTypes} from '../../constants';
+import {SortingType} from '../../constants';
 
 interface Props {
   type: string,
@@ -27,7 +27,7 @@ class PlaceSortingType extends React.PureComponent<Props, null> {
       tabIndex={0}
       onClick={this._handleTypeClick}
     >
-      {SortingTypes[type]}
+      {SortingType[type]}
     </li>;
   }
 

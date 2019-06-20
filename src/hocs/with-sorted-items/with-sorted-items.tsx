@@ -6,7 +6,7 @@ import {getOffersByCity} from '../../store/offers/selectors';
 import {makeSortFunction} from '../../store/offers/util';
 
 import {Offer} from '../../types';
-import {SortingTypes} from '../../constants';
+import {SortingType} from '../../constants';
 
 interface InjectedProps {
   offers: Offer[],
@@ -26,7 +26,7 @@ const withSortedItems = (Component) => {
       super(props);
 
       this.state = {
-        type: SortingTypes.POPULAR,
+        type: SortingType.POPULAR,
       };
 
       this._onSortingTypeChange = this._onSortingTypeChange.bind(this);
@@ -46,7 +46,7 @@ const withSortedItems = (Component) => {
     }
 
     _onSortingTypeChange(type) {
-      this.setState({type: SortingTypes[type]});
+      this.setState({type: SortingType[type]});
     }
   }
 

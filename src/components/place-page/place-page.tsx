@@ -19,7 +19,7 @@ import {
 import {Offer} from '../../types';
 import {
   MAX_GALLERY_IMAGES,
-  PlaceTypes,
+  PlaceType,
 } from '../../constants';
 
 interface Props {
@@ -51,19 +51,7 @@ class PlacePage extends React.PureComponent<Props, null> {
       type,
     } = offer;
 
-    const gallery = images.slice(0, MAX_GALLERY_IMAGES).map((it, i) => <div
-      key={`image-${id}-${i}`}
-      className="property__image-wrapper"
-    >
-      <img className="property__image" src={it} alt={title} />
-    </div>);
     const premiumMark = isPremium ? <div className="property__mark"><span>Premium</span></div> : null;
-    const insideList = goods.map((it, i) => <li
-      key={`good-${id}-${i}`}
-      className="property__inside-item"
-    >
-      {it}
-    </li>);
     const isHostProClass = host.isPro ? `property__avatar-wrapper--pro` : ``;
     const hostStatus = host.isPro ? <span className="property__user-status">Pro</span> : null;
 
@@ -74,7 +62,12 @@ class PlacePage extends React.PureComponent<Props, null> {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {gallery}
+              {images.slice(0, MAX_GALLERY_IMAGES).map((it, i) => <div
+                key={`image-${id}-${i}`}
+                className="property__image-wrapper"
+              >
+                <img className="property__image" src={it} alt={title} />
+              </div>)}
             </div>
           </div>
           <div className="property__container container">
@@ -101,7 +94,7 @@ class PlacePage extends React.PureComponent<Props, null> {
               />
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {PlaceTypes[type] || `Entire place`}
+                  {PlaceType[type.toUpperCase()] || `Entire place`}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
                   {bedrooms === 1 ? `1 Bedroom` : `${bedrooms} Bedrooms`}
@@ -117,7 +110,12 @@ class PlacePage extends React.PureComponent<Props, null> {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {insideList}
+                  {goods.map((it, i) => <li
+                    key={`good-${id}-${i}`}
+                    className="property__inside-item"
+                  >
+                    {it}
+                  </li>)}
                 </ul>
               </div>
               <div className="property__host">

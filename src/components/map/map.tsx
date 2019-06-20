@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as leaflet from 'leaflet';
 import {connect} from 'react-redux';
 
+import history from '../../history';
 import {getCurrentCity} from '../../store/city/selectors';
 
 import {
@@ -9,18 +10,18 @@ import {
   Offer,
 } from '../../types';
 import {
-  MapParams,
-  PinParams,
+  MapParam,
+  PinParam,
 } from '../../constants';
 
 const DEFAULT_ICON = leaflet.icon({
-  iconUrl: PinParams.URL,
-  iconSize: PinParams.SIZES,
+  iconUrl: PinParam.URL,
+  iconSize: PinParam.SIZES,
 });
 
 const ACTIVE_ICON = leaflet.icon({
-  iconUrl: PinParams.ACTIVE_URL,
-  iconSize: PinParams.SIZES,
+  iconUrl: PinParam.ACTIVE_URL,
+  iconSize: PinParam.SIZES,
 });
 
 const options = {
@@ -70,7 +71,7 @@ class Map extends React.PureComponent<Props, null> {
     });
     this._setView(currentCity.location);
     leaflet
-      .tileLayer(MapParams.TEMPLATE_URL, MapParams.TILE_OPTIONS)
+      .tileLayer(MapParam.TEMPLATE_URL, MapParam.TILE_OPTIONS)
       .addTo(this._map);
     this._renderMarkers();
     this._setActiveMarker();
@@ -112,7 +113,9 @@ class Map extends React.PureComponent<Props, null> {
 
     offers.forEach((it) => {
       const coordinates = [it.location.latitude, it.location.longitude];
-      const marker = leaflet.marker(coordinates, {icon: DEFAULT_ICON});
+      const marker = leaflet
+        .marker(coordinates, {icon: DEFAULT_ICON})
+        .on(`click`, () => history.push(`/offer/${it.id}`));
       this._markers[it.id] = marker;
       markers.push(marker);
     });
