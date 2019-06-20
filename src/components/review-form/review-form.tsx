@@ -1,13 +1,23 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+
 import withFormData from '../../hocs/with-formdata/with-formdata';
-import DataOperation from '../../store/data/operation/operation';
+
+import ReviewsOperation from '../../store/reviews/operation/operation';
+import {
+  getSendingState,
+  getSendingError,
+  getReviews,
+} from '../../store/reviews/selectors';
+
 import {
   MAX_RATING,
   Review,
 } from '../../constants';
 
 interface Props {
+  isSending: boolean,
+  sendingError: string | null,
   id: number,
   disabled: boolean,
   formData: Review,
@@ -35,6 +45,8 @@ class ReviewForm extends React.PureComponent<Props, null> {
 
   render() {
     const {
+      isSending,
+      sendingError,
       disabled,
       onChange,
     } = this.props;
@@ -83,6 +95,7 @@ class ReviewForm extends React.PureComponent<Props, null> {
         maxLength={Review.MAX_LENGTH}
         required
       />
+      {sendingError ? <p style={{color: `red`, margin: 0}}>{sendingError}</p> : null}
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and
@@ -91,7 +104,7 @@ class ReviewForm extends React.PureComponent<Props, null> {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={disabled}
+          disabled={disabled || isSending}
         >
           Submit
         </button>
@@ -108,15 +121,21 @@ class ReviewForm extends React.PureComponent<Props, null> {
       onSubmit,
     } = this.props;
 
-    onSubmit();
     onSendForm({id, ...formData});
+    onSubmit();
     this._formRef.current.reset();
   }
 }
 
+const mapStateToProps = (state, props) => ({
+  ...props,
+  isSending: getSendingState(state),
+  sendingError: getSendingError(state),
+});
+
 const mapDispatchToProps = (dispatch) => ({
-  onSendForm: ({id, rating, comment}) => dispatch(DataOperation.sendReview({id, rating, comment})),
+  onSendForm: ({id, rating, comment}) => dispatch(ReviewsOperation.sendReview({id, rating, comment})),
 });
 
 export {ReviewForm};
-export default connect(null, mapDispatchToProps)(withFormData(ReviewForm));
+export default connect(mapStateToProps, mapDispatchToProps)(withFormData(ReviewForm));

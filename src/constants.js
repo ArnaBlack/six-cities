@@ -1,7 +1,9 @@
 export const BASE_URL = `https://es31-server.appspot.com/six-cities`;
-export const MAX_NEAREST_OFFERS = 3;
-export const MAX_GALLERY_IMAGES = 6;
+export const CITIES_AMOUNT = 6;
 export const MAX_RATING = 5;
+export const MAX_GALLERY_IMAGES = 6;
+export const MAX_REVIEWS = 10;
+export const MAX_NEAREST_OFFERS = 3;
 export const PlaceTypes = {
   apartment: `Apartment`,
   room: `Private Room`,
@@ -22,8 +24,8 @@ export const MapParams = {
 };
 export const PinParams = {
   SIZES: [27, 39],
-  URL: `/img/pin.svg`,
-  ACTIVE_URL: `/img/pin-active.svg`,
+  URL: `img/pin.svg`,
+  ACTIVE_URL: `img/pin-active.svg`,
 };
 export const Review = {
   MIN_LENGTH: 50,

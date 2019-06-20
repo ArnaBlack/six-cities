@@ -8,8 +8,8 @@ import PlaceCard from '../place-card/place-card';
 import FavoritesEmpty from '../favorites-empty/favorites-empty';
 import Footer from '../footer/footer';
 
-import DataOperation from '../../store/data/operation/operation';
-import {getFavorites} from '../../store/data/selectors';
+import FavoritesOperation from '../../store/favorites/operation/operation';
+import {getFavorites} from '../../store/favorites/selectors';
 
 interface Props {
   favorites: object,
@@ -83,7 +83,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFavorites: () => dispatch(DataOperation.loadFavorites()),
+  loadFavorites: () => dispatch(FavoritesOperation.loadFavorites()),
 });
 
 export {FavoritesPage};

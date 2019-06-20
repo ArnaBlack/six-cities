@@ -2,10 +2,10 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {Subtract} from 'utility-types';
 
-import DataOperation from '../../store/data/operation/operation';
+import FavoritesOperation from '../../store/favorites/operation/operation';
 
 interface InjectedProps {
-  updateOffer: ({isFavorite: boolean, id: number}) => void,
+  updateFavorites: ({isFavorite: boolean, id: number}) => void,
 }
 
 const withFavoriteOperation = (Component) => {
@@ -32,16 +32,16 @@ const withFavoriteOperation = (Component) => {
       const {
         isFavorite,
         id,
-        updateOffer,
+        updateFavorites,
       } = this.props;
       const favoriteStatus = Number(!isFavorite);
 
-      updateOffer({isFavorite: favoriteStatus, id});
+      updateFavorites({isFavorite: favoriteStatus, id});
     }
   }
 
   const mapDispatchToProps = (dispatch) => ({
-    updateOffer: ({isFavorite, id}) => dispatch(DataOperation.updateOffer({isFavorite, id}))
+    updateFavorites: ({isFavorite, id}) => dispatch(FavoritesOperation.updateFavorites({isFavorite, id}))
   });
 
   return connect(null, mapDispatchToProps)(WithFavorite);

@@ -14,7 +14,7 @@ import {
   getLoadingState,
   getOffer,
   getNearestOffers,
-} from '../../store/data/selectors';
+} from '../../store/offers/selectors';
 
 import {Offer} from '../../types';
 import {

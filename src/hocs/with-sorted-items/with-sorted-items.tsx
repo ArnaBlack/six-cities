@@ -2,8 +2,8 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {Subtract} from 'utility-types';
 
-import {getOffersByCity} from '../../store/data/selectors';
-import {makeSortFunction} from '../../store/data/util';
+import {getOffersByCity} from '../../store/offers/selectors';
+import {makeSortFunction} from '../../store/offers/util';
 
 import {Offer} from '../../types';
 import {SortingTypes} from '../../constants';

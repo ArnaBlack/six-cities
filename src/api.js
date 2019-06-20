@@ -12,7 +12,7 @@ export const createAPI = (failCallback) => {
 
   const onSuccess = (response) => response;
   const onFail = (err) => {
-    if (err.response.status === 403) {
+    if (err.response && err.response.status === 403) {
       failCallback();
     }
   };

@@ -1,11 +1,11 @@
 import {
   LOAD_OFFERS,
-  CHANGE_CITY,
+  UPDATE_OFFERS,
 } from '../action-types';
 import ActionCreator from './action-creator';
 
-it(`Action creator for getting offers returns correct action`, () => {
-  const offers = [
+const mock = {
+  offers: [
     {
       bedrooms: 1,
       city: {
@@ -40,23 +40,25 @@ it(`Action creator for getting offers returns correct action`, () => {
       title: `The house among olive`,
       type: `room`,
     },
-  ];
+  ],
+};
 
+it(`Action creator for getting offers returns correct action`, () => {
+  const {offers} = mock;
   const expected = {
     type: LOAD_OFFERS,
     payload: offers,
-    isLoading: false,
   };
 
   expect(ActionCreator.loadOffers(offers)).toEqual(expected);
 });
 
-it(`Action creator for changing city returns correct action`, () => {
-  const city = `Paris`;
+it(`Action creator for update offers returns correct action`, () => {
+  const {offers} = mock;
   const expected = {
-    type: CHANGE_CITY,
-    payload: city,
+    type: UPDATE_OFFERS,
+    payload: offers[0],
   };
 
-  expect(ActionCreator.changeCity(city)).toEqual(expected);
+  expect(ActionCreator.updateOffers(offers[0])).toEqual(expected);
 });

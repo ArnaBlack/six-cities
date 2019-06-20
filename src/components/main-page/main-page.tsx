@@ -10,7 +10,7 @@ import Places from '../places/places';
 import PlacesEmpty from '../places-empty/places-empty';
 import Map from '../map/map';
 
-import {getOffersByCity} from '../../store/data/selectors';
+import {getOffersByCity} from '../../store/offers/selectors';
 import {Offer} from '../../types';
 
 const PlacesWrapped = withSortedItems(Places);

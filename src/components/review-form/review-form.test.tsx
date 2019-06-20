@@ -9,6 +9,8 @@ import {ReviewForm} from './review-form';
 configure({adapter: new Adapter()});
 
 const mock = {
+  isSending: false,
+  sendingError: null,
   id: 1,
   disabled: true,
   formData: {
@@ -19,6 +21,8 @@ const mock = {
 
 it(`ReviewForm correctly renders`, () => {
   const {
+    isSending,
+    sendingError,
     id,
     disabled,
     formData,
@@ -27,6 +31,8 @@ it(`ReviewForm correctly renders`, () => {
   const onSubmit = jest.fn();
   const onChange = jest.fn();
   const tree = shallow(<ReviewForm
+    isSending={isSending}
+    sendingError={sendingError}
     id={id}
     disabled={disabled}
     formData={formData}

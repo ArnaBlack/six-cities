@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PlaceSortingType from '../place-sorting-type/place-sorting-type';
-import {getOffers} from '../../store/data/selectors';
+import {getOffers} from '../../store/offers/selectors';
 import {SortingTypes} from '../../constants';
 
 interface Props {

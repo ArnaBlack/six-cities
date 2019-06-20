@@ -17,8 +17,8 @@ import FavoritesPage from '../favorites-page/favorites-page';
 import PlacePage from '../place-page/place-page';
 
 import UserOperation from '../../store/user/operation/operation';
-import DataOperation from '../../store/data/operation/operation';
-import {getLoadingState} from '../../store/data/selectors';
+import OffersOperation from '../../store/offers/operation/operation';
+import {getLoadingState} from '../../store/offers/selectors';
 import {getAuthorizationStatus} from '../../store/user/selectors';
 
 import {City} from '../../types';
@@ -73,7 +73,7 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   checkAuth: () => dispatch(UserOperation.checkAuth()),
-  loadOffers: () => dispatch(DataOperation.loadOffers()),
+  loadOffers: () => dispatch(OffersOperation.loadOffers()),
 });
 
 export {App};

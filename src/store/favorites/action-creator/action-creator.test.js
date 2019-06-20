@@ -1,11 +1,11 @@
 import {
-  LOAD_OFFERS,
-  CHANGE_CITY,
+  LOAD_FAVORITES,
+  UPDATE_FAVORITES,
 } from '../action-types';
-import reducer from './reducer';
+import ActionCreator from './action-creator';
 
-it(`Should get offers`, () => {
-  const offers = [
+const mock = {
+  favorites: [
     {
       bedrooms: 1,
       city: {
@@ -40,43 +40,25 @@ it(`Should get offers`, () => {
       title: `The house among olive`,
       type: `room`,
     },
-  ];
+  ],
+};
 
-  const state = {
-    city: `Amsterdam`,
-    offers: [],
-    isLoading: true,
-  };
-
-  const action = {
-    type: LOAD_OFFERS,
-    payload: offers,
-  };
-
+it(`Action creator for getting favorites returns correct action`, () => {
+  const {favorites} = mock;
   const expected = {
-    city: `Amsterdam`,
-    offers,
-    isLoading: false,
+    type: LOAD_FAVORITES,
+    payload: favorites,
   };
 
-  expect(reducer(state, action)).toEqual(expected);
+  expect(ActionCreator.loadFavorites(favorites)).toEqual(expected);
 });
 
-it(`Should change city`, () => {
-  const state = {
-    city: `Amsterdam`,
-    offers: [],
-  };
-
-  const action = {
-    type: CHANGE_CITY,
-    payload: `Paris`,
-  };
-
+it(`Action creator for update favorites returns correct action`, () => {
+  const {favorites} = mock;
   const expected = {
-    city: `Paris`,
-    offers: [],
+    type: UPDATE_FAVORITES,
+    payload: favorites[0],
   };
 
-  expect(reducer(state, action)).toEqual(expected);
+  expect(ActionCreator.updateFavorites(favorites[0])).toEqual(expected);
 });
