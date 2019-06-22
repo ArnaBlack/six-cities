@@ -3,7 +3,7 @@
 exports[`Bookmark renders correctly 1`] = `
 <button
   className="__bookmark-button button "
-  onClick={[MockFunction]}
+  onClick={[Function]}
   type="button"
 >
   <svg

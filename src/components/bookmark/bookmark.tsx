@@ -1,5 +1,6 @@
 import * as React from 'react';
-import withFavoriteOperation from '../../hocs/with-favorite-operation/with-favorite-operation';
+import {connect} from 'react-redux';
+import FavoritesOperation from '../../store/favorites/operation/operation';
 
 interface Props {
   id: number,
@@ -8,33 +9,56 @@ interface Props {
   width: number,
   height: number,
   onClick: () => void,
+  updateFavorites: ({isFavorite: boolean, id: number}) => void,
 }
 
-const Bookmark = (props: Props) => {
-  const {
-    className,
-    isFavorite,
-    width,
-    height,
-    onClick,
-  } = props;
-  const activeClass = isFavorite ? `${className}__bookmark-button--active` : ``;
+class Bookmark extends React.PureComponent<Props, null> {
+  constructor(props) {
+    super(props);
 
-  return <button
-    className={`${className}__bookmark-button button ${activeClass}`}
-    type="button"
-    onClick={onClick}
-  >
-    <svg
-      className={`${className}__bookmark-icon`}
-      width={width}
-      height={height}
+    this._onClick = this._onClick.bind(this);
+  }
+
+  render() {
+    const {
+      className,
+      isFavorite,
+      width,
+      height,
+    } = this.props;
+    const activeClass = isFavorite ? `${className}__bookmark-button--active` : ``;
+
+    return <button
+      className={`${className}__bookmark-button button ${activeClass}`}
+      type="button"
+      onClick={this._onClick}
     >
-      <use xlinkHref="#icon-bookmark"/>
-    </svg>
-    <span className="visually-hidden">To bookmarks</span>
-  </button>;
-};
+      <svg
+        className={`${className}__bookmark-icon`}
+        width={width}
+        height={height}
+      >
+        <use xlinkHref="#icon-bookmark"/>
+      </svg>
+      <span className="visually-hidden">To bookmarks</span>
+    </button>;
+  }
+
+  _onClick() {
+    const {
+      isFavorite,
+      id,
+      updateFavorites,
+    } = this.props;
+    const favoriteStatus = Number(!isFavorite);
+
+    updateFavorites({isFavorite: favoriteStatus, id});
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  updateFavorites: ({isFavorite, id}) => dispatch(FavoritesOperation.updateFavorites({isFavorite, id}))
+});
 
 export {Bookmark};
-export default withFavoriteOperation(Bookmark);
+export default connect(null, mapDispatchToProps)(Bookmark);

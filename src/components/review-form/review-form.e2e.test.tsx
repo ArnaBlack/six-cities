@@ -4,44 +4,43 @@ import {
   shallow,
 } from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
-import {SignInPage} from './sign-in-page';
+import {ReviewForm} from './review-form';
 
 configure({adapter: new Adapter()});
 
 const mock = {
-  currentCity: {
-    name: `Brussels`,
-    location: {
-      latitude: 50.846557,
-      longitude: 4.351697,
-      zoom: 13,
-    },
-  },
+  isSending: false,
+  sendingError: null,
+  id: 1,
   disabled: true,
   formData: {
-    email: `test1234@gmail.com`,
-    password: `1234`,
+    rating: 1,
+    comment: ``,
   },
 };
 
 it(`Form data correctly passes to callback on submit`, () => {
   const {
-    currentCity,
+    isSending,
+    sendingError,
+    id,
     disabled,
     formData,
   } = mock;
-  const onLogin = jest.fn();
+  const onSendForm = jest.fn();
   const onSubmit = jest.fn();
   const onChange = jest.fn();
-  const signIn = shallow(<SignInPage
-    currentCity={currentCity}
+  const reviewForm = shallow(<ReviewForm
+    isSending={isSending}
+    sendingError={sendingError}
+    id={id}
     disabled={disabled}
     formData={formData}
-    onLogin={onLogin}
+    onSendForm={onSendForm}
     onSubmit={onSubmit}
     onChange={onChange}
   />);
-  const instance = signIn.instance();
+  const instance = reviewForm.instance();
 
   instance._formRef = {
     current: {
@@ -50,14 +49,14 @@ it(`Form data correctly passes to callback on submit`, () => {
   };
 
   const preventDefault = jest.fn();
-  const form = signIn.find(`form`);
+  const form = reviewForm.find(`form`);
 
   form.simulate(`submit`, {
     preventDefault,
   });
 
   expect(preventDefault).toHaveBeenCalledTimes(1);
-  expect(onLogin).toHaveBeenCalledWith(formData);
+  expect(onSendForm).toHaveBeenCalledWith({id, ...formData});
   expect(onSubmit).toHaveBeenCalled();
   expect(instance._formRef.current.reset).toHaveBeenCalled();
 });

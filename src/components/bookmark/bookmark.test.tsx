@@ -19,6 +19,7 @@ it(`Bookmark renders correctly`, () => {
     height,
   } = mock;
   const onClick = jest.fn();
+  const updateFavorites = jest.fn();
   const tree = renderer
     .create(<Bookmark
       id={id}
@@ -27,6 +28,7 @@ it(`Bookmark renders correctly`, () => {
       width={width}
       height={height}
       onClick={onClick}
+      updateFavorites={updateFavorites}
     />)
     .toJSON();
 
