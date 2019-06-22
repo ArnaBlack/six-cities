@@ -2,7 +2,6 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 
-import withFormData from '../../hocs/with-formdata/with-formdata';
 import Sprite from '../sprite/sprite';
 import Header from '../header/header';
 
@@ -116,4 +115,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {SignInPage};
-export default withFormData(connect(mapStateToProps, mapDispatchToProps)(SignInPage));
+export default connect(mapStateToProps, mapDispatchToProps)(SignInPage);
