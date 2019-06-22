@@ -17,14 +17,29 @@ const mock = {
       zoom: 13,
     },
   },
+  disabled: true,
+  formData: {
+    email: `test1234@gmail.com`,
+    password: `1234`,
+  },
 };
 
 it(`SignIn correctly renders`, () => {
-  const {currentCity} = mock;
+  const {
+    currentCity,
+    disabled,
+    formData,
+  } = mock;
   const onLogin = jest.fn();
+  const onSubmit = jest.fn();
+  const onChange = jest.fn();
   const tree = shallow(<SignInPage
     currentCity={currentCity}
+    disabled={disabled}
+    formData={formData}
     onLogin={onLogin}
+    onSubmit={onSubmit}
+    onChange={onChange}
   />);
 
   expect(tree).toMatchSnapshot();

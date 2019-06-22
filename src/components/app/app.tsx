@@ -8,6 +8,7 @@ import {
 
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import withTransformProps from '../../hocs/with-transform-props/with-transform-props';
+import withFormData from '../../hocs/with-formdata/with-formdata';
 import withPrivateRoute from '../../hocs/with-private-route/with-private-route';
 
 import Loader from '../loader/loader';
@@ -28,6 +29,7 @@ const transformActiveToSelected = (props) => ({
   onSelectOffer: props.onSelectItem,
 });
 const MainPageWrapped = withActiveItem(withTransformProps(transformActiveToSelected)(MainPage));
+const SignInPageWrapped = withFormData(SignInPage);
 const FavoritesPageWrapped = withPrivateRoute(FavoritesPage);
 
 interface Props {
@@ -47,7 +49,7 @@ class App extends React.PureComponent<Props, null> {
 
     return isLoading ? <Loader /> : <Switch>
       <Route path="/" exact component={MainPageWrapped} />
-      <Route path="/login" render={() => isAuthorizationRequired ? <SignInPage /> : <Redirect to="/" />}/>
+      <Route path="/login" render={() => isAuthorizationRequired ? <SignInPageWrapped /> : <Redirect to="/" />}/>
       <Route path="/favorites" component={FavoritesPageWrapped} />
       <Route path="/offer/:id" component={PlacePage} />
       <Redirect from="*" to="/" />

@@ -11,24 +11,36 @@ import UserOperation from '../../store/user/operation/operation';
 import {City} from '../../types';
 
 interface Props {
+  disabled: boolean,
   currentCity: City,
-  onLogin: (obj: userData) => void,
+  formData: FormData,
+  onLogin: (obj: FormData) => void,
+  onSubmit: () => void,
+  onChange: (evt: any) => void,
 }
 
-interface userData {
+interface FormData {
   email: FormDataEntryValue,
   password: FormDataEntryValue
 }
 
 class SignInPage extends React.PureComponent<Props, null> {
+  private _formRef: React.RefObject<HTMLFormElement>;
+
   constructor(props) {
     super(props);
+
+    this._formRef = React.createRef();
 
     this._handleFormSubmit = this._handleFormSubmit.bind(this);
   }
 
   render() {
-    const {currentCity} = this.props;
+    const {
+      disabled,
+      currentCity,
+      onChange,
+    } = this.props;
 
     return <div className="page page--gray page--login">
       <Header />
@@ -37,7 +49,14 @@ class SignInPage extends React.PureComponent<Props, null> {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form className="login__form form" action="#" method="post" onSubmit={this._handleFormSubmit}>
+            <form
+              className="login__form form"
+              action="#"
+              method="post"
+              onSubmit={this._handleFormSubmit}
+              onChange={onChange}
+              ref={this._formRef}
+            >
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
                 <input className="login__input form__input" type="email" name="email" placeholder="Email" required />
@@ -46,7 +65,11 @@ class SignInPage extends React.PureComponent<Props, null> {
                 <label className="visually-hidden">Password</label>
                 <input className="login__input form__input" type="password" name="password" placeholder="Password" required />
               </div>
-              <button className="login__submit form__submit button" type="submit">Sign in</button>
+              <button
+                className="login__submit form__submit button"
+                type="submit"
+                disabled={disabled}
+              >Sign in</button>
             </form>
           </section>
           <section className="locations locations--login locations--current">
@@ -70,11 +93,15 @@ class SignInPage extends React.PureComponent<Props, null> {
 
   _handleFormSubmit(evt) {
     evt.preventDefault();
-    const {onLogin} = this.props;
-    const data = new FormData(evt.target);
-    const email = data.get(`email`);
-    const password = data.get(`password`);
-    onLogin({email, password});
+    const {
+      formData,
+      onLogin,
+      onSubmit,
+    } = this.props;
+
+    onLogin(formData);
+    onSubmit();
+    this._formRef.current.reset();
   }
 }
 

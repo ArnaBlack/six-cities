@@ -1,7 +1,7 @@
 export interface Location {
   latitude: number,
-    longitude: number,
-    zoom: number,
+  longitude: number,
+  zoom: number,
 }
 
 export interface City {

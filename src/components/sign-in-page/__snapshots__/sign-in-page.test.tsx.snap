@@ -24,6 +24,7 @@ exports[`SignIn correctly renders 1`] = `
           action="#"
           className="login__form form"
           method="post"
+          onChange={[MockFunction]}
           onSubmit={[Function]}
         >
           <div
@@ -60,6 +61,7 @@ exports[`SignIn correctly renders 1`] = `
           </div>
           <button
             className="login__submit form__submit button"
+            disabled={true}
             type="submit"
           >
             Sign in

@@ -164,6 +164,12 @@ class PlacePage extends React.PureComponent<Props, null> {
       </main>
     </React.Fragment>
   }
+
+  componentDidMount() {
+    const {offer} = this.props;
+    const {title} = offer;
+    document.title = `6 cities: ${title}`;
+  }
 }
 
 const mapStateToProps = (state, props) => ({
